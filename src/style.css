@@ -1,0 +1,8 @@
+html,body,#cy {
+    width: 100%;
+    height: 90%;
+}
+
+.selector-for-some-widget {
+    box-sizing: content-box;
+  }

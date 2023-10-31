@@ -1,0 +1,363 @@
+[
+   
+
+    {
+        "data": {
+            "id": "past",
+            "label": "과거"
+        }
+    },
+    {
+        "data": {
+            "id": "y2018",
+            "label": "2018년"
+        }
+    },
+    {
+        "data": { "id": "past->y2018", "source": "y2018", "target": "past" }
+    },
+    {
+        "data": {
+            "id": "y2018_establish",
+            "label": "(주)로봇앤컴 법인 전환"
+        }
+    },
+    {
+        "data": { "id": "y2018->y2018_establish", "source": "y2018_establish", "target": "y2018" }
+    },
+    {
+        "data": {
+            "id": "y2018_point",
+            "label": "1만여 고객포인트 확보"
+        }
+    },
+    {
+        "data": { "id": "y2018->y2018_point", "source": "y2018_point", "target": "y2018" }
+    },
+    {
+        "data": {
+            "id": "y2018_maintenacne_point",
+            "label": "기업·병원·개인 Maintenance고객 300포인트 확보"
+        }
+    },
+    {
+        "data": { "id": "y2018->y2018_maintenacne_point", "source": "y2018_maintenacne_point", "target": "y2018" }
+    },
+
+    {
+        "data": {
+            "id": "y2019",
+            "label": "2019년"
+        }
+    },
+    {
+        "data": { "id": "past->y2019", "source": "y2019", "target": "past" }
+    },
+    {
+        "data": {
+            "id": "y2019_development_support",
+            "label": "개발지원점 설립"
+        }
+    },
+    {
+        "data": { "id": "y2019->y2019_development_support", "source": "y2019_development_support", "target": "y2019" }
+    },
+    {
+        "data": {
+            "id": "y2019_expansion_corporate_facilities",
+            "label": "법인 시설 확장"
+        }
+    },
+    {
+        "data": { "id": "y2019->y2019_expansion_corporate_facilities", "source": "y2019_expansion_corporate_facilities", "target": "y2019" }
+    },
+    {
+        "data": {
+            "id": "y2019_vietnamese_business",
+            "label": "해외(베트남)사업 진출"
+        }
+    },
+    {
+        "data": { "id": "y2019->y2019_vietnamese_businesss", "source": "y2019_vietnamese_business", "target": "y2019" }
+    },
+    {
+        "data": {
+            "id": "y2019_hospital_solution",
+            "label": "병원 IT솔루션 150여곳 제공"
+        }
+    },
+    {
+        "data": { "id": "y2019->y2019_hospital_solution", "source": "y2019_hospital_solution", "target": "y2019" }
+    },
+    {
+        "data": {
+            "id": "y2019_sk_network_infra",
+            "label": "SK재단 네트워크 인프라 구축"
+        }
+    },
+    {
+        "data": { "id": "y2019->y2019_sk_network_infra", "source": "y2019_sk_network_infra", "target": "y2019" }
+    },
+    {
+        "data": {
+            "id": "y2019_lgcns_network_infra",
+            "label": "LG CNS 코딩프로젝트 네트워크 인프라 구축"
+        }
+    },
+    {
+        "data": { "id": "y2019->y2019_lgcns_network_infra", "source": "y2019_lgcns_network_infra", "target": "y2019" }
+    },
+    {
+        "data": {
+            "id": "y2019_kt_vander_collaboration",
+            "label": "KT 밴더 협업 구축"
+        }
+    },
+    {
+        "data": { "id": "y2019->y2019_kt_vander_collaboration", "source": "y2019_kt_vander_collaboration", "target": "y2019" }
+    },
+    
+    {
+        "data": {
+            "id": "y2021",
+            "label": "2021년"
+        }
+    },
+    {
+        "data": { "id": "past->y2021", "source": "y2021", "target": "past" }
+    },
+    {
+        "data": {
+            "id": "y2021_cisco_partner",
+            "label": "시스코 CISCO 파트너 체결"
+        }
+    },
+    {
+        "data": { "id": "y2021->y2021_cisco_partner", "source": "y2021_cisco_partner", "target": "y2021" }
+    },
+    {
+        "data": {
+            "id": "y2021_excellent_technical_evaluation",
+            "label": "기술평가 우수기업 인증"
+        }
+    },
+    {
+        "data": { "id": "y2021->y2021_excellent_technical_evaluation", "source": "y2021_excellent_technical_evaluation", "target": "y2021" }
+    },
+    {
+        "data": {
+            "id": "y2021_verification_venture_company",
+            "label": "벤처기업 인증 확인"
+        }
+    },
+    {
+        "data": { "id": "y2021->y2021_verification_venture_company", "source": "y2021_verification_venture_company", "target": "y2021" }
+    },
+    {
+        "data": {
+            "id": "y2021_information_communications_construction_industry",
+            "label": "정보통신공사업 등록"
+        }
+    },
+    {
+        "data": { "id": "y2021->y2021_information_communications_construction_industry", "source": "y2021_information_communications_construction_industry", "target": "y2021" }
+    },
+    {
+        "data": {
+            "id": "y2021_inoviz_registration",
+            "label": "이노비즈 등록 인증"
+        }
+    },
+    {
+        "data": { "id": "y2021->y2021_inoviz_registration", "source": "y2021_inoviz_registration", "target": "y2021" }
+    },
+    {
+        "data": {
+            "id": "y2021_research_development_tec_center",
+            "label": "연구개발기술센터 설립"
+        }
+    },
+    {
+        "data": { "id": "y2021->y2021_research_development_tec_center", "source": "y2021_research_development_tec_center", "target": "y2021" }
+    },
+    {
+        "data": {
+            "id": "y2021_establishment_laboratories_factories",
+            "label": "기업부설연구소 / 공장 설립"
+        }
+    },
+    {
+        "data": { "id": "y2021->y2021_establishment_laboratories_factories", "source": "y2021_establishment_laboratories_factories", "target": "y2021" }
+    },
+    {
+        "data": {
+            "id": "y2021_expanding_platform_services",
+            "label": "플랫폼 서비스 분야 확장 시작"
+        }
+    },
+    {
+        "data": { "id": "y2021->y2021_expanding_platform_services", "source": "y2021_expanding_platform_services", "target": "y2021" }
+    },
+
+    {
+        "data": {
+            "id": "y2022",
+            "label": "2022년"
+        }
+    },
+    {
+        "data": { "id": "past->y2022", "source": "y2022", "target": "past" }
+    },
+    {
+        "data": {
+            "id": "y2022_patent",
+            "label": "약 30여개 특허 보유"
+        }
+    },
+    {
+        "data": { "id": "y2022->y2022_patent", "source": "y2022_patent", "target": "y2022" }
+    },
+    {
+        "data": {
+            "id": "y2022_partner_clients",
+            "label": "2000여개의 파트너 및 거래처 보유"
+        }
+    },
+    {
+        "data": { "id": "y2022->y2022_partner_clients", "source": "y2022_partner_clients", "target": "y2022" }
+    },
+    {
+        "data": {
+            "id": "y2022_register_mainbiz",
+            "label": "메인비즈 등록 인증"
+        }
+    },
+    {
+        "data": { "id": "y2022->y2022_register_mainbiz", "source": "y2022_register_mainbiz", "target": "y2022" }
+    },
+    {
+        "data": {
+            "id": "y2022_samsung_posco_patent",
+            "label": "삼성·포스코 특허 당선"
+        }
+    },
+    {
+        "data": { "id": "y2022->y2022_samsung_posco_patent", "source": "y2022_samsung_posco_patent", "target": "y2022" }
+    },
+    {
+        "data": {
+            "id": "y2022_acquiring_job_invention_system_certification",
+            "label": "직무발명제도 인증 취득"
+        }
+    },
+    {
+        "data": { "id": "y2022->y2022_acquiring_job_invention_system_certification", "source": "y2022_acquiring_job_invention_system_certification", "target": "y2022" }
+    },
+    {
+        "data": {
+            "id": "y2022_learning-oriented_field_training_leading",
+            "label": "학습중심 현장실습 선도기업 확인"
+        }
+    },
+    {
+        "data": { "id": "y2022->y2022_learning-oriented_field_training_leading", "source": "y2022_learning-oriented_field_training_leading", "target": "y2022" }
+    },
+    {
+        "data": {
+            "id": "y2022_military_service_exemption",
+            "label": "병역특례기업 인증"
+        }
+    },
+    {
+        "data": { "id": "y2022->y2022_military_service_exemption", "source": "y2022_military_service_exemption", "target": "y2022" }
+    },
+    {
+        "data": {
+            "id": "y2022_expanding_platform_services",
+            "label": "플랫폼 서비스 분야 확장"
+        }
+    },
+    {
+        "data": { "id": "y2022->y2022_expanding_platform_services", "source": "y2022_expanding_platform_services", "target": "y2022" }
+    },
+
+    {
+        "data": {
+            "id": "today",
+            "label": "현재"
+        }
+    },
+    {
+        "data": {
+            "id": "y2023_awards1",
+            "label": "한국 대표 브랜드 TOP 100 「IT 플랫폼」 부문 수상"
+        }
+    },
+    {
+        "data": { "id": "today->y2023_awards1", "source": "y2023_awards1", "target": "today" }
+    },
+    {
+        "data": {
+            "id": "taktaguri",
+            "url": "https://taktaguri.com/",
+            "label": "딱따구리 App 업데이트"
+        }
+    },
+    {
+        "data": { "id": "today->taktaguri", "source": "taktaguri", "target": "today" }
+    },
+    {
+        "data": {
+            "id": "moonjapay",
+            "url": "https://moonjapay.co.kr/",
+            "label": "문자페이 런칭"
+        }
+    },
+    {
+        "data": { "id": "today->moonjapay", "source": "moonjapay", "target": "today" }
+    },
+
+
+    {
+        "data": {
+            "id": "future",
+            "label": "미래"
+        }
+    },
+    {
+        "data": {
+            "id": "cha",
+            "label": "차병원 프로젝트"
+        }
+    },
+    {
+        "data": { "id": "future->cha", "source": "cha", "target": "future" }
+    },
+    {
+        "data": {
+            "id": "child",
+            "label": "소아과"
+        }
+    },
+    {
+        "data": { "id": "cha->child", "source": "child", "target": "cha" }
+    },
+    {
+        "data": {
+            "id": "obstetrics_gynecology",
+            "label": "산부인과"
+        }
+    },
+    {
+        "data": { "id": "cha->obstetrics_gynecology", "source": "obstetrics_gynecology", "target": "cha" }
+    },
+    {
+        "data": {
+            "id": "infertility_center",
+            "label": "난임센터"
+        }
+    },
+    {
+        "data": { "id": "cha->infertility_center", "source": "infertility_center", "target": "cha" }
+    }
+]
