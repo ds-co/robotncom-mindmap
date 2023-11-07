@@ -23,7 +23,7 @@ fetch('./model/data.json', { mode: 'no-cors' })
         const pageRank = cy_for_rank.elements().pageRank();
         // elements들의 rank들입니다.
 
-        const nodeMaxSize = 50;
+        const nodeMaxSize = 25;
         const nodeMinSize = 5;
         const nodeActiveSize = 20;
         const fontMaxSize = 10;
@@ -37,15 +37,18 @@ fetch('./model/data.json', { mode: 'no-cors' })
         const arrowActiveScale = 1.2;
         // edge & arrow 크기값
 
-        const dimColor = '#dfe4ea';
-        const edgeColor = '#ced6e0';
-        const nodeColor = '#57606f';
-        const nodeActiveColor = '#0367A6';
+        const dimColor = '#000000';
+        const edgeColor = '#000000';
+        const nodeColor = '#ffffff';
+        const nodeActiveColor = '#6db7f7';
 
-        const successorColor = '#023859';
+        const successorColor = '#7d6df7';
         // 상위 node & edge color
-        const predecessorsColor = '#66A8D1';
+        const predecessorsColor = '#a76df7';
         // 하위 node & edge color
+
+    
+  
 
         const cy = cytoscape({
 
