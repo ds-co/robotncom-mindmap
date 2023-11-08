@@ -1,60 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <style> body { margin: 0; } </style>
-  
+    <style>
+        body { margin: 0; }
+    </style>
     <script src="//unpkg.com/three"></script>
-  
     <script src="//unpkg.com/3d-force-graph"></script>
-    <!--<script src="../../dist/3d-force-graph.js"></script>-->
-  </head>
-  
-  <body>
+</head>
+
+<body>
     <div id="3d-graph"></div>
-  
+
     <script>
-      const imgs = ['logo.png','ttackttaguri.png','moonjapay.jpg','ftalk.png'];
-  
-      // Random connected graph
-      const gData = {
-        nodes: imgs.map((img, id) => ({ id, img })),
-        links: [...Array(imgs.length).keys()]
-          .filter(id => id)
-          .map(id => ({
-            source: id,
-            target: Math.round(Math.random() * (id-1))
-          }))
-      };
-  
-      const Graph = ForceGraph3D()
-      (document.getElementById('3d-graph'))
-      .nodeThreeObject(({ img }) => {
-        const imgTexture = new THREE.TextureLoader().load(`./img/${img}`);
-        imgTexture.colorSpace = THREE.SRGBColorSpace;
-        const material = new THREE.SpriteMaterial({ map: imgTexture });
-        const sprite = new THREE.Sprite(material);
-        sprite.scale.set(12, 12);
-        return sprite;
-      })
-      .graphData(gData)
-      .onNodeClick(node => {
-        // Check if the clicked node is ttackttaguri.png
-        if (node.img === 'ttackttaguri.png') {
-          // Redirect to the specified URL
-          window.location.href = 'https://taktaguri.com/';
-        } else {
-          // Aim at node from outside it
-          const distance = 40;
-          const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
+        const elem = document.getElementById('3d-graph');
 
-          const newPos = node.x || node.y || node.z
-            ? { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }
-            : { x: 0, y: 0, z: distance }; // special case if node is in (0,0,0)
+        const Graph = ForceGraph3D()
+        (elem)
+            .jsonUrl('../datasets/miserables.json')
+            .nodeLabel('id')
+            .nodeAutoColorBy('group')
+            .onNodeClick(node => {
+                // Aim at node from outside it
+                const distance = 40;
+                const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
 
-          Graph.cameraPosition(
-            newPos, // new position
-            node, // lookAt ({ x, y, z })
-            3000 // ms transition duration
-          );
-        }
-      });    
-      </script>
-  </body>
+                const newPos = node.x || node.y || node.z
+                    ? { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }
+                    : { x: 0, y: 0, z: distance };
+
+                Graph.cameraPosition(
+                    newPos,
+                    node,
+                    3000
+                );
+            })
+            .onLinkClick(link => {
+                  // Check if the clicked link is the one you want
+                  const sourceId = link.source.id || link.source; // In case the source is an object
+                  const targetId = link.target.id || link.target; // In case the target is an object
+
+                  if (sourceId === "FailureTalk" && targetId === "Platform") {
+                      // Display the specified image in the current window
+                      const imgElement = document.createElement('img');
+                      imgElement.src = 'https://cdn.imweb.me/thumbnail/20221111/ab11f0932cf44.jpg';
+                      imgElement.style.maxWidth = '80%'; // Adjust as needed
+                      imgElement.style.maxHeight = '80%'; // Adjust as needed
+                      imgElement.style.position = 'fixed';
+                      imgElement.style.top = '50%';
+                      imgElement.style.left = '50%';
+                      imgElement.style.transform = 'translate(-50%, -50%)';
+                      imgElement.style.zIndex = '9999';
+                      imgElement.addEventListener('click', () => {
+                          imgElement.remove();
+                      });
+                      document.body.appendChild(imgElement);
+                  }
+              });
+    </script>
+</body>
+
+</html>

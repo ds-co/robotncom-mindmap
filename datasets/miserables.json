@@ -1,0 +1,60 @@
+{
+  "nodes": [
+      {"id": "RobotNCom", "group": 1},
+
+      {"id": "Platform", "group": 2},
+      {"id": "FailureTalk", "group": 3},
+      {"id": "Ddakttaguri", "group": 3},
+      {"id": "Naafa", "group": 3},
+      {"id": "Moonjapay", "group": 3},
+      {"id": "Nolga", "group": 3},
+
+      {"id": "Technology", "group": 2},
+      {"id": "ServerAndSecuritySolutions", "group": 3},
+      {"id": "ITIntegrationSolutions", "group": 3},
+      {"id": "InformationCommunicationBusiness", "group": 3},
+      {"id": "VoiceInfrastructure", "group": 3},
+      {"id": "NetworkSolutions", "group": 3},
+      {"id": "PlatformDevelopmentAndIoT", "group": 3},
+      {"id": "ComputerHWPlusSW", "group": 3},
+
+      {"id": "Awards", "group": 2},
+      {"id": "MinistryOfSMEsAndStartupsInnovationAward", "group": 3},
+      {"id": "2021TechnicalEvaluationExcellentCompanyCertification", "group": 3},
+      {"id": "KoreaEngineerAward", "group": 3},
+
+      {"id": "SocialContribution", "group": 2},
+      {"id": "SupportForCrisisChildProtectionAndDaycareSpace", "group": 3},
+      {"id": "DonationOfComputersToUnderprivilegedChildren", "group": 3},
+      {"id": "SupportForLowIncomeNeighborhoodLoveInAction", "group": 3},
+      {"id": "MissionarySupport", "group": 3}
+  ],
+  "links": [
+      {"source": "Platform", "target": "RobotNCom", "value": 1},
+      {"source": "FailureTalk", "target": "Platform", "value": 2},
+      {"source": "Ddakttaguri", "target": "Platform", "value": 2},
+      {"source": "Naafa", "target": "Platform", "value": 2},
+      {"source": "Moonjapay", "target": "Platform", "value": 2},
+      {"source": "Nolga", "target": "Platform", "value": 2},
+
+      {"source": "Technology", "target": "RobotNCom", "value": 1},
+      {"source": "ServerAndSecuritySolutions", "target": "Technology", "value": 2},
+      {"source": "ITIntegrationSolutions", "target": "Technology", "value": 2},
+      {"source": "InformationCommunicationBusiness", "target": "Technology", "value": 2},
+      {"source": "VoiceInfrastructure", "target": "Technology", "value": 2},
+      {"source": "NetworkSolutions", "target": "Technology", "value": 2},
+      {"source": "PlatformDevelopmentAndIoT", "target": "Technology", "value": 2},
+      {"source": "ComputerHWPlusSW", "target": "Technology", "value": 2},
+
+      {"source": "Awards", "target": "RobotNCom", "value": 1},
+      {"source": "MinistryOfSMEsAndStartupsInnovationAward", "target": "Awards", "value": 2},
+      {"source": "2021TechnicalEvaluationExcellentCompanyCertification", "target": "Awards", "value": 2},
+      {"source": "KoreaEngineerAward", "target": "Awards", "value": 2},
+
+      {"source": "SocialContribution", "target": "RobotNCom", "value": 1},
+      {"source": "SupportForCrisisChildProtectionAndDaycareSpace", "target": "SocialContribution", "value": 2},
+      {"source": "DonationOfComputersToUnderprivilegedChildren", "target": "SocialContribution", "value": 2},
+      {"source": "SupportForLowIncomeNeighborhoodLoveInAction", "target": "SocialContribution", "value": 2},
+      {"source": "MissionarySupport", "target": "SocialContribution", "value": 2}
+  ]
+}
