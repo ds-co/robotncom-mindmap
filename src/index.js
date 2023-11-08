@@ -53,7 +53,7 @@ fetch('./model/data.json', { mode: 'no-cors' })
         const cy = cytoscape({
 
             container: document.getElementById('cy'), // container to render in
-
+            userZoomingEnabled: false ,
             elements: data,
 
             style: [ // the stylesheet for the graph
