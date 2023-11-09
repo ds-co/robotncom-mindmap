@@ -31,7 +31,7 @@
         .modal-content {
             position: relative;
             background-color: #fefefe;
-            margin: 15% auto;
+            margin: 5% auto;
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
@@ -50,9 +50,9 @@
 
         /* Style for the modal image */
         .modal-content img {
-            max-width: 100%; /* 이미지가 모달 창의 최대 너비에 맞게 조절됩니다. */
-            height: auto; /* 가로 세로 비율을 유지하면서 크기가 조절됩니다. */
-            cursor: pointer; /* 이미지에 마우스 커서가 손가락 모양으로 변경됩니다. */
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
         }
     </style>
     <script src="//unpkg.com/three"></script>
@@ -112,12 +112,11 @@
             modal.style.display = 'block';
             document.getElementById('modal-content').innerHTML = content;
 
-            // 이미지 추가
             if (imageUrl) {
                 const img = document.createElement('img');
                 img.src = imageUrl;
                 img.onclick = function () {
-                    window.open(linkUrl, "_blank"); // 이미지 클릭 시 새 창에서 링크 열기
+                    window.open(linkUrl, "_blank");
                 };
                 document.getElementById('modal-content').appendChild(img);
             }
@@ -132,6 +131,8 @@
                 modal.style.display = 'none';
             }
         };
+
+        
 
         const nodeData = {
             "페일러톡": {
@@ -190,28 +191,66 @@
                 image: "https://cdn.imweb.me/thumbnail/20220926/2c174c9562d3b.jpg"
             },
 
+
+            "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": {
+                content: "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상",
+                image: "https://cdn.imweb.me/upload/S2022080431e5bcc0e2eaf/594205560d31f.jpg"
+            },
+            "대한민국 엔지니어상": {
+                content: "대한민국 엔지니어상",
+                image: "./a2.png"
+            },
             "중소벤처기업부 경영혁신 부문 장관상": {
                 content: "중소벤처기업부 경영혁신 부문 장관상",
-                image: "https://cdn.imweb.me/thumbnail/20220926/2c174c9562d3b.jpg"
+                image: "./a1.png"
             },
-            "2021 기술평가 우수기업 인증": {
-                content: "2021 기술평가 우수기업 인증",
-                image: "https://cdn.imweb.me/thumbnail/20220926/2c174c9562d3b.jpg"
+
+            "소외아동 PC 기부": {
+                content: "소외아동 PC 기부",
+                image: "./s1.jpg",
+                link: "https://blog.naver.com/robotncom/222394525413"
             },
+            "저소득계층 이웃사랑 실천": {
+                content: "저소득계층 이웃사랑 실천",
+                image: "s2.jpg",
+                link: "https://blog.naver.com/robotncom/222527224688"
+            },
+            "선교 지원": {
+                content: "선교 지원 : 외국인 근로자 섬김 사역, 노인 돌봄 사역, 몽골 유치원 사역, 농촌 및 시골 개척 사역 등"
+            },
+            "위기 영·유아 보호 및 보육공간 지원": {
+                content: "기업의 공간 제공 및 공간공사 비용, 임차료 일제 지원"
+            }
            
             // Add other node content here
         };
+
+        // Function to zoom in to a node
+        function zoomInToNode(node) {
+            const distance = 30;
+            const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
+
+            Graph.cameraPosition(
+                {
+                    x: node.x * distRatio,
+                    y: node.y * distRatio,
+                    z: node.z * distRatio
+                },
+                node,
+                1000
+            );
+        }
 
         Graph.onNodeClick(node => {
             const nodeId = node.id;
             if (nodeData[nodeId]) {
                 openModal(nodeData[nodeId].content, nodeData[nodeId].image, nodeData[nodeId].link);
+                zoomInToNode(node); // Call zoomInToNode when a node is clicked
             }
         });
 
-        // Manual Camera Orbit
-        const distance = 300;
-        let angle = 0;
+        const distance = 250;
+        let angle = 20;
 
         Graph.onEngineTick(() => {
             Graph.cameraPosition({
@@ -221,10 +260,9 @@
             angle += Math.PI / 2500;
         });
 
-        // Three.js scene에 배경 이미지 설정
         const textureLoader = new THREE.TextureLoader();
         const backgroundTexture = textureLoader.load('https://images.unsplash.com/photo-1610296669228-602fa827fc1f?q=80&w=1975&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-        Graph.renderer().setClearColor(new THREE.Color('black')); // Optional: Set a fallback color while the texture is loading
+        Graph.renderer().setClearColor(new THREE.Color('black'));
         backgroundTexture.minFilter = THREE.LinearFilter;
         Graph.scene().background = backgroundTexture;
     </script>
