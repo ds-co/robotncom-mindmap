@@ -19,6 +19,7 @@
       width: 200px;
       text-align: center;
     }
+
   </style>
 </head>
 <body>
@@ -26,6 +27,7 @@
 
   <div id="3d-graph"></div>
 
+  <script src="//unpkg.com/three"></script>
   <script src="//unpkg.com/3d-force-graph"></script>
 
   <script>
@@ -35,14 +37,18 @@
     const Graph = ForceGraph3D()(elem)
       .jsonUrl('../datasets/miserables.json')
       .nodeLabel('id')
-      .nodeAutoColorBy('group');
+      .nodeAutoColorBy('group')
+      .enableNavigationControls(false)
+      .nodeRelSize(5)
+      .enableNodeDrag(false)
 
+ 
     // 노드 클릭 이벤트 핸들링
     Graph.onNodeClick(node => {
       showInfoBox(node);
       zoomToNode(node);
     });
-
+    
     // 노드 정보를 나타내는 네모 박스 표시 함수
     function showInfoBox(node) {
       infoBox.innerHTML = '선택한 노드: ' + node.id; // 원하는 정보로 변경 가능
@@ -52,8 +58,8 @@
     // 노드 클릭 시 해당 노드로 확대 함수
     function zoomToNode(node) {
       // 노드를 확대하기 위해 카메라 이동
-  const distance = 20; // 확대 거리 조절
-  const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
+    const distance = 40; // 확대 거리 조절
+    const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
 
   Graph.cameraPosition(
     {
@@ -73,11 +79,16 @@
     elem.addEventListener('click', () => {
       hideInfoBox();
     });
-
     // 노드 정보를 나타내는 네모 박스 숨기는 함수
     function hideInfoBox() {
       infoBox.style.display = 'none';
     }
+    // Three.js scene에 배경 이미지 설정
+    const textureLoader = new THREE.TextureLoader();
+        const backgroundTexture = textureLoader.load('https://staticdelivery.nexusmods.com/mods/110/images/75367-0-1476189548.png');
+        Graph.renderer().setClearColor(new THREE.Color('black')); // Optional: Set a fallback color while the texture is loading
+        backgroundTexture.minFilter = THREE.LinearFilter;
+        Graph.scene().background = backgroundTexture;
   </script>
 </body>
 </html>
