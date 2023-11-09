@@ -1,10 +1,59 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <style>
-        body { margin: 0; }
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #3d-graph {
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* Style for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Style for the modal content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        /* Style for the close button */
+        .close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        /* Style for the modal image */
+        .modal-content img {
+            max-width: 100%; /* 이미지가 모달 창의 최대 너비에 맞게 조절됩니다. */
+            height: auto; /* 가로 세로 비율을 유지하면서 크기가 조절됩니다. */
+            cursor: pointer; /* 이미지에 마우스 커서가 손가락 모양으로 변경됩니다. */
+        }
     </style>
     <script src="//unpkg.com/three"></script>
     <script src="//unpkg.com/3d-force-graph"></script>
@@ -13,29 +62,130 @@
 <body>
     <div id="3d-graph"></div>
 
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
     <script>
         const elem = document.getElementById('3d-graph');
 
-        const Graph = ForceGraph3D()
-        (elem)
+        const Graph = ForceGraph3D()(elem)
             .jsonUrl('../datasets/miserables.json')
             .nodeLabel('id')
             .nodeAutoColorBy('group')
+            .enableNavigationControls(false)
             .onNodeClick(node => {
-                // Aim at node from outside it
-                const distance = 40;
-                const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
+                const newDistance = 40;
+                const distRatio = 1 + newDistance / Math.hypot(node.x, node.y, node.z);
 
                 const newPos = node.x || node.y || node.z
                     ? { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }
-                    : { x: 0, y: 0, z: distance };
+                    : { x: 0, y: 0, z: newDistance };
 
+                // Set the new camera position
                 Graph.cameraPosition(
                     newPos,
                     node,
                     3000
                 );
+
+                // Update the camera position immediately (not waiting for the next tick)
+                Graph.renderer().render(Graph.scene(), Graph.camera());
             })
+            .onEngineTick(() => {
+                Graph.graphData().nodes.forEach(n => {
+                    if (n.id === "RobotNCom") {
+                        n.__threeObj.scale.set(3, 3, 3);
+                    }
+                });
+            });
+
+        const modal = document.getElementById('myModal');
+        const span = document.getElementsByClassName('close')[0];
+
+        function openModal(content, imageUrl, linkUrl) {
+            modal.style.display = 'block';
+            document.getElementById('modal-content').innerHTML = content;
+
+            // 이미지 추가
+            if (imageUrl) {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.onclick = function () {
+                    window.open(linkUrl, "_blank"); // 이미지 클릭 시 새 창에서 링크 열기
+                };
+                document.getElementById('modal-content').appendChild(img);
+            }
+        }
+
+        span.onclick = function () {
+            modal.style.display = 'none';
+        };
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
+
+        const nodeData = {
+            "FailureTalk": {
+                content: "페일러톡 : 나의 실수·실패 카테고리로 나를 표현하자",
+                image: "https://failertalk.com/images/thumbnail.png",
+                link: "https://failertalk.com/"
+            },
+            "Ddakttaguri": {
+                content: "딱따구리 : 모든 수리·수선은 딱따구리!",
+                image: "https://taktaguri.com/src/assets/thumbnail.png",
+                link: "https://taktaguri.com/"
+            },
+            "Naafa": {
+                content: "나아파 : 환자,의사, 병원 모두를 위한 비대면 진료 통합 CRM+ 플랫폼",
+                image: "https://naafaa.co.kr/src/assets/thumbnail.png",
+                link: "https://naafaa.co.kr/"
+            },
+            "Moonjapay": {
+                content: "문자페이 : 간편 문자 결제 서비스",
+                image: "https://cdn.itbiznews.com/news/photo/202310/115814_112150_4722.png",
+                link: "https://moonjapay.co.kr/"
+            },
+            "Nolga": {
+                content: "놀가 : 농어촌 빈집 장기 임대플랫폼",
+                image: "https://cdn.itbiznews.com/news/photo/202310/115814_112150_4722.png",
+                link: "https://moonjapay.co.kr/"
+            },
+            // Add other node content here
+        };
+
+        Graph.onNodeClick(node => {
+            const nodeId = node.id;
+            if (nodeData[nodeId]) {
+                openModal(nodeData[nodeId].content, nodeData[nodeId].image, nodeData[nodeId].link);
+            }
+        });
+
+        // Manual Camera Orbit
+        const distance = 300;
+        let angle = 0;
+
+        Graph.onEngineTick(() => {
+            Graph.cameraPosition({
+                x: distance * Math.sin(angle),
+                z: distance * Math.cos(angle)
+            });
+            angle += Math.PI / 1000;
+        });
+
+        // Three.js scene에 배경 이미지 설정
+        const textureLoader = new THREE.TextureLoader();
+        const backgroundTexture = textureLoader.load('https://images.unsplash.com/photo-1610296669228-602fa827fc1f?q=80&w=1975&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        Graph.renderer().setClearColor(new THREE.Color('black')); // Optional: Set a fallback color while the texture is loading
+        backgroundTexture.minFilter = THREE.LinearFilter;
+        Graph.scene().background = backgroundTexture;
     </script>
 </body>
 
