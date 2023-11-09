@@ -78,6 +78,7 @@
             .nodeLabel('id')
             .nodeAutoColorBy('group')
             .enableNavigationControls(false)
+            .enableNodeDrag(false)
             .onNodeClick(node => {
                 const newDistance = 40;
                 const distRatio = 1 + newDistance / Math.hypot(node.x, node.y, node.z);
