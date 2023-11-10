@@ -22,21 +22,38 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0); /* Transparent background */
+            background-color: rgba(0, 0, 0, 0);
+            /* Transparent background */
         }
 
         /* Style for the modal content */
         .modal-content {
             position: absolute;
             top: 50%;
-            right: 20px; 
+            right: 20px;
             transform: translate(0, -50%);
             background-color: #fefefe;
             padding: 20px;
             border: 1px solid #888;
-            width: 40%; /* Adjust the width as needed */
+            width: 40%;
+            /* Adjust the width as needed */
             max-width: 800px;
             text-align: center;
+            width: 50%;
+        }
+
+        .modal-content img {
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .close {
+            float: right;
+            color: #ff0000;
+            font-size: 34px;
+            top: 0;
+            position: absolute;
+            right: 2%;
         }
     </style>
     <script src="//unpkg.com/three"></script>
@@ -92,31 +109,31 @@
                 });
             });
 
-            // 노드 정보를 나타내는 네모 박스 표시 함수
-    function showInfoBox(node) {
-      infoBox.innerHTML = '선택한 노드: ' + node.id; // 원하는 정보로 변경 가능
-      infoBox.style.display = 'block';
-    }
-
-    // 노드 클릭 시 해당 노드로 확대 함수
-    function zoomToNode(node) {
-      // 노드를 확대하기 위해 카메라 이동
-    const distance = 10; // 확대 거리 조절
-    const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
-
-  Graph.cameraPosition(
-    {
-      x: node.x * distRatio,
-      y: node.y * distRatio,
-      z: node.z * distRatio
-    },
-        node, // 노드를 바라보도록 함
-        1000, // ms 전환 지속 시간
-        () => {
-          hideInfoBox(); // 카메라 이동 후 네모 박스 숨김
+        // 노드 정보를 나타내는 네모 박스 표시 함수
+        function showInfoBox(node) {
+            infoBox.innerHTML = '선택한 노드: ' + node.id; // 원하는 정보로 변경 가능
+            infoBox.style.display = 'block';
         }
-      );
-    }
+
+        // 노드 클릭 시 해당 노드로 확대 함수
+        function zoomToNode(node) {
+            // 노드를 확대하기 위해 카메라 이동
+            const distance = 10; // 확대 거리 조절
+            const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
+
+            Graph.cameraPosition(
+                {
+                    x: node.x * distRatio,
+                    y: node.y * distRatio,
+                    z: node.z * distRatio
+                },
+                node, // 노드를 바라보도록 함
+                1000, // ms 전환 지속 시간
+                () => {
+                    hideInfoBox(); // 카메라 이동 후 네모 박스 숨김
+                }
+            );
+        }
         const modal = document.getElementById('myModal');
         const span = document.getElementsByClassName('close')[0];
 
@@ -137,16 +154,14 @@
         span.onclick = function () {
             modal.style.display = 'none';
             Graph.cameraPosition({ x: 110, y: 320, z: 150 }, null, 1000);
-                    hideInfoBox(); // 설명창 숨기기
-                    isInfoBoxVisible = false; // 상태 업데이트
+            isInfoBoxVisible = false; // 상태 업데이트
         };
 
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = 'none';
                 Graph.cameraPosition({ x: 110, y: 320, z: 150 }, null, 1000);
-                    hideInfoBox(); // 설명창 숨기기
-                    isInfoBoxVisible = false; // 상태 업데이트
+                isInfoBoxVisible = false; // 상태 업데이트
             }
         };
 
@@ -241,7 +256,7 @@
             "위기 영·유아 보호 및 보육공간 지원": {
                 content: "기업의 공간 제공 및 공간공사 비용, 임차료 일제 지원"
             }
-           
+
             // Add other node content here
         };
 
@@ -266,21 +281,21 @@
                 openModal(nodeData[nodeId].content, nodeData[nodeId].image, nodeData[nodeId].link);
                 zoomInToNode(node); // Call zoomInToNode when a node is clicked
             }
-        });    
+        });
 
         // camera orbit
         let angle = 0;
         setInterval(() => {
-        Graph.cameraPosition({
-            x: distance * Math.sin(angle),
-            z: distance * Math.cos(angle)
-        });
-        angle += Math.PI / 10000;
+            Graph.cameraPosition({
+                x: distance * Math.sin(angle),
+                z: distance * Math.cos(angle)
+            });
+            angle += Math.PI / 10000;
         }, 10);
 
 
         const textureLoader = new THREE.TextureLoader();
-        const backgroundTexture = textureLoader.load('https://images.unsplash.com/photo-1610296669228-602fa827fc1f?q=80&w=1975&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        const backgroundTexture = textureLoader.load('https://staticdelivery.nexusmods.com/mods/110/images/75367-0-1476189548.png');
         Graph.renderer().setClearColor(new THREE.Color('black'));
         backgroundTexture.minFilter = THREE.LinearFilter;
         Graph.scene().background = backgroundTexture;
