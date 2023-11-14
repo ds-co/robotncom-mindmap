@@ -1,6 +1,6 @@
 {
   "nodes": [
-    {"id": "로봇앤컴", "group": 1},
+    {"id": "로봇앤컴","img": "tinker.obj", "group": 1 },
 
     {"id": "플랫폼", "group": 2},
     {"id": "페일러톡", "group": 3},

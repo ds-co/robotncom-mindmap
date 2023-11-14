@@ -56,7 +56,8 @@
             position: absolute;
             right: 2%;
         }
-        .close img{
+
+        .close img {
             width: 20px;
         }
     </style>
@@ -70,7 +71,8 @@
     <!-- Modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close"><img src="https://icones.pro/wp-content/uploads/2022/05/icone-fermer-et-x-rouge.png" alt=""></span>
+            <span class="close"><img src="https://icones.pro/wp-content/uploads/2022/05/icone-fermer-et-x-rouge.png"
+                    alt=""></span>
             <div id="modal-content"></div>
         </div>
     </div>
@@ -108,7 +110,7 @@
             .onEngineTick(() => {
                 Graph.graphData().nodes.forEach(n => {
                     if (n.id === "로봇앤컴") {
-                        n.__threeObj.scale.set(3, 3, 3);
+                        n.__threeObj.scale.set(8, 8, 8);
                     }
                 });
             });
@@ -143,6 +145,7 @@
 
         function openModal(content, imageUrl, linkUrl) {
             modal.style.display = 'block';
+            disableRotation(); // 팝업이 열릴 때 회전을 중지
             document.getElementById('modal-content').innerHTML = content;
 
             if (imageUrl) {
@@ -158,20 +161,17 @@
         span.onclick = function () {
             modal.style.display = 'none';
             Graph.cameraPosition({ x: 110, y: 320, z: 150 }, null, 1000);
-            isInfoBoxVisible = false; // 상태 업데이트
+            enableRotation(); // 팝업이 닫힐 때 다시 회전을 시작
         };
 
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = 'none';
                 Graph.cameraPosition({ x: 110, y: 320, z: 150 }, null, 1000);
-                isInfoBoxVisible = false; // 상태 업데이트
+                enableRotation(); // 팝업이 닫힐 때 다시 회전을 시작
             }
         };
 
-        window.addEventListener('resize', () => {
-            Graph.width(elem.offsetWidth).height(elem.offsetHeight);
-        });
 
         const nodeData = {
             "페일러톡": {
@@ -200,6 +200,22 @@
                 link: "https://moonjapay.co.kr/"
             },
 
+            "플랫폼": {
+                content: "플랫폼",
+                image: "https://cdn.imweb.me/thumbnail/20220810/a0d4204b51961.jpg"
+            },
+            "기술": {
+                content: "기술",
+                image: "https://cdn.imweb.me/thumbnail/20220810/a0d4204b51961.jpg"
+            },
+            "수상": {
+                content: "수상",
+                image: "https://cdn.imweb.me/thumbnail/20220810/a0d4204b51961.jpg"
+            },
+            "사회공헌": {
+                content: "사회공헌",
+                image: "https://cdn.imweb.me/thumbnail/20220810/a0d4204b51961.jpg"
+            },
 
             "서버 및 보안 솔루션": {
                 content: "서버 및 보안 솔루션 : Data 서버 구축 및 보안",
@@ -229,7 +245,6 @@
                 content: "Computer HW + SW : 컴퓨터 하드웨어, 소프트웨어 및 주변기기",
                 image: "https://cdn.imweb.me/thumbnail/20220926/2c174c9562d3b.jpg"
             },
-
 
             "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": {
                 content: "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상",
@@ -264,7 +279,6 @@
             // Add other node content here
         };
 
-        // Function to zoom in to a node
         function zoomInToNode(node) {
             const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
 
@@ -286,18 +300,72 @@
                 zoomInToNode(node); // Call zoomInToNode when a node is clicked
             }
         });
+        const myModal = document.getElementById('myModal');
+        let lastCameraPosition;
 
-        // camera orbit
-        let angle = 0;
+        function openModal(content, imageUrl, linkUrl) {
+            myModal.style.display = 'block';
+            document.getElementById('modal-content').innerHTML = content;
+
+            if (imageUrl) {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.onclick = function () {
+                    window.open(linkUrl, "_blank");
+                };
+                document.getElementById('modal-content').appendChild(img);
+            }
+
+            disableRotation();
+            lastCameraPosition = Graph.cameraPosition(); // 모달 열린 시점의 카메라 위치 저장
+        }
+
+        function closeModal() {
+            myModal.style.display = 'none';
+
+            // 모달이 닫힌 후 2초 뒤에 회전을 다시 시작
+            setTimeout(() => {
+                enableRotation();
+            }, 0);
+        }
+
+        span.onclick = function () {
+            closeModal();
+        };
+
+        window.onclick = function (event) {
+            if (event.target == myModal) {
+                closeModal();
+            }
+        };
+
+        // 모달이 닫힌 후에도 회전을 계속하도록 설정
         setInterval(() => {
-            Graph.cameraPosition({
-                x: distance * Math.sin(angle),
-                z: distance * Math.cos(angle)
-            });
-            angle += Math.PI / 10000;
+            if (myModal.style.display === 'none') { // 모달이 닫혀있을 때만 회전
+                Graph.cameraPosition(lastCameraPosition);
+            }
         }, 10);
 
+        let rotationEnabled = true; // 변수를 추가하여 회전 상태를 추적
 
+        function enableRotation() {
+            rotationEnabled = true;
+        }
+
+        function disableRotation() {
+            rotationEnabled = false;
+        }
+
+        let angle = 0;
+        setInterval(() => {
+            if (rotationEnabled) {
+                Graph.cameraPosition({
+                    x: distance * Math.sin(angle),
+                    z: distance * Math.cos(angle)
+                });
+                angle += Math.PI / 10000;
+            }
+        }, 10);
         const textureLoader = new THREE.TextureLoader();
         const backgroundTexture = textureLoader.load('https://staticdelivery.nexusmods.com/mods/110/images/75367-0-1476189548.png');
         Graph.renderer().setClearColor(new THREE.Color('black'));
