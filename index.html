@@ -51,6 +51,7 @@
         position: absolute;
         bottom: 0;
         right: 0;
+        width: 50%;
       }
       .custom-button {
         padding: 6px 10px;
@@ -60,6 +61,11 @@
         border-radius: 50px;
         color: #ffffff;
         cursor: pointer;
+      }
+      @media (max-width: 767px) {
+        .image-container img {
+          width: 100%; /* Adjust the width for smaller screens */
+        }
       }
     </style>
     <script src="//unpkg.com/three"></script>
