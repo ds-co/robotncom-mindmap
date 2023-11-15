@@ -35,6 +35,15 @@
         border: 0.5px solid #ffffff;
         color: white;
       }
+      @media (max-width: 768px) {
+        .modal {
+          max-width: 90%; /* Adjust the max-width for smaller screens */
+          margin: 20px 0; /* Adjust margin for smaller screens */
+        }
+        .image-container img {
+          width: 100%; /* Make the image take full width on smaller screens */
+        }
+      }
 
       .modal h2 {
         font-weight: bold;
@@ -46,7 +55,6 @@
         right: 10px; /* Updated to move the close button to the right */
         font-size: 20px;
         cursor: pointer;
-        
       }
       .image-container {
         height: 60vh;
@@ -69,7 +77,11 @@
         color: #ffffff;
         cursor: pointer;
       }
-      
+      @media (max-width: 768px) {
+        .image-container {
+          display: none; /* Hide the image container on smaller screens */
+        }
+      }
     </style>
     <script src="//unpkg.com/three"></script>
     <script src="//unpkg.com/3d-force-graph"></script>
@@ -79,13 +91,19 @@
     <div id="3d-graph"></div>
     <div id="myModal" class="modal">
       <span id="closeModal">&times;</span>
-      <h2>나아파 Naafaa</h2>
+      <h1>나아파 Naafaa</h1>
       <p>나아파는 가나다라마바사아자차카타파하</p>
       <div class="image-container">
         <div>
           <img src="Naafaa2.png" alt="Naafa Image" />
         </div>
       </div>
+      <button class="custom-button" onclick="showNaafaModal()">
+        의료통합 Saas 플랫폼
+      </button>
+      <button class="custom-button" onclick="showNaafaModal()">
+        의료통합 Saas 플랫폼
+      </button>
       <button class="custom-button" onclick="showNaafaModal()">
         의료통합 Saas 플랫폼
       </button>
@@ -200,7 +218,22 @@
         Graph.width(graphContainer.offsetWidth).height(
           graphContainer.offsetHeight
         );
+        const modal = document.getElementById("myModal");
+        if (modal.style.display === "block") {
+          updateModalSize();
+        }
       });
+      function updateModalSize() {
+        const modal = document.getElementById("myModal");
+        const modalContent = modal.querySelector(".modal-content");
+
+        // Set the modal's max-width to 90% of the window width
+        const maxWidth = window.innerWidth * 0.9;
+        modalContent.style.maxWidth = `${maxWidth}px`;
+
+        // Center the modal horizontally
+        modal.style.left = `${(window.innerWidth - maxWidth) / 2}px`;
+      }
 
       // Function to zoom in to a node
       function zoomInToNode(node) {
@@ -253,7 +286,6 @@
       Graph.scene().background = backgroundTexture;
 
       function showNaafaModal() {
-        console.log("showNaafaModal called");
         const modal = document.getElementById("myModal");
         modal.style.display = "block";
       }
