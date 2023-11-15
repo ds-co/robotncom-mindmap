@@ -11,65 +11,63 @@
         width: 100%;
         height: 100vh;
       }
-
-      /* Style for the modal */
       .modal {
         display: none;
         position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(
-          0,
-          0,
-          0,
-          0.7
-        ); /* Semi-transparent black background */
-      }
-
-      .modal-content {
-        position: absolute;
-        top: 50%;
+        top: 10px;
         left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: rgba(255, 255, 255, 0.1);
+        transform: translateX(-50%);
+        max-width: 847px;
+        max-height: 90vh;
+        width: 100%;
+        margin: 5px 0;
         padding: 20px;
-        border: 0.5px solid #e1e1e1;
         border-radius: 10px;
-        width: 847px;
-        height: 480px;
-        text-align: center;
-        margin: 15px 0; /* Add margin to the top and bottom */
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.2
+        ); /* Updated to #FFFFFF with 10% opacity */
+        backdrop-filter: blur(10px); /* Added blur effect to the background */
+        box-shadow: 0 0 10px rgba(225, 225, 225, 0.5);
+        z-index: 1;
+        border: 0.5px solid #ffffff;
+        color: white;
       }
 
-      /* Style for the close button */
-      .close {
+      .modal h2 {
+        font-weight: bold;
+      }
+
+      #closeModal {
+        position: absolute;
+        top: 10px;
+        right: 10px; /* Updated to move the close button to the right */
+        font-size: 20px;
+        cursor: pointer;
+      }
+      .image-container {
+        height: 60vh;
+        display: flex;
+        justify-content: flex-end; /* Align images to the right */
+      }
+
+      .image-container img {
         position: absolute;
         top: 0;
+        width: 40%;
         right: 0;
+      }
+      .custom-button {
         padding: 10px;
-        cursor: pointer;
+        border: 2px solid #ffffff;
+        background-color: #d9d9d9;
+        border-radius: 50px;
         color: #ffffff;
-        background-color: rgba(
-          217,
-          217,
-          217,
-          0.4
-        ); /* Circular background color with 40% opacity */
-        border-radius: 50%; /* Make it circular */
-        width: 22px; /* Set width */
-        height: 22px;
-      }
-
-      /* Style for the modal image */
-      .modal-content img {
-        max-width: 100%;
-        height: auto;
         cursor: pointer;
       }
+      
     </style>
     <script src="//unpkg.com/three"></script>
     <script src="//unpkg.com/3d-force-graph"></script>
@@ -77,17 +75,22 @@
 
   <body>
     <div id="3d-graph"></div>
-
-    <!-- Modal -->
     <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <div id="modal-content"></div>
+      <span id="closeModal">&times;</span>
+      <h2>나아파 Naafaa</h2>
+      <p>나아파는 가나다라마바사아자차카타파하</p>
+      <div class="image-container">
+        <div>
+          <img src="Naafaa2.png" alt="Naafa Image" />
+        </div>
       </div>
+      <button class="custom-button" onclick="showNaafaModal()">
+        의료통합 Saas 플랫폼
+      </button>
     </div>
 
     <script>
-      const distance = 240;
+      const distance = 260;
 
       const nodeImages = {
         1: "logo.png",
@@ -130,7 +133,8 @@
           if (nodeImages[node.group]) {
             const imageSrc = nodeImages[node.group];
             if (typeof imageSrc === "object" && imageSrc[nodeId]) {
-              openModal(nodeId, imageSrc[nodeId]);
+              // You can add any action you want when a node is clicked
+              console.log(`Node "${nodeId}" clicked!`);
             }
           }
         })
@@ -189,76 +193,12 @@
           });
         });
 
-      const modal = document.getElementById("myModal");
-      const span = document.getElementsByClassName("close")[0];
-
-      function openModal(content, imageUrl, linkUrl) {
-        modal.style.display = "block";
-        document.getElementById("modal-content").innerHTML = content;
-
-        if (imageUrl) {
-          const img = document.createElement("img");
-          img.src = imageUrl;
-          if (linkUrl) {
-            const link = document.createElement("a");
-            link.href = linkUrl;
-            link.target = "_blank";
-            link.appendChild(img);
-            document.getElementById("modal-content").appendChild(link);
-          } else {
-            document.getElementById("modal-content").appendChild(img);
-          }
-        }
-      }
-
-      span.onclick = function () {
-        modal.style.display = "none";
-      };
-
-      window.onclick = function (event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      };
-
       window.addEventListener("resize", () => {
-        Graph.width(elem.offsetWidth).height(elem.offsetHeight);
+        const graphContainer = document.getElementById("3d-graph");
+        Graph.width(graphContainer.offsetWidth).height(
+          graphContainer.offsetHeight
+        );
       });
-
-      const nodeData = {
-        나아파: {
-          content:
-            "나아파 : 환자,의사, 병원 모두를 위한 비대면 진료 통합 CRM+ 플랫폼",
-          image: "https://naafaa.co.kr/src/assets/thumbnail.png",
-          link: "https://naafaa.co.kr/",
-        },
-        문자페이: {
-          content: "문자페이 : 간편 문자 결제 서비스",
-          image:
-            "https://cdn.itbiznews.com/news/photo/202310/115814_112150_4722.png",
-          link: "https://moonjapay.co.kr/",
-        },
-        놀가: {
-          content: "놀가 : 농어촌 빈집 장기 임대플랫폼",
-          image:
-            "https://cdn.itbiznews.com/news/photo/202310/115814_112150_4722.png",
-          link: "https://moonjapay.co.kr/",
-        },
-
-        "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": {
-          content: "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상",
-          image:
-            "https://cdn.imweb.me/upload/S2022080431e5bcc0e2eaf/594205560d31f.jpg",
-        },
-        "대한민국 엔지니어상": {
-          content: "대한민국 엔지니어상",
-          image: "./a2.png",
-        },
-        "중소벤처기업부 경영혁신 부문 장관상": {
-          content: "중소벤처기업부 경영혁신 부문 장관상",
-          image: "./a1.png",
-        },
-      };
 
       // Function to zoom in to a node
       function zoomInToNode(node) {
@@ -279,13 +219,8 @@
       Graph.onNodeClick((node) => {
         const nodeId = node.id;
 
-        if (nodeData[nodeId]) {
-          openModal(
-            nodeData[nodeId].content,
-            nodeData[nodeId].image,
-            nodeData[nodeId].link
-          );
-          zoomInToNode(node);
+        if (nodeId === "나아파") {
+          showNaafaModal();
         } else if (node.id === "인스타그램") {
           window.open("https://www.instagram.com/robot_n_com/", "_blank");
         } else if (node.id === "홈페이지") {
@@ -314,6 +249,21 @@
       Graph.renderer().setClearColor(new THREE.Color("black"));
       backgroundTexture.minFilter = THREE.LinearFilter;
       Graph.scene().background = backgroundTexture;
+
+      function showNaafaModal() {
+        console.log("showNaafaModal called");
+        const modal = document.getElementById("myModal");
+        modal.style.display = "block";
+      }
+
+      function hideModal() {
+        const modal = document.getElementById("myModal");
+        modal.style.display = "none";
+      }
+
+      document
+        .getElementById("closeModal")
+        .addEventListener("click", hideModal);
     </script>
   </body>
 </html>
