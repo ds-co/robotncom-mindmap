@@ -273,13 +273,22 @@
 
       Graph.onNodeClick((node) => {
         const nodeId = node.id;
+
         if (nodeData[nodeId]) {
           openModal(
             nodeData[nodeId].content,
             nodeData[nodeId].image,
             nodeData[nodeId].link
           );
-          zoomInToNode(node); // Call zoomInToNode when a node is clicked
+          zoomInToNode(node);
+        } else if (node.id === "인스타그램") {
+          window.open("https://www.instagram.com/robot_n_com/", "_blank");
+        } else if (node.id === "홈페이지") {
+          window.open("https://www.robotncom.com/", "_blank");
+        } else if (node.id === "네이버 블로그") {
+          window.open("https://blog.naver.com/robotncom", "_blank");
+        } else if (node.id === "카카오톡") {
+          window.open("http://pf.kakao.com/_VMxcds", "_blank");
         }
       });
 
