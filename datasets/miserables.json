@@ -51,10 +51,10 @@
     {"source": "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상", "target": "수상", "value": 2},
 
     {"source": "SNS", "target": "로봇앤컴", "value": 1},
-    {"source": "인스타그램", "target": "SNS", "value": 2},
-    {"source": "홈페이지", "target": "SNS", "value": 2},
-    {"source": "네이버 블로그", "target": "SNS", "value": 2},
-    {"source": "카카오톡", "target": "SNS", "value": 2}
+    {"source": "인스타그램", "target": "SNS", "value": 2, "link": "https://www.instagram.com/robot_n_com/"},
+    {"source": "홈페이지", "target": "SNS", "value": 2, "link": "https://www.robotncom.com/"},
+    {"source": "네이버 블로그", "target": "SNS", "value": 2, "link": "https://blog.naver.com/robotncom/222527224688"},
+    {"source": "카카오톡", "target": "SNS", "value": 2, "link": "https://www.robotncom.com/"}
     
   ]
 }

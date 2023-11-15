@@ -119,7 +119,7 @@
             }
           }
         })
-        
+
         .nodeThreeObject((node) => {
           const groupId = node.group;
           const nodeId = node.id;
@@ -184,10 +184,15 @@
         if (imageUrl) {
           const img = document.createElement("img");
           img.src = imageUrl;
-          img.onclick = function () {
-            window.open(linkUrl, "_blank");
-          };
-          document.getElementById("modal-content").appendChild(img);
+          if (linkUrl) {
+            const link = document.createElement("a");
+            link.href = linkUrl;
+            link.target = "_blank";
+            link.appendChild(img);
+            document.getElementById("modal-content").appendChild(link);
+          } else {
+            document.getElementById("modal-content").appendChild(img);
+          }
         }
       }
 
@@ -206,65 +211,48 @@
       });
 
       const nodeData = {
-        "페일러톡": {
-                content: "페일러톡 : 나의 실수·실패 카테고리로 나를 표현하자",
-                image: "https://failertalk.com/images/thumbnail.png",
-                link: "https://failertalk.com/"
-            },
-            "딱따구리": {
-                content: "딱따구리 : 모든 수리·수선은 딱따구리!",
-                image: "https://taktaguri.com/src/assets/thumbnail.png",
-                link: "https://taktaguri.com/"
-            },
-            "나아파": {
-                content: "나아파 : 환자,의사, 병원 모두를 위한 비대면 진료 통합 CRM+ 플랫폼",
-                image: "https://naafaa.co.kr/src/assets/thumbnail.png",
-                link: "https://naafaa.co.kr/"
-            },
-            "문자페이": {
-                content: "문자페이 : 간편 문자 결제 서비스",
-                image: "https://cdn.itbiznews.com/news/photo/202310/115814_112150_4722.png",
-                link: "https://moonjapay.co.kr/"
-            },
-            "놀가": {
-                content: "놀가 : 농어촌 빈집 장기 임대플랫폼",
-                image: "https://cdn.itbiznews.com/news/photo/202310/115814_112150_4722.png",
-                link: "https://moonjapay.co.kr/"
-            },
+        페일러톡: {
+          content: "페일러톡 : 나의 실수·실패 카테고리로 나를 표현하자",
+          image: "https://failertalk.com/images/thumbnail.png",
+          link: "https://failertalk.com/",
+        },
+        딱따구리: {
+          content: "딱따구리 : 모든 수리·수선은 딱따구리!",
+          image: "https://taktaguri.com/src/assets/thumbnail.png",
+          link: "https://taktaguri.com/",
+        },
+        나아파: {
+          content:
+            "나아파 : 환자,의사, 병원 모두를 위한 비대면 진료 통합 CRM+ 플랫폼",
+          image: "https://naafaa.co.kr/src/assets/thumbnail.png",
+          link: "https://naafaa.co.kr/",
+        },
+        문자페이: {
+          content: "문자페이 : 간편 문자 결제 서비스",
+          image:
+            "https://cdn.itbiznews.com/news/photo/202310/115814_112150_4722.png",
+          link: "https://moonjapay.co.kr/",
+        },
+        놀가: {
+          content: "놀가 : 농어촌 빈집 장기 임대플랫폼",
+          image:
+            "https://cdn.itbiznews.com/news/photo/202310/115814_112150_4722.png",
+          link: "https://moonjapay.co.kr/",
+        },
 
-            "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": {
-                content: "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상",
-                image: "https://cdn.imweb.me/upload/S2022080431e5bcc0e2eaf/594205560d31f.jpg"
-            },
-            "대한민국 엔지니어상": {
-                content: "대한민국 엔지니어상",
-                image: "./a2.png"
-            },
-            "중소벤처기업부 경영혁신 부문 장관상": {
-                content: "중소벤처기업부 경영혁신 부문 장관상",
-                image: "./a1.png"
-            },
-
-            "인스타그램": {
-                content: "인스타그램",
-                image: "./Instapage.png",
-                link: "https://blog.naver.com/robotncom/222394525413"
-            },
-            "홈페이지": {
-                content: "홈페이지",
-                image: "./Homepage.png",
-                link: "https://blog.naver.com/robotncom/222527224688"
-            },
-            "네이버 블로그": {
-                content: "네이버 블로그",
-                image: "./Blogpage.png",
-                link: "https://blog.naver.com/robotncom/222527224688"
-            },
-            "카카오톡": {
-                content: "카카오톡",
-                image: "./Kakaopage.png",
-                link: "https://blog.naver.com/robotncom/222527224688"
-            }
+        "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": {
+          content: "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상",
+          image:
+            "https://cdn.imweb.me/upload/S2022080431e5bcc0e2eaf/594205560d31f.jpg",
+        },
+        "대한민국 엔지니어상": {
+          content: "대한민국 엔지니어상",
+          image: "./a2.png",
+        },
+        "중소벤처기업부 경영혁신 부문 장관상": {
+          content: "중소벤처기업부 경영혁신 부문 장관상",
+          image: "./a1.png",
+        },
       };
 
       // Function to zoom in to a node
@@ -296,7 +284,7 @@
       });
 
       // camera orbit
-      let angle = 0;
+      let angle = 10;
       setInterval(() => {
         Graph.cameraPosition({
           x: distance * Math.sin(angle),
@@ -307,7 +295,7 @@
 
       const textureLoader = new THREE.TextureLoader();
       const backgroundTexture = textureLoader.load(
-        "https://images.unsplash.com/photo-1610296669228-602fa827fc1f?q=80&w=1975&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       );
       Graph.renderer().setClearColor(new THREE.Color("black"));
       backgroundTexture.minFilter = THREE.LinearFilter;
