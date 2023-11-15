@@ -22,22 +22,27 @@
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: rgba(0, 0, 0, 0); /* Transparent background */
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.7
+        ); /* Semi-transparent black background */
       }
 
-      /* Style for the modal content */
       .modal-content {
         position: absolute;
         top: 50%;
-        right: 20px;
-        transform: translate(0, -50%);
-        background-color: #fefefe;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.1);
         padding: 20px;
-        border: 1px solid #888;
-        width: 40%; /* Adjust the width as needed */
-        max-width: 800px;
-        height: 90%;
+        border: 0.5px solid #e1e1e1;
+        border-radius: 10px;
+        width: 847px;
+        height: 480px;
         text-align: center;
+        margin: 15px 0; /* Add margin to the top and bottom */
       }
 
       /* Style for the close button */
@@ -47,6 +52,16 @@
         right: 0;
         padding: 10px;
         cursor: pointer;
+        color: #ffffff;
+        background-color: rgba(
+          217,
+          217,
+          217,
+          0.4
+        ); /* Circular background color with 40% opacity */
+        border-radius: 50%; /* Make it circular */
+        width: 22px; /* Set width */
+        height: 22px;
       }
 
       /* Style for the modal image */
@@ -72,7 +87,7 @@
     </div>
 
     <script>
-      const distance = 350;
+      const distance = 240;
 
       const nodeImages = {
         1: "logo.png",
@@ -211,16 +226,6 @@
       });
 
       const nodeData = {
-        페일러톡: {
-          content: "페일러톡 : 나의 실수·실패 카테고리로 나를 표현하자",
-          image: "https://failertalk.com/images/thumbnail.png",
-          link: "https://failertalk.com/",
-        },
-        딱따구리: {
-          content: "딱따구리 : 모든 수리·수선은 딱따구리!",
-          image: "https://taktaguri.com/src/assets/thumbnail.png",
-          link: "https://taktaguri.com/",
-        },
         나아파: {
           content:
             "나아파 : 환자,의사, 병원 모두를 위한 비대면 진료 통합 CRM+ 플랫폼",
@@ -304,7 +309,7 @@
 
       const textureLoader = new THREE.TextureLoader();
       const backgroundTexture = textureLoader.load(
-        "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       );
       Graph.renderer().setClearColor(new THREE.Color("black"));
       backgroundTexture.minFilter = THREE.LinearFilter;
