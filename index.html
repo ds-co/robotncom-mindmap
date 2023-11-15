@@ -74,66 +74,102 @@
     <script>
       const distance = 350;
 
+      const nodeImages = {
+        1: "logo.png",
+        2: {
+          플랫폼: "Platform.png",
+          기술: "SI.png",
+          SNS: "SNS.png",
+          수상: "Win.png",
+        },
+        3: {
+          페일러톡: "Platform.png",
+          딱따구리: "Ttakttaguri.png",
+          나아파: "Naafaa.png",
+          문자페이: "Moonjapay.png",
+          놀가: "Nolga.png",
+          "서버 솔루션": "Server.png",
+          "보안 솔루션": "Security.png",
+          "네트워크 솔루션": "Network.png",
+          "Computer HW": "Hardware.png",
+          보이스인프라: "Voiceinfra.png",
+          "Computer SW": "Software.png",
+          인스타그램: "Insta.png",
+          홈페이지: "Home.png",
+          "네이버 블로그": "Blog.png",
+          카카오톡: "Kakao.png",
+          "중소벤처기업부 경영혁신 부문 장관상": "Win.png",
+          "대한민국 엔지니어상": "Win.png",
+          "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": "Win.png",
+        },
+      };
+
       const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
         .jsonUrl("../datasets/miserables.json")
         .nodeLabel("id")
         .nodeAutoColorBy("group")
         .enableNavigationControls(false)
         .enableNodeDrag(false)
-        .nodeThreeObject((node) => {
-          const group = new THREE.Group();
-
-          const textureLoader = new THREE.TextureLoader();
-          const logoTexture = textureLoader.load("logo.png");
-          const imageMaterial = new THREE.MeshBasicMaterial({
-            map: logoTexture,
-            depthTest: false,
-            transparent: true,
-            opacity: 1, // Adjust the opacity as needed
-            side: THREE.DoubleSide, // Make sure the image is double-sided
-          });
-          const image = new THREE.Mesh(
-            new THREE.PlaneGeometry(20, 20),
-            imageMaterial
-          );
-
-          image.onBeforeRender = function (
-            renderer,
-            scene,
-            camera,
-            geometry,
-            material,
-            group
-          ) {
-            const euler = new THREE.Euler();
-            euler.copy(camera.rotation);
-            image.rotation.set(euler.x, euler.y, euler.z);
-          };
-
-          group.add(image);
-
-          return group;
-        })
-
         .onNodeClick((node) => {
           const nodeId = node.id;
-          if (nodeData[nodeId]) {
-            openModal(
-              nodeData[nodeId].content,
-              nodeData[nodeId].image,
-              nodeData[nodeId].link
-            );
-            zoomInToNode(node);
-
-            // Update the graph with the modified links
-            Graph.graphData({ nodes: graphData.nodes, links: updatedLinks });
+          if (nodeImages[node.group]) {
+            const imageSrc = nodeImages[node.group];
+            if (typeof imageSrc === "object" && imageSrc[nodeId]) {
+              openModal(nodeId, imageSrc[nodeId]);
+            }
           }
         })
+        
+        .nodeThreeObject((node) => {
+          const groupId = node.group;
+          const nodeId = node.id;
 
+          if (nodeImages[groupId]) {
+            let imageSrc = nodeImages[groupId];
+
+            if (typeof imageSrc === "object" && imageSrc[nodeId]) {
+              imageSrc = imageSrc[nodeId];
+            }
+
+            const textureLoader = new THREE.TextureLoader();
+            const logoTexture = textureLoader.load(imageSrc);
+            const imageMaterial = new THREE.MeshBasicMaterial({
+              map: logoTexture,
+              depthTest: false,
+              transparent: true,
+              opacity: 1,
+              side: THREE.DoubleSide,
+            });
+            const image = new THREE.Mesh(
+              new THREE.PlaneGeometry(20, 20),
+              imageMaterial
+            );
+
+            image.onBeforeRender = function (
+              renderer,
+              scene,
+              camera,
+              geometry,
+              material,
+              group
+            ) {
+              const euler = new THREE.Euler();
+              euler.copy(camera.rotation);
+              image.rotation.set(euler.x, euler.y, euler.z);
+            };
+
+            const group = new THREE.Group();
+            group.add(image);
+
+            return group;
+          }
+        })
         .onEngineTick(() => {
           Graph.graphData().nodes.forEach((n) => {
             if (n.id === "로봇앤컴") {
-              n.__threeObj.scale.set(5, 5, 5);
+              n.__threeObj.scale.set(4, 4, 4);
+            } else if (["플랫폼", "기술", "수상", "SNS"].includes(n.id)) {
+              n.__threeObj.scale.set(2, 2, 2);
             }
           });
         });
@@ -170,102 +206,12 @@
       });
 
       const nodeData = {
-        페일러톡: {
-          content: "페일러톡 : 나의 실수·실패 카테고리로 나를 표현하자",
-          image: "https://failertalk.com/images/thumbnail.png",
-          link: "https://failertalk.com/",
-        },
-        딱따구리: {
-          content: "딱따구리 : 모든 수리·수선은 딱따구리!",
-          image: "https://taktaguri.com/src/assets/thumbnail.png",
-          link: "https://taktaguri.com/",
-        },
-        나아파: {
-          content:
-            "나아파 : 환자,의사, 병원 모두를 위한 비대면 진료 통합 CRM+ 플랫폼",
-          image: "https://naafaa.co.kr/src/assets/thumbnail.png",
-          link: "https://naafaa.co.kr/",
-        },
-        문자페이: {
-          content: "문자페이 : 간편 문자 결제 서비스",
-          image:
-            "https://cdn.itbiznews.com/news/photo/202310/115814_112150_4722.png",
-          link: "https://moonjapay.co.kr/",
-        },
-        놀가: {
-          content: "놀가 : 농어촌 빈집 장기 임대플랫폼",
-          image:
-            "https://cdn.itbiznews.com/news/photo/202310/115814_112150_4722.png",
-          link: "https://moonjapay.co.kr/",
-        },
-
-        "서버 및 보안 솔루션": {
-          content: "서버 및 보안 솔루션 : Data 서버 구축 및 보안",
-          image: "https://cdn.imweb.me/thumbnail/20220810/a0d4204b51961.jpg",
-        },
-        "IT 통합 솔루션": {
-          content: "IT 통합 솔루션 : 사내, 원내 IT 인프라 컨설팅",
-          image: "https://cdn.imweb.me/thumbnail/20220810/c19b6379f116f.jpg",
-        },
-        정보통신공사업: {
-          content: "정보통신공사업 : 구내 통신설비공사, 통신선로공사",
-          image: "https://cdn.imweb.me/thumbnail/20220810/c19b6379f116f.jpg",
-        },
-        보이스인프라: {
-          content: "보이스인프라 : ARS, Voice Recording & IP Call Centrex",
-          image: "https://cdn.imweb.me/thumbnail/20220926/411dc53bff5c9.jpg",
-        },
-        "네트워크 솔루션": {
-          content: "네트워크 솔루션 : Firewall, VPN,  네트워크 인프라 구축",
-          image: "https://cdn.imweb.me/thumbnail/20220926/7adb8f4981787.jpg",
-        },
-        "플랫폼 개발 및 IoT": {
-          content: "플랫폼 기획·개발, UI·UX, IoT Service",
-          image: "https://cdn.imweb.me/thumbnail/20220926/bb1d03933b680.jpg",
-        },
-        "Computer HW + SW": {
-          content: "Computer HW + SW : 컴퓨터 하드웨어, 소프트웨어 및 주변기기",
-          image: "https://cdn.imweb.me/thumbnail/20220926/2c174c9562d3b.jpg",
-        },
-
-        "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": {
-          content: "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상",
-          image:
-            "https://cdn.imweb.me/upload/S2022080431e5bcc0e2eaf/594205560d31f.jpg",
-        },
-        "대한민국 엔지니어상": {
-          content: "대한민국 엔지니어상",
-          image: "./a2.png",
-        },
-        "중소벤처기업부 경영혁신 부문 장관상": {
-          content: "중소벤처기업부 경영혁신 부문 장관상",
-          image: "./a1.png",
-        },
-
-        "소외아동 PC 기부": {
-          content: "소외아동 PC 기부",
-          image: "./s1.jpg",
-          link: "https://blog.naver.com/robotncom/222394525413",
-        },
-        "저소득계층 이웃사랑 실천": {
-          content: "저소득계층 이웃사랑 실천",
-          image: "s2.jpg",
-          link: "https://blog.naver.com/robotncom/222527224688",
-        },
-        "선교 지원": {
-          content:
-            "선교 지원 : 외국인 근로자 섬김 사역, 노인 돌봄 사역, 몽골 유치원 사역, 농촌 및 시골 개척 사역 등",
-        },
-        "위기 영·유아 보호 및 보육공간 지원": {
-          content: "기업의 공간 제공 및 공간공사 비용, 임차료 일제 지원",
-        },
-
-        // Add other node content here
+        // 다시 추가 예정
       };
 
       // Function to zoom in to a node
       function zoomInToNode(node) {
-        const distance = 45;
+        const distance = 40;
         const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
 
         Graph.cameraPosition(
