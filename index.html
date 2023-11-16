@@ -13,7 +13,7 @@
       }
       .modal {
         height: 650px;
-        width: 1080px;
+        width: 1200px;
         padding: 20px;
         border-radius: 10px;
         backdrop-filter: blur(10px); /* Added blur effect to the background */
@@ -89,6 +89,7 @@
   </head>
 
   <body>
+    
     <div
       id="Modalbackground"
       style="
@@ -143,6 +144,10 @@
           </button>
         </div>
       </div>
+
+      
+
+      
     </div>
 
     <div id="3d-graph"></div>
@@ -214,7 +219,7 @@
               map: logoTexture,
               depthTest: false,
               transparent: true,
-              opacity: 1,
+              alphaTest: 0.3,
               side: THREE.DoubleSide,
             });
             const image = new THREE.Mesh(
@@ -327,12 +332,12 @@
       Graph.scene().background = backgroundTexture;
 
       function showNaafaModal() {
-        console.log("showNaafaModal called");
         const modal = document.getElementById("Modalbackground");
         modal.style.display = "flex";
 
         modal.addEventListener("click", hideModal);
       }
+      
 
       function hideModal() {
         event.stopPropagation();
