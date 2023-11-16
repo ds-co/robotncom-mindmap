@@ -16,12 +16,6 @@
         width: 1080px;
         padding: 20px;
         border-radius: 10px;
-        background-color: rgba(
-          255,
-          255,
-          255,
-          0.2
-        ); /* Updated to #FFFFFF with 10% opacity */
         backdrop-filter: blur(10px); /* Added blur effect to the background */
         box-shadow: 0 0 10px rgba(225, 225, 225, 0.5);
         z-index: 1;
@@ -29,6 +23,7 @@
         color: white;
         display: flex;
         flex-direction: column;
+        overflow: auto;
       }
 
       .modal h2 {
@@ -41,6 +36,18 @@
         right: 10px; /* Updated to move the close button to the right */
         font-size: 20px;
         cursor: pointer;
+        background-color: #d9d9d950;
+        border-radius: 50%;
+        width: 30px; /* Set width and height to create a circular shape */
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        color: #fff; /* Set the color of the 'x' */
+        border: none;
+        outline: none;
+        text-align: center;
       }
       .image-container {
         display: flex;
@@ -51,20 +58,29 @@
         position: absolute;
         bottom: 0;
         right: 0;
-        width: 50%;
+        width: 45%;
       }
       .custom-button {
         padding: 6px 10px;
         margin: 10px;
-        border: 2px solid #ffffff;
-        background-color: #d9d9d9;
+        border: 1px solid #ffffff;
+        background-color: #d9d9d959;
         border-radius: 50px;
         color: #ffffff;
         cursor: pointer;
       }
-      @media (max-width: 767px) {
+      @media (max-width: 768px) {
         .image-container img {
-          width: 100%; /* Adjust the width for smaller screens */
+          width: 65%; /* Hide the images on smaller screens */
+        }
+        .modal {
+          width: 100%; /* Adjusting modal width to full width on smaller screens */
+        }
+
+        .custom-button {
+          width: 100%;
+          box-sizing: border-box;
+          margin: 10px auto; /* Center the button horizontally */
         }
       }
     </style>
@@ -90,7 +106,21 @@
         <div style="flex: 1">
           <img src="Group.png" alt="" />
           <img src="Vector.png" alt="" />
-          <h2>나아파 Naafaa</h2>
+          <div>
+            <img src="p.png" alt="Your Image" style="margin-right: 10px" />
+            <img src="h.png" alt="Your Image" />
+            <p
+              style="
+                float: right;
+                color: rgba(255, 255, 255, 0.822);
+                margin-right: 10px;
+              "
+            >
+              Platfrom 01
+            </p>
+          </div>
+
+          <h1>나아파 Naafaa</h1>
           <p>나아파는 가나다라마바사아자차카타파하</p>
         </div>
         <div class="image-container">
@@ -98,7 +128,7 @@
             <img src="Naafaa2.png" alt="Naafa Image" />
           </div>
         </div>
-        <div style="width: 50%">
+        <div style="width: 35%">
           <button class="custom-button" onclick="showNaafaModal()">
             의료통합 Saas 플랫폼
           </button>
