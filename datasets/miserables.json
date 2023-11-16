@@ -1,0 +1,60 @@
+{
+  "nodes": [
+    {"id": "로봇앤컴", "group": 1},
+
+    {"id": "플랫폼", "group": 2},
+    {"id": "페일러톡", "group": 3},
+    {"id": "딱따구리", "group": 3},
+    {"id": "나아파", "group": 3},
+    {"id": "문자페이", "group": 3},
+    {"id": "놀가", "group": 3},
+
+    {"id": "기술", "group": 2},
+    {"id": "서버 솔루션", "group": 3},
+    {"id": "보안 솔루션", "group": 3},
+    {"id": "Computer HW", "group": 3},
+    {"id": "보이스인프라", "group": 3},
+    {"id": "네트워크 솔루션", "group": 3},
+    {"id": "Computer SW", "group": 3},
+
+    {"id": "수상", "group": 2},
+    {"id": "중소벤처기업부 경영혁신 부문 장관상", "group": 3},
+    {"id": "대한민국 엔지니어상", "group": 3},
+    {"id": "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상", "group": 3},
+
+    {"id": "SNS", "group": 2},
+    {"id": "인스타그램", "group": 3},
+    {"id": "홈페이지", "group": 3},
+    {"id": "네이버 블로그", "group": 3},
+    {"id": "카카오톡", "group": 3}
+    
+  ],
+  "links": [
+    {"source": "플랫폼", "target": "로봇앤컴", "value": 1},
+    {"source": "페일러톡", "target": "플랫폼", "value": 2},
+    {"source": "딱따구리", "target": "플랫폼", "value": 2},
+    {"source": "나아파", "target": "플랫폼", "value": 2},
+    {"source": "문자페이", "target": "플랫폼", "value": 2},
+    {"source": "놀가", "target": "플랫폼", "value": 2},
+
+    {"source": "기술", "target": "로봇앤컴", "value": 1},
+    {"source": "서버 솔루션", "target": "기술", "value": 2},
+    {"source": "보안 솔루션", "target": "기술", "value": 2},
+    {"source": "Computer HW", "target": "기술", "value": 2},
+    {"source": "보이스인프라", "target": "기술", "value": 2},
+    {"source": "네트워크 솔루션", "target": "기술", "value": 2},
+    {"source": "Computer SW", "target": "기술", "value": 2},
+
+    {"source": "수상", "target": "로봇앤컴", "value": 1},
+    {"source": "중소벤처기업부 경영혁신 부문 장관상", "target": "수상", "value": 2},
+    {"source": "대한민국 엔지니어상", "target": "수상", "value": 2},
+    {"source": "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상", "target": "수상", "value": 2},
+
+    {"source": "SNS", "target": "로봇앤컴", "value": 1},
+    {"source": "인스타그램", "target": "SNS", "value": 2, "link": "https://www.instagram.com/robot_n_com/"},
+    {"source": "홈페이지", "target": "SNS", "value": 2, "link": "https://www.robotncom.com/"},
+    {"source": "네이버 블로그", "target": "SNS", "value": 2, "link": "https://blog.naver.com/robotncom/222527224688"},
+    {"source": "카카오톡", "target": "SNS", "value": 2, "link": "https://www.robotncom.com/"}
+    
+  ]
+}
