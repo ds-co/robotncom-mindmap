@@ -6,6 +6,7 @@
     body {
       margin: 0;
       overflow: hidden;
+
     }
 
     #3d-graph {
@@ -36,7 +37,8 @@
     #closeNaafaModal,
     #closeFailerModal,
     #closeNolgaModal,
-    #closeTtackModal {
+    #closeTtackModal,
+    #closePayModal {
       position: absolute;
       top: 10px;
       right: 10px;
@@ -69,7 +71,7 @@
       position: absolute;
       bottom: 0;
       right: 0;
-      width: 45%;
+      width: 38%;
     }
 
     .custom-button {
@@ -135,7 +137,7 @@
       </div>
       <div class="image-container">
         <div>
-          <img src="Naafaa2.png" alt="Naafa Image" />
+          <img src="Naafaa2.svg" alt="Naafa Image" />
         </div>
       </div>
       <div style="width: 35%">
@@ -184,7 +186,7 @@
       </div>
       <div class="image-container">
         <div>
-          <img src="Failertalk2.png" alt="Naafa Image" style="width: 35%;" />
+          <img src="Failer2.svg" alt="Naafa Image"  />
         </div>
       </div>
       <div style="width: 35%">
@@ -233,7 +235,7 @@
       </div>
       <div class="image-container">
         <div>
-          <img src="Nolga2.png" alt="Naafa Image" style="width: 40%;" />
+          <img src="Nolga2.svg" alt="Naafa Image"  />
         </div>
       </div>
       <div style="width: 35%">
@@ -282,7 +284,7 @@
       </div>
       <div class="image-container">
         <div>
-          <img src="Ttackttaguri2.png" alt="TtackTaguri Image" style="width: 35%;" />
+          <img src="Ttackttaguri2.svg" alt="TtackTaguri Image"  />
         </div>
       </div>
       <div style="width: 35%">
@@ -302,38 +304,87 @@
     </div>
   </div>
 
+  <div id="PayModalBackground" style="
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+      ">
+    <div id="payModal" class="modal">
+      <span id="closePayModal">&times;</span>
+      <div style="flex: 1">
+        <div>
+          <img src="p.png" alt="Your Image" style="margin-right: 10px" />
+          <img src="m.png" alt="Your Image" />
+          <p style="
+                float: right;
+                color: rgba(255, 255, 255, 0.822);
+                margin-right: 10px;
+              ">
+            Platfrom 04
+          </p>
+        </div>
+
+        <h1>문자페이 Moonjapay</h1>
+        <p>문자페이는 가나다라마바사아자차카타파하</p>
+      </div>
+      <div class="image-container">
+        <div>
+          <img src="Moonjapay2.svg" alt="Moonjapay Image" width="55%" />
+        </div>
+      </div>
+      <div style="width: 35%">
+        <button class="custom-button" onclick="showPayModal()">
+          문자페이 기능 1
+        </button>
+        <button class="custom-button" onclick="showPayModal()">
+          문자페이 기능 2
+        </button>
+        <button class="custom-button" onclick="showPayModal()">
+          문자페이 기능 3
+        </button>
+        <button class="custom-button" onclick="showPayModal()">
+          문자페이 기능 4
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div id="3d-graph"></div>
 
   <script>
-    const distance = 230;
+    const distance = 245;
 
     const nodeImages = {
-      1: "logo.png",
+      1: "logo.svg",
       2: {
-        플랫폼: "Platform.png",
-        기술: "SI.png",
-        SNS: "SNS.png",
-        수상: "Win.png",
+        플랫폼: "Platform.svg",
+        기술: "SI.svg",
+        SNS: "SNS.svg",
+        수상: "Win.svg",
       },
       3: {
-        페일러톡: "Failertalk.png",
-        딱따구리: "Ttakttaguri.png",
-        나아파: "Naafaa.png",
-        문자페이: "Moonjapay.png",
-        놀가: "Nolga.png",
-        "서버 솔루션": "Server.png",
-        "보안 솔루션": "Security.png",
-        "네트워크 솔루션": "Network.png",
-        "Computer HW": "Hardware.png",
-        보이스인프라: "Voiceinfra.png",
-        "Computer SW": "Software.png",
-        인스타그램: "Insta.png",
-        홈페이지: "Home.png",
-        "네이버 블로그": "Blog.png",
-        카카오톡: "Kakao.png",
-        "중소벤처기업부 경영혁신 부문 장관상": "Win.png",
-        "대한민국 엔지니어상": "Win.png",
-        "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": "Win.png",
+        페일러톡: "Failertalk.svg",
+        딱따구리: "Ttakttaguri.svg",
+        나아파: "Naafaa.svg",
+        문자페이: "Moonjapay.svg",
+        놀가: "Nolga.svg",
+        "서버 솔루션": "Server.svg",
+        "보안 솔루션": "Security.svg",
+        "네트워크 솔루션": "Network.svg",
+        "Computer HW": "Hardware.svg",
+        보이스인프라: "Voiceinfra.svg",
+        "Computer SW": "Software.svg",
+        인스타그램: "Insta.svg",
+        홈페이지: "Home.svg",
+        "네이버 블로그": "Blog.svg",
+        카카오톡: "Kakao.svg",
+        "중소벤처기업부 경영혁신 부문 장관상": "Win.svg",
+        "대한민국 엔지니어상": "Win.svg",
+        "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": "Win.svg",
       },
     };
 
@@ -368,14 +419,13 @@
           const textureLoader = new THREE.TextureLoader();
           const logoTexture = textureLoader.load(imageSrc);
 
-          // Adjust opacity value (e.g., 0.7 for 70% opacity)
-          const opacity = 0.7;
+
 
           const imageMaterial = new THREE.MeshBasicMaterial({
             map: logoTexture,
             depthTest: false,
             transparent: true,
-            opacity: opacity,
+            opacity: 0.7, // Adjust the opacity value as needed (0 is fully transparent, 1 is fully opaque)
             side: THREE.DoubleSide,
           });
 
@@ -466,6 +516,9 @@
             case "딱따구리":
               showTtackModal();
               break;
+            case "문자페이":
+              showPayModal();
+              break;
             // Add more cases as needed
             default:
               break;
@@ -490,6 +543,9 @@
           case "딱따구리":
             showTtackModal();
             break;
+          case "문자페이":
+            showPayModal();
+            break;
           // Add more cases as needed
           default:
             break;
@@ -512,11 +568,11 @@
 
     const textureLoader = new THREE.TextureLoader();
     const backgroundTexture = textureLoader.load(
-      "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      "https://cdn.pixabay.com/photo/2016/09/08/12/00/stars-1654074_1280.jpg"
     );
 
-    Graph.renderer().setClearColor(new THREE.Color("black"));
-    backgroundTexture.minFilter = THREE.LinearFilter;
+    Graph.renderer().setClearColor(new THREE.Color("rgba(0, 0, 0, 1)")); // Set alpha value (0.8 for 80% opacity)
+    backgroundTexture.minFilter = THREE.NearestFilter;
     Graph.scene().background = backgroundTexture;
 
     function showNaafaModal() {
@@ -593,6 +649,21 @@
 
     document.getElementById("closeTtackModal").addEventListener("click", hideTtackModal);
 
+    // Function to show Pay modal
+    function showPayModal() {
+      const modal = document.getElementById("PayModalBackground");
+      modal.style.display = "flex";
+      window.addEventListener("click", hidePayModal);
+    }
+
+    // Function to hide Pay modal
+    function hidePayModal(event) {
+      event.stopPropagation();
+      const modal = document.getElementById("PayModalBackground");
+      modal.style.display = "none";
+    }
+
+    document.getElementById("closePayModal").addEventListener("click", hidePayModal);
 
 
 
@@ -601,6 +672,7 @@
     window.showFailerModal = showFailerModal;
     window.showNolgaModal = showNolgaModal;
     window.showTtackModal = showTtackModal;
+    window.showPayModal = showPayModal;
 
     function getLinkForNode(nodeId) {
       const linkMap = {
