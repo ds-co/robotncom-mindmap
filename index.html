@@ -356,7 +356,7 @@
   <div id="3d-graph"></div>
 
   <script>
-    const distance = 245;
+    const distance = 270;
 
     const nodeImages = {
       1: "logo.svg",
@@ -523,7 +523,7 @@
     }
 
 
-
+    let isModalOpen = false; 
     Graph.onNodeClick((node) => {
       console.log("Node clicked:", node);
 
@@ -566,24 +566,12 @@
         }
       }
 
-      if (nodeGroup === 3) {
-        switch (nodeId) {
-          case "인스타그램":
-          case "홈페이지":
-          case "네이버 블로그":
-          case "카카오톡":
-            console.log(`Opening link for ${nodeId}`);
-            window.open(getLinkForNode(nodeId), "_blank");
-            break;
-          default:
-            break;
-        }
-      }
+      
     });
 
 
     // camera orbit
-    let angle = 10;
+    let angle = 2;
     setInterval(() => {
       Graph.cameraPosition({
         x: distance * Math.sin(angle),
@@ -700,15 +688,7 @@
     window.showTtackModal = showTtackModal;
     window.showPayModal = showPayModal;
 
-    function getLinkForNode(nodeId) {
-      const linkMap = {
-        "인스타그램": "https://www.instagram.com/robot_n_com/",
-        "홈페이지": "https://www.robotncom.com/",
-        "네이버 블로그": "https://blog.naver.com/robotncom",
-        "카카오톡": "http://pf.kakao.com/_VMxcds",
-      };
-      return linkMap[nodeId] || "#";
-    }
+   
   </script>
 </body>
 
