@@ -33,7 +33,9 @@
       font-weight: bold;
     }
 
-    #closeModal {
+    #closeNaafaModal,
+    #closeFailerModal,
+    #closeNolgaModal {
       position: absolute;
       top: 10px;
       right: 10px;
@@ -103,7 +105,7 @@
 </head>
 
 <body>
-  <div id="Modalbackground" style="
+  <div id="NaafaModalBackground" style="
         height: 100vh;
         width: 100vw;
         position: fixed;
@@ -112,11 +114,9 @@
         align-items: center;
         z-index: 100;
       ">
-    <div id="myModal" class="modal">
-      <span id="closeModal">&times;</span>
+    <div id="naafaModal" class="modal">
+      <span id="closeNaafaModal">&times;</span>
       <div style="flex: 1">
-        <img src="Group.png" alt="" />
-        <img src="Vector.png" alt="" />
         <div>
           <img src="p.png" alt="Your Image" style="margin-right: 10px" />
           <img src="h.png" alt="Your Image" />
@@ -164,10 +164,8 @@
         z-index: 100;
       ">
     <div id="failerModal" class="modal">
-      <span id="closeModal">&times;</span>
+      <span id="closeFailerModal">&times;</span>
       <div style="flex: 1">
-        <img src="Group.png" alt="" />
-        <img src="Vector.png" alt="" />
         <div>
           <img src="p.png" alt="Your Image" style="margin-right: 10px" />
           <img src="F.png" alt="Your Image" />
@@ -185,7 +183,7 @@
       </div>
       <div class="image-container">
         <div>
-          <img src="Failertalk2.png" alt="Naafa Image" style="width: 35%;"/>
+          <img src="Failertalk2.png" alt="Naafa Image" style="width: 40%;" />
         </div>
       </div>
       <div style="width: 35%">
@@ -204,6 +202,55 @@
       </div>
     </div>
   </div>
+
+  <div id="NolgaModalBackground" style="
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+      ">
+    <div id="NolgaModal" class="modal">
+      <span id="closeNolgaModal">&times;</span>
+      <div style="flex: 1">
+        <div>
+          <img src="p.png" alt="Your Image" style="margin-right: 10px" />
+          <img src="N.png" alt="Your Image" />
+          <p style="
+                float: right;
+                color: rgba(255, 255, 255, 0.822);
+                margin-right: 10px;
+              ">
+            Platfrom 03
+          </p>
+        </div>
+
+        <h1>놀가 Nolga</h1>
+        <p>놀가는 가나다라마바사아자차카타파하</p>
+      </div>
+      <div class="image-container">
+        <div>
+          <img src="Nolga2.png" alt="Naafa Image" style="width: 35%;" />
+        </div>
+      </div>
+      <div style="width: 35%">
+        <button class="custom-button" onclick="showNolgaModal()">
+          농어촌 빈집 장기 임대플랫폼
+        </button>
+        <button class="custom-button" onclick="showNolgaModal()">
+          전자 계약
+        </button>
+        <button class="custom-button" onclick="showNolgaModal()">
+          스마트팜
+        </button>
+        <button class="custom-button" onclick="showNolgaModal()">
+          리모델링
+        </button>
+      </div>
+    </div>
+
   </div>
 
   <div id="3d-graph"></div>
@@ -335,6 +382,8 @@
       );
     }
 
+
+
     Graph.onNodeClick((node) => {
       console.log("Node clicked:", node);
 
@@ -350,10 +399,19 @@
           console.log(`Node "${nodeId}" clicked!`);
 
           // 여기에서 모달을 띄우도록 수정
-          if (nodeId === "나아파") {
-            showNaafaModal();
-          } else if (nodeId === "페일러톡") {
-            showFailerModal();
+          switch (nodeId) {
+            case "나아파":
+              showNaafaModal();
+              break;
+            case "페일러톡":
+              showFailerModal();
+              break;
+            case "놀가":
+              showNolgaModal();
+              break;
+            // Add more cases as needed
+            default:
+              break;
           }
 
           return; // Exit early if it's an image node
@@ -362,15 +420,25 @@
 
       // If not an image node, proceed with your other conditions
       if (nodeGroup === 3) {
-        if (nodeId === "나아파") {
-          showNaafaModal();
-        } else if (nodeId === "페일러톡") {
-          showFailerModal();
+        switch (nodeId) {
+          case "나아파":
+            showNaafaModal();
+            break;
+          case "페일러톡":
+            showFailerModal();
+            break;
+          case "놀가":
+            showNolgaModal();
+            break;
+          // Add more cases as needed
+          default:
+            break;
         }
       } else if (["인스타그램", "홈페이지", "네이버 블로그", "카카오톡"].includes(nodeId)) {
         window.open(getLinkForNode(nodeId), "_blank");
       }
     });
+
 
     // camera orbit
     let angle = 10;
@@ -386,44 +454,75 @@
     const backgroundTexture = textureLoader.load(
       "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     );
+
     Graph.renderer().setClearColor(new THREE.Color("black"));
     backgroundTexture.minFilter = THREE.LinearFilter;
     Graph.scene().background = backgroundTexture;
 
     function showNaafaModal() {
-      const modal = document.getElementById("Modalbackground");
+      const modal = document.getElementById("NaafaModalBackground");
       modal.style.display = "flex";
-
-      // modal.addEventListener("click", hideModal);
-      window.addEventListener("click", hideModal); // Use window click event
+      window.addEventListener("click", hideNaafaModal);
     }
 
-    function hideModal(event) {
+    // Function to hide Naafa modal
+    function hideNaafaModal(event) {
       event.stopPropagation();
-      const modal = document.getElementById("Modalbackground");
+      const modal = document.getElementById("NaafaModalBackground");
       modal.style.display = "none";
     }
 
-    document.getElementById("closeModal").addEventListener("click", hideModal);
+    document.getElementById("closeNaafaModal").addEventListener("click", hideNaafaModal);
 
+    // Function to show Failer modal
     function showFailerModal() {
       const modal = document.getElementById("FailerModalBackground");
       modal.style.display = "flex";
-
-      // modal.addEventListener("click", hideFailerModal);
-      window.addEventListener("click", hideFailerModal); // Use window click event
+      window.addEventListener("click", hideFailerModal);
     }
 
+    // Function to hide Failer modal
     function hideFailerModal(event) {
       event.stopPropagation();
       const modal = document.getElementById("FailerModalBackground");
       modal.style.display = "none";
     }
 
-    document.getElementById("closeModal").addEventListener("click", hideFailerModal);
+    document.getElementById("closeFailerModal").addEventListener("click", hideFailerModal);
+
+    // Function to show Nolga modal
+    function showNolgaModal() {
+      console.log("showNolgaModal function called");
+      const modal = document.getElementById("NolgaModalBackground");
+      if (!modal) {
+        console.error("NolgaModalBackground not found!");
+        return;
+      }
+
+      modal.style.display = "flex";
+      window.addEventListener("click", hideNolgaModal);
+    }
+
+    // Function to hide Nolga modal
+    function hideNolgaModal(event) {
+      event.stopPropagation();
+      console.log("Hide Nolga Modal");
+      const modal = document.getElementById("NolgaModalBackground");
+      if (!modal) {
+        console.error("NolgaModalBackground not found!");
+        return;
+      }
+
+      modal.style.display = "none";
+    }
+
+    document.getElementById("closeNolgaModal").addEventListener("click", hideNolgaModal);
+
+
 
     window.showNaafaModal = showNaafaModal;
     window.showFailerModal = showFailerModal;
+    window.showNolgaModal = showNolgaModal;
 
     function getLinkForNode(nodeId) {
       const linkMap = {
