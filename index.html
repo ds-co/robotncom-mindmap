@@ -1,98 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-      }
 
-      #3d-graph {
-        width: 100%;
-        height: 100vh;
-      }
-      .modal {
-        height: 650px;
-        width: 1200px;
-        padding: 20px;
-        border-radius: 10px;
-        backdrop-filter: blur(10px); /* Added blur effect to the background */
-        box-shadow: 0 0 10px rgba(225, 225, 225, 0.5);
-        z-index: 1;
-        border: 0.5px solid #ffffff;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        overflow: auto;
-      }
+<head>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
 
-      .modal h2 {
-        font-weight: bold;
-      }
+    #3d-graph {
+      width: 100%;
+      height: 100vh;
+    }
 
-      #closeModal {
-        position: absolute;
-        top: 10px;
-        right: 10px; /* Updated to move the close button to the right */
-        font-size: 20px;
-        cursor: pointer;
-        background-color: #d9d9d950;
-        border-radius: 50%;
-        width: 30px; /* Set width and height to create a circular shape */
-        height: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-        color: #fff; /* Set the color of the 'x' */
-        border: none;
-        outline: none;
-        text-align: center;
-      }
-      .image-container {
-        display: flex;
-        justify-content: flex-end; /* Align images to the right */
-      }
+    .modal {
+      height: 650px;
+      width: 1200px;
+      padding: 20px;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      /* Added blur effect to the background */
+      box-shadow: 0 0 10px rgba(225, 225, 225, 0.5);
+      z-index: 1;
+      border: 0.5px solid #ffffff;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+    }
 
+    .modal h2 {
+      font-weight: bold;
+    }
+
+    #closeModal {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      /* Updated to move the close button to the right */
+      font-size: 20px;
+      cursor: pointer;
+      background-color: #d9d9d950;
+      border-radius: 50%;
+      width: 30px;
+      /* Set width and height to create a circular shape */
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      color: #fff;
+      /* Set the color of the 'x' */
+      border: none;
+      outline: none;
+      text-align: center;
+    }
+
+    .image-container {
+      display: flex;
+      justify-content: flex-end;
+      /* Align images to the right */
+    }
+
+    .image-container img {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 45%;
+    }
+
+    .custom-button {
+      padding: 6px 10px;
+      margin: 10px;
+      border: 1px solid #ffffff;
+      background-color: #d9d9d959;
+      border-radius: 50px;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
       .image-container img {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 45%;
+        width: 65%;
+        /* Hide the images on smaller screens */
       }
+
+      .modal {
+        width: 100%;
+        /* Adjusting modal width to full width on smaller screens */
+      }
+
       .custom-button {
-        padding: 6px 10px;
-        margin: 10px;
-        border: 1px solid #ffffff;
-        background-color: #d9d9d959;
-        border-radius: 50px;
-        color: #ffffff;
-        cursor: pointer;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 10px auto;
+        /* Center the button horizontally */
       }
-      @media (max-width: 768px) {
-        .image-container img {
-          width: 65%; /* Hide the images on smaller screens */
-        }
-        .modal {
-          width: 100%; /* Adjusting modal width to full width on smaller screens */
-        }
+    }
+  </style>
+  <script src="//unpkg.com/three"></script>
+  <script src="//unpkg.com/3d-force-graph"></script>
+</head>
 
-        .custom-button {
-          width: 100%;
-          box-sizing: border-box;
-          margin: 10px auto; /* Center the button horizontally */
-        }
-      }
-    </style>
-    <script src="//unpkg.com/three"></script>
-    <script src="//unpkg.com/3d-force-graph"></script>
-  </head>
-
-  <body>
-    
-    <div
-      id="Modalbackground"
-      style="
+<body>
+  <div id="Modalbackground" style="
         height: 100vh;
         width: 100vw;
         position: fixed;
@@ -100,254 +111,330 @@
         justify-content: center;
         align-items: center;
         z-index: 100;
-      "
-    >
-      <div id="myModal" class="modal">
-        <span id="closeModal">&times;</span>
-        <div style="flex: 1">
-          <img src="Group.png" alt="" />
-          <img src="Vector.png" alt="" />
-          <div>
-            <img src="p.png" alt="Your Image" style="margin-right: 10px" />
-            <img src="h.png" alt="Your Image" />
-            <p
-              style="
+      ">
+    <div id="myModal" class="modal">
+      <span id="closeModal">&times;</span>
+      <div style="flex: 1">
+        <img src="Group.png" alt="" />
+        <img src="Vector.png" alt="" />
+        <div>
+          <img src="p.png" alt="Your Image" style="margin-right: 10px" />
+          <img src="h.png" alt="Your Image" />
+          <p style="
                 float: right;
                 color: rgba(255, 255, 255, 0.822);
                 margin-right: 10px;
-              "
-            >
-              Platfrom 01
-            </p>
-          </div>
+              ">
+            Platfrom 01
+          </p>
+        </div>
 
-          <h1>나아파 Naafaa</h1>
-          <p>나아파는 가나다라마바사아자차카타파하</p>
-        </div>
-        <div class="image-container">
-          <div>
-            <img src="Naafaa2.png" alt="Naafa Image" />
-          </div>
-        </div>
-        <div style="width: 35%">
-          <button class="custom-button" onclick="showNaafaModal()">
-            의료통합 Saas 플랫폼
-          </button>
-          <button class="custom-button" onclick="showNaafaModal()">
-            디지털 헬스케어
-          </button>
-          <button class="custom-button" onclick="showNaafaModal()">
-            의료 혁신
-          </button>
-          <button class="custom-button" onclick="showNaafaModal()">
-            CRM+EMR+APP+HR
-          </button>
+        <h1>나아파 Naafaa</h1>
+        <p>나아파는 가나다라마바사아자차카타파하</p>
+      </div>
+      <div class="image-container">
+        <div>
+          <img src="Naafaa2.png" alt="Naafa Image" />
         </div>
       </div>
-
-      
-
-      
+      <div style="width: 35%">
+        <button class="custom-button" onclick="showNaafaModal()">
+          의료통합 Saas 플랫폼
+        </button>
+        <button class="custom-button" onclick="showNaafaModal()">
+          디지털 헬스케어
+        </button>
+        <button class="custom-button" onclick="showNaafaModal()">
+          의료 혁신
+        </button>
+        <button class="custom-button" onclick="showNaafaModal()">
+          CRM+EMR+APP+HR
+        </button>
+      </div>
     </div>
+  </div>
 
-    <div id="3d-graph"></div>
+  <div id="FailerModalBackground" style="
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+      ">
+    <div id="failerModal" class="modal">
+      <span id="closeModal">&times;</span>
+      <div style="flex: 1">
+        <img src="Group.png" alt="" />
+        <img src="Vector.png" alt="" />
+        <div>
+          <img src="p.png" alt="Your Image" style="margin-right: 10px" />
+          <img src="F.png" alt="Your Image" />
+          <p style="
+                float: right;
+                color: rgba(255, 255, 255, 0.822);
+                margin-right: 10px;
+              ">
+            Platfrom 02
+          </p>
+        </div>
 
-    <script>
-      const distance = 230;
+        <h1>페일러톡 FailerTalk</h1>
+        <p>페일러톡은 가나다라마바사아자차카타파하</p>
+      </div>
+      <div class="image-container">
+        <div>
+          <img src="Failertalk2.png" alt="Naafa Image" style="width: 35%;"/>
+        </div>
+      </div>
+      <div style="width: 35%">
+        <button class="custom-button" onclick="showFailerModal()">
+          나의 실수·실패 공유
+        </button>
+        <button class="custom-button" onclick="showFailerModal()">
+          소통 커뮤니티
+        </button>
+        <button class="custom-button" onclick="showFailerModal()">
+          어쩌고 저쩌고
+        </button>
+        <button class="custom-button" onclick="showFailerModal()">
+          어쩌고 저쩌고
+        </button>
+      </div>
+    </div>
+  </div>
+  </div>
 
-      const nodeImages = {
-        1: "logo.png",
-        2: {
-          플랫폼: "Platform.png",
-          기술: "SI.png",
-          SNS: "SNS.png",
-          수상: "Win.png",
-        },
-        3: {
-          페일러톡: "Platform.png",
-          딱따구리: "Ttakttaguri.png",
-          나아파: "Naafaa.png",
-          문자페이: "Moonjapay.png",
-          놀가: "Nolga.png",
-          "서버 솔루션": "Server.png",
-          "보안 솔루션": "Security.png",
-          "네트워크 솔루션": "Network.png",
-          "Computer HW": "Hardware.png",
-          보이스인프라: "Voiceinfra.png",
-          "Computer SW": "Software.png",
-          인스타그램: "Insta.png",
-          홈페이지: "Home.png",
-          "네이버 블로그": "Blog.png",
-          카카오톡: "Kakao.png",
-          "중소벤처기업부 경영혁신 부문 장관상": "Win.png",
-          "대한민국 엔지니어상": "Win.png",
-          "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": "Win.png",
-        },
-      };
+  <div id="3d-graph"></div>
 
-      const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
-        .jsonUrl("../datasets/miserables.json")
-        .nodeLabel("id")
-        .nodeAutoColorBy("group")
-        .enableNavigationControls(false)
-        .enableNodeDrag(false)
-        .onNodeClick((node) => {
-          const nodeId = node.id;
-          if (nodeImages[node.group]) {
-            const imageSrc = nodeImages[node.group];
-            if (typeof imageSrc === "object" && imageSrc[nodeId]) {
-              // You can add any action you want when a node is clicked
-              console.log(`Node "${nodeId}" clicked!`);
-            }
+  <script>
+    const distance = 230;
+
+    const nodeImages = {
+      1: "logo.png",
+      2: {
+        플랫폼: "Platform.png",
+        기술: "SI.png",
+        SNS: "SNS.png",
+        수상: "Win.png",
+      },
+      3: {
+        페일러톡: "Failertalk.png",
+        딱따구리: "Ttakttaguri.png",
+        나아파: "Naafaa.png",
+        문자페이: "Moonjapay.png",
+        놀가: "Nolga.png",
+        "서버 솔루션": "Server.png",
+        "보안 솔루션": "Security.png",
+        "네트워크 솔루션": "Network.png",
+        "Computer HW": "Hardware.png",
+        보이스인프라: "Voiceinfra.png",
+        "Computer SW": "Software.png",
+        인스타그램: "Insta.png",
+        홈페이지: "Home.png",
+        "네이버 블로그": "Blog.png",
+        카카오톡: "Kakao.png",
+        "중소벤처기업부 경영혁신 부문 장관상": "Win.png",
+        "대한민국 엔지니어상": "Win.png",
+        "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": "Win.png",
+      },
+    };
+
+    const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
+      .jsonUrl("../datasets/miserables.json")
+      .nodeLabel("id")
+      .nodeAutoColorBy("group")
+      .enableNavigationControls(false)
+      .enableNodeDrag(false)
+      .onNodeClick((node) => {
+        const nodeId = node.id;
+        if (nodeImages[node.group]) {
+          const imageSrc = nodeImages[node.group];
+          if (typeof imageSrc === "object" && imageSrc[nodeId]) {
+            // You can add any action you want when a node is clicked
+            console.log(`Node "${nodeId}" clicked!`);
           }
-        })
+        }
+      })
 
-        .nodeThreeObject((node) => {
-          const groupId = node.group;
-          const nodeId = node.id;
-
-          if (nodeImages[groupId]) {
-            let imageSrc = nodeImages[groupId];
-
-            if (typeof imageSrc === "object" && imageSrc[nodeId]) {
-              imageSrc = imageSrc[nodeId];
-            }
-
-            const textureLoader = new THREE.TextureLoader();
-            const logoTexture = textureLoader.load(imageSrc);
-            const imageMaterial = new THREE.MeshBasicMaterial({
-              map: logoTexture,
-              depthTest: false,
-              transparent: true,
-              alphaTest: 0.3,
-              side: THREE.DoubleSide,
-            });
-            const image = new THREE.Mesh(
-              new THREE.PlaneGeometry(20, 20),
-              imageMaterial
-            );
-
-            image.onBeforeRender = function (
-              renderer,
-              scene,
-              camera,
-              geometry,
-              material,
-              group
-            ) {
-              const euler = new THREE.Euler();
-              euler.copy(camera.rotation);
-              image.rotation.set(euler.x, euler.y, euler.z);
-            };
-
-            const group = new THREE.Group();
-            group.add(image);
-
-            return group;
-          }
-        })
-        .onEngineTick(() => {
-          Graph.graphData().nodes.forEach((n) => {
-            if (n.id === "로봇앤컴") {
-              n.__threeObj.scale.set(4, 4, 4);
-            } else if (["플랫폼", "기술", "수상", "SNS"].includes(n.id)) {
-              n.__threeObj.scale.set(2, 2, 2);
-            }
-          });
-        });
-
-      window.addEventListener("resize", () => {
-        const graphContainer = document.getElementById("3d-graph");
-        Graph.width(graphContainer.offsetWidth).height(
-          graphContainer.offsetHeight
-        );
-      });
-
-      // Function to zoom in to a node
-      function zoomInToNode(node) {
-        const distance = 40;
-        const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
-
-        Graph.cameraPosition(
-          {
-            x: node.x * distRatio,
-            y: node.y * distRatio,
-            z: node.z * distRatio,
-          },
-          node,
-          3000
-        );
-      }
-
-      Graph.onNodeClick((node) => {
+      .nodeThreeObject((node) => {
+        const groupId = node.group;
         const nodeId = node.id;
 
-        if (
-          nodeId === "나아파" ||
-          [
-            "페일러톡",
-            "딱따구리",
-            "나아파",
-            "문자페이",
-            "놀가",
-            "서버 솔루션",
-            "보안 솔루션",
-            "Computer HW",
-            "보이스인프라",
-            "네트워크 솔루션",
-            "Computer SW",
-            "중소벤처기업부 경영혁신 부문 장관상",
-            "대한민국 엔지니어상",
-            "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상",
-          ].includes(nodeId)
-        ) {
-          showNaafaModal();
-        } else if (node.id === "인스타그램") {
-          window.open("https://www.instagram.com/robot_n_com/", "_blank");
-        } else if (node.id === "홈페이지") {
-          window.open("https://www.robotncom.com/", "_blank");
-        } else if (node.id === "네이버 블로그") {
-          window.open("https://blog.naver.com/robotncom", "_blank");
-        } else if (node.id === "카카오톡") {
-          window.open("http://pf.kakao.com/_VMxcds", "_blank");
+        if (nodeImages[groupId]) {
+          let imageSrc = nodeImages[groupId];
+
+          if (typeof imageSrc === "object" && imageSrc[nodeId]) {
+            imageSrc = imageSrc[nodeId];
+          }
+
+          const textureLoader = new THREE.TextureLoader();
+          const logoTexture = textureLoader.load(imageSrc);
+          const imageMaterial = new THREE.MeshBasicMaterial({
+            map: logoTexture,
+            depthTest: false,
+            transparent: true,
+            alphaTest: 0.3,
+            side: THREE.DoubleSide,
+          });
+          const image = new THREE.Mesh(
+            new THREE.PlaneGeometry(20, 20),
+            imageMaterial
+          );
+
+          image.onBeforeRender = function (
+            renderer,
+            scene,
+            camera,
+            geometry,
+            material,
+            group
+          ) {
+            const euler = new THREE.Euler();
+            euler.copy(camera.rotation);
+            image.rotation.set(euler.x, euler.y, euler.z);
+          };
+
+          const group = new THREE.Group();
+          group.add(image);
+
+          return group;
         }
+      })
+      .onEngineTick(() => {
+        Graph.graphData().nodes.forEach((n) => {
+          if (n.id === "로봇앤컴") {
+            n.__threeObj.scale.set(4, 4, 4);
+          } else if (["플랫폼", "기술", "수상", "SNS"].includes(n.id)) {
+            n.__threeObj.scale.set(2, 2, 2);
+          }
+        });
       });
 
-      // camera orbit
-      let angle = 10;
-      setInterval(() => {
-        Graph.cameraPosition({
-          x: distance * Math.sin(angle),
-          z: distance * Math.cos(angle),
-        });
-        angle += Math.PI / 6500;
-      }, 10);
-
-      const textureLoader = new THREE.TextureLoader();
-      const backgroundTexture = textureLoader.load(
-        "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    window.addEventListener("resize", () => {
+      const graphContainer = document.getElementById("3d-graph");
+      Graph.width(graphContainer.offsetWidth).height(
+        graphContainer.offsetHeight
       );
-      Graph.renderer().setClearColor(new THREE.Color("black"));
-      backgroundTexture.minFilter = THREE.LinearFilter;
-      Graph.scene().background = backgroundTexture;
+    });
 
-      function showNaafaModal() {
-        const modal = document.getElementById("Modalbackground");
-        modal.style.display = "flex";
+    // Function to zoom in to a node
+    function zoomInToNode(node) {
+      const distance = 40;
+      const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
 
-        modal.addEventListener("click", hideModal);
+      Graph.cameraPosition(
+        {
+          x: node.x * distRatio,
+          y: node.y * distRatio,
+          z: node.z * distRatio,
+        },
+        node,
+        3000
+      );
+    }
+
+    Graph.onNodeClick((node) => {
+      console.log("Node clicked:", node);
+
+      const nodeId = node.id;
+      const nodeGroup = node.group;
+
+      console.log(`Clicked Node: ${nodeId}, Group: ${nodeGroup}`);
+
+      if (nodeImages[nodeGroup]) {
+        const imageSrc = nodeImages[nodeGroup];
+        if (typeof imageSrc === "object" && imageSrc[nodeId]) {
+          // You can add any action you want when a node is clicked
+          console.log(`Node "${nodeId}" clicked!`);
+
+          // 여기에서 모달을 띄우도록 수정
+          if (nodeId === "나아파") {
+            showNaafaModal();
+          } else if (nodeId === "페일러톡") {
+            showFailerModal();
+          }
+
+          return; // Exit early if it's an image node
+        }
       }
-      
 
-      function hideModal() {
-        event.stopPropagation();
-        const modal = document.getElementById("Modalbackground");
-        modal.style.display = "none";
+      // If not an image node, proceed with your other conditions
+      if (nodeGroup === 3) {
+        if (nodeId === "나아파") {
+          showNaafaModal();
+        } else if (nodeId === "페일러톡") {
+          showFailerModal();
+        }
+      } else if (["인스타그램", "홈페이지", "네이버 블로그", "카카오톡"].includes(nodeId)) {
+        window.open(getLinkForNode(nodeId), "_blank");
       }
+    });
 
-      document
-        .getElementById("closeModal")
-        .addEventListener("click", hideModal);
-    </script>
-  </body>
+    // camera orbit
+    let angle = 10;
+    setInterval(() => {
+      Graph.cameraPosition({
+        x: distance * Math.sin(angle),
+        z: distance * Math.cos(angle),
+      });
+      angle += Math.PI / 6500;
+    }, 10);
+
+    const textureLoader = new THREE.TextureLoader();
+    const backgroundTexture = textureLoader.load(
+      "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    );
+    Graph.renderer().setClearColor(new THREE.Color("black"));
+    backgroundTexture.minFilter = THREE.LinearFilter;
+    Graph.scene().background = backgroundTexture;
+
+    function showNaafaModal() {
+      const modal = document.getElementById("Modalbackground");
+      modal.style.display = "flex";
+
+      // modal.addEventListener("click", hideModal);
+      window.addEventListener("click", hideModal); // Use window click event
+    }
+
+    function hideModal(event) {
+      event.stopPropagation();
+      const modal = document.getElementById("Modalbackground");
+      modal.style.display = "none";
+    }
+
+    document.getElementById("closeModal").addEventListener("click", hideModal);
+
+    function showFailerModal() {
+      const modal = document.getElementById("FailerModalBackground");
+      modal.style.display = "flex";
+
+      // modal.addEventListener("click", hideFailerModal);
+      window.addEventListener("click", hideFailerModal); // Use window click event
+    }
+
+    function hideFailerModal(event) {
+      event.stopPropagation();
+      const modal = document.getElementById("FailerModalBackground");
+      modal.style.display = "none";
+    }
+
+    document.getElementById("closeModal").addEventListener("click", hideFailerModal);
+
+    window.showNaafaModal = showNaafaModal;
+    window.showFailerModal = showFailerModal;
+
+    function getLinkForNode(nodeId) {
+      const linkMap = {
+        "인스타그램": "https://www.instagram.com/robot_n_com/",
+        "홈페이지": "https://www.robotncom.com/",
+        "네이버 블로그": "https://blog.naver.com/robotncom",
+        "카카오톡": "http://pf.kakao.com/_VMxcds",
+      };
+      return linkMap[nodeId] || "#";
+    }
+  </script>
+</body>
+
 </html>
