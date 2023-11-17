@@ -14,6 +14,8 @@
       height: 100vh;
     }
 
+    
+
     .modal {
       height: 650px;
       width: 1200px;
@@ -392,6 +394,7 @@
       .jsonUrl("../datasets/miserables.json")
       .nodeLabel("id")
       .nodeAutoColorBy("group")
+      .linkWidth(3)
       .enableNavigationControls(false)
       .enableNodeDrag(false)
       .onNodeClick((node) => {
@@ -499,6 +502,8 @@
         });
       });
 
+      
+
     window.addEventListener("resize", () => {
       const graphContainer = document.getElementById("3d-graph");
       Graph.width(graphContainer.offsetWidth).height(
@@ -523,7 +528,7 @@
     }
 
 
-    
+
     Graph.onNodeClick((node) => {
       console.log("Node clicked:", node);
 
@@ -566,7 +571,7 @@
         }
       }
 
-      
+
     });
 
 
@@ -688,7 +693,7 @@
     window.showTtackModal = showTtackModal;
     window.showPayModal = showPayModal;
 
-   
+
   </script>
 </body>
 
