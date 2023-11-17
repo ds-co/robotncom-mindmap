@@ -35,7 +35,8 @@
 
     #closeNaafaModal,
     #closeFailerModal,
-    #closeNolgaModal {
+    #closeNolgaModal,
+    #closeTtackModal {
       position: absolute;
       top: 10px;
       right: 10px;
@@ -183,7 +184,7 @@
       </div>
       <div class="image-container">
         <div>
-          <img src="Failertalk2.png" alt="Naafa Image" style="width: 40%;" />
+          <img src="Failertalk2.png" alt="Naafa Image" style="width: 35%;" />
         </div>
       </div>
       <div style="width: 35%">
@@ -232,7 +233,7 @@
       </div>
       <div class="image-container">
         <div>
-          <img src="Nolga2.png" alt="Naafa Image" style="width: 35%;" />
+          <img src="Nolga2.png" alt="Naafa Image" style="width: 40%;" />
         </div>
       </div>
       <div style="width: 35%">
@@ -250,7 +251,55 @@
         </button>
       </div>
     </div>
+  </div>
 
+  <div id="TtackModalBackground" style="
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+      ">
+    <div id="ttackModal" class="modal">
+      <span id="closeTtackModal">&times;</span>
+      <div style="flex: 1">
+        <div>
+          <img src="p.png" alt="Your Image" style="margin-right: 10px" />
+          <img src="T.png" alt="Your Image" />
+          <p style="
+                float: right;
+                color: rgba(255, 255, 255, 0.822);
+                margin-right: 10px;
+              ">
+            Platfrom 04
+          </p>
+        </div>
+
+        <h1>딱따구리 TtackTaguri</h1>
+        <p>딱따구리는 가나다라마바사아자차카타파하</p>
+      </div>
+      <div class="image-container">
+        <div>
+          <img src="Ttackttaguri2.png" alt="TtackTaguri Image" />
+        </div>
+      </div>
+      <div style="width: 35%">
+        <button class="custom-button" onclick="showTtackModal()">
+          딱따구리 기능 1
+        </button>
+        <button class="custom-button" onclick="showTtackModal()">
+          딱따구리 기능 2
+        </button>
+        <button class="custom-button" onclick="showTtackModal()">
+          딱따구리 기능 3
+        </button>
+        <button class="custom-button" onclick="showTtackModal()">
+          딱따구리 기능 4
+        </button>
+      </div>
+    </div>
   </div>
 
   <div id="3d-graph"></div>
@@ -318,13 +367,18 @@
 
           const textureLoader = new THREE.TextureLoader();
           const logoTexture = textureLoader.load(imageSrc);
+
+          // Adjust opacity value (e.g., 0.7 for 70% opacity)
+          const opacity = 0.7;
+
           const imageMaterial = new THREE.MeshBasicMaterial({
             map: logoTexture,
             depthTest: false,
             transparent: true,
-            alphaTest: 0.3,
+            opacity: opacity,
             side: THREE.DoubleSide,
           });
+
           const image = new THREE.Mesh(
             new THREE.PlaneGeometry(20, 20),
             imageMaterial
@@ -352,7 +406,7 @@
       .onEngineTick(() => {
         Graph.graphData().nodes.forEach((n) => {
           if (n.id === "로봇앤컴") {
-            n.__threeObj.scale.set(4, 4, 4);
+            n.__threeObj.scale.set(3, 3, 3);
           } else if (["플랫폼", "기술", "수상", "SNS"].includes(n.id)) {
             n.__threeObj.scale.set(2, 2, 2);
           }
@@ -409,6 +463,9 @@
             case "놀가":
               showNolgaModal();
               break;
+            case "딱따구리":
+              showTtackModal();
+              break;
             // Add more cases as needed
             default:
               break;
@@ -429,6 +486,9 @@
             break;
           case "놀가":
             showNolgaModal();
+            break;
+          case "딱따구리":
+            showTtackModal();
             break;
           // Add more cases as needed
           default:
@@ -518,11 +578,29 @@
 
     document.getElementById("closeNolgaModal").addEventListener("click", hideNolgaModal);
 
+    function showTtackModal() {
+      const modal = document.getElementById("TtackModalBackground");
+      modal.style.display = "flex";
+      window.addEventListener("click", hideTtackModal);
+    }
+
+    // Function to hide Ttack modal
+    function hideTtackModal(event) {
+      event.stopPropagation();
+      const modal = document.getElementById("TtackModalBackground");
+      modal.style.display = "none";
+    }
+
+    document.getElementById("closeTtackModal").addEventListener("click", hideTtackModal);
+
+
+
 
 
     window.showNaafaModal = showNaafaModal;
     window.showFailerModal = showFailerModal;
     window.showNolgaModal = showNolgaModal;
+    window.showTtackModal = showTtackModal;
 
     function getLinkForNode(nodeId) {
       const linkMap = {
