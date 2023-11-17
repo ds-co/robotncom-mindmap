@@ -151,37 +151,56 @@
 
   <script>
 
-    const distance = 230;
+    const distance = 270;
+    // const initialNodeId = "SNS"; // 초기 위치를 설정할 노드의 ID
+
+    // function setInitialCameraPosition() {
+    // const graphData = Graph.graphData();
+    // const initialNode = graphData.nodes.find(node => n.id === initialNodeId);
+
+  //   if (initialNode) {
+  //     // 초기 카메라 위치 설정
+  //     Graph.cameraPosition({
+  //       x: initialNode.x + 200,
+  //       y: initialNode.y +1000,
+  //       z: initialNode.z + 800, // 예를 들어 노드 위로 조금 올릴 수 있습니다.
+  //     }, initialNode, 1000); // 카메라 이동 애니메이션 지속 시간 (밀리초)
+  //   }
+  // }
+
 
     const nodeImages = {
-      1: "logo.png",
+      1: "logo.svg",
       2: {
-        플랫폼: "Platform.png",
-        기술: "SI.png",
-        SNS: "SNS.png",
-        수상: "Win.png",
-      },
+        플랫폼: "Platform.svg",
+        기술: "SI.svg",
+        SNS: "SNS.svg",
+        수상: "수상.svg",
+      }, 
       3: {
-        페일러톡: "failer.png",
-        딱따구리: "Ttakttaguri.png",
-        나아파: "Naafaa.png",
-        문자페이: "Moonjapay.png",
-        놀가: "Nolga.png",
-        "서버 솔루션": "Server.png",
-        "보안 솔루션": "Security.png",
-        "네트워크 솔루션": "Network.png",
-        "Computer HW": "Hardware.png",
-        보이스인프라: "Voiceinfra.png",
-        "Computer SW": "Software.png",
-        인스타그램: "Insta.png",
-        홈페이지: "Home.png",
-        "네이버 블로그": "Blog.png",
-        카카오톡: "Kakao.png",
-        "중소벤처기업부 경영혁신 부문 장관상": "Win.png",
-        "대한민국 엔지니어상": "Win.png",
-        "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": "Win.png",
+        페일러톡: "페일러톡.svg",
+        딱따구리: "딱따구리.svg",
+        나아파: "NAAFAA.svg",
+        문자페이: "문자페이.svg",
+        놀가: "놀가.svg",
+        팀WORK: "팀WORK.svg",
+        "서버 솔루션": "Server.svg",
+        "보안 솔루션": "Security.svg",
+        "네트워크 솔루션": "Network.svg",
+        "Computer HW": "Hardware.svg", 
+        보이스인프라: "Voice infra.svg",
+        "Computer SW": "Software.svg",
+        인스타그램: "Instagram.svg",
+        홈페이지: "Homepage.svg",
+        "네이버 블로그": "Blog.svg",
+        카카오톡: "Kakaotalk.svg",
+        "중소벤처기업부 경영혁신 부문 장관상": "수상.svg",
+        "대한민국 엔지니어상": "수상.svg",
+        "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": "수상.svg",
       },
     };
+
+    
 
     const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       .jsonUrl("../datasets/miserables.json")
@@ -213,6 +232,21 @@
 
           const textureLoader = new THREE.TextureLoader();
 
+          const svgTexture = textureLoader.load(imageSrc);
+          svgTexture.encoding = THREE.sRGBEncoding;
+          const svgMaterial = new THREE.MeshBasicMaterial({
+            map: svgTexture,
+            depthTest: false,
+            transparent: true,
+            side: THREE.DoubleSide,
+          });
+
+          // 3D 메시 생성
+          const svgMesh = new THREE.Mesh(new THREE.PlaneGeometry(15, 15), svgMaterial); // 노드 크기를 조절
+
+        
+
+
           const logoTexture = textureLoader.load(imageSrc);
           logoTexture.encoding = THREE.sRGBEncoding;
 
@@ -233,7 +267,7 @@
             map: logoTexture,
             depthTest: false,
             transparent: true,
-            alphaTest : 0.3,
+            // alphaTest : 0.3,
             opacity: 1,
             side: THREE.DoubleSide,
           });
@@ -259,6 +293,13 @@
           const group = new THREE.Group();
           group.add(image);
 
+          // if (nodeId === "수상") {
+          //   group.position.set(-50, 0, 0); // 수정: 원하는 좌표로 변경
+          // } else {
+          //   group.position.set(50, 78, 0); // Default position
+          // }
+
+
           return group;
         }
       })
@@ -278,6 +319,8 @@
         graphContainer.offsetHeight
       );
     });
+
+    // setInitialCameraPosition();
 
     // Function to zoom in to a node
     function zoomInToNode(node) {
@@ -330,7 +373,7 @@
     });
 
     // camera orbit
-    let angle = 10;
+    let angle = 2;
     setInterval(() => {
       Graph.cameraPosition({
         x: distance * Math.sin(angle),
