@@ -194,8 +194,6 @@
       .nodeAutoColorBy("group")
       .enableNavigationControls(false)
       .enableNodeDrag(false)
-      
-      .linkWidth(2)
       .onNodeClick((node) => {
         const nodeId = node.id;
         if (nodeImages[node.group]) {
@@ -207,6 +205,18 @@
         }
       }
       )
+
+      .linkThreeObject((link) => {
+        const whiteColor = new THREE.Color("white");
+        const lineWidth = 555;
+        const material = new THREE.LineBasicMaterial({
+          color: whiteColor,
+          transparent: true,
+          opacity: link.source.group === "yourWhiteGroup" && link.target.group === "yourWhiteGroup" ? 1 : 1, // 조건에 따라 투명도 조절
+          linewidth: lineWidth, // 굵기 설정
+        });
+        return new THREE.Line(link.geometry, material);
+      })
       
 
       
@@ -375,7 +385,7 @@
     }, 10);
 
     const textureLoader = new THREE.TextureLoader();
-    const backgroundTexture = textureLoader.load("bback.jpg");
+    const backgroundTexture = textureLoader.load("우주.png");
     Graph.renderer().setClearColor(new THREE.Color("black"));
     backgroundTexture.minFilter = THREE.LinearFilter;
     Graph.scene().background = backgroundTexture;
