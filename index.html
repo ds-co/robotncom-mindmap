@@ -14,7 +14,7 @@
       height: 100vh;
     }
 
-    
+
 
     .modal {
       height: 650px;
@@ -492,7 +492,7 @@
         });
       });
 
-      
+
 
     window.addEventListener("resize", () => {
       const graphContainer = document.getElementById("3d-graph");
@@ -681,6 +681,15 @@
     window.showNolgaModal = showNolgaModal;
     window.showTtackModal = showTtackModal;
     window.showPayModal = showPayModal;
+
+    // Add this at the end of your script
+    window.addEventListener("resize", () => {
+      // Debouncing the refresh to prevent multiple rapid refreshes
+      clearTimeout(window.refreshTimeout);
+      window.refreshTimeout = setTimeout(() => {
+        window.location.reload();
+      }, 50); // Set your desired delay in milliseconds
+    });
 
 
   </script>
