@@ -8,6 +8,7 @@
     {"id": "나아파", "group": 3},
     {"id": "문자페이", "group": 3},
     {"id": "놀가", "group": 3},
+    {"id": "팀웍", "group": 3},
 
     {"id": "기술", "group": 2},
     {"id": "서버 솔루션", "group": 3},
@@ -36,6 +37,7 @@
     {"source": "나아파", "target": "플랫폼", "value": 2},
     {"source": "문자페이", "target": "플랫폼", "value": 2},
     {"source": "놀가", "target": "플랫폼", "value": 2},
+    {"source": "팀웍", "target": "플랫폼", "value": 2},
 
     {"source": "기술", "target": "로봇앤컴", "value": 1},
     {"source": "서버 솔루션", "target": "기술", "value": 2},
