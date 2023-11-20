@@ -407,7 +407,6 @@
           }
         }
       })
-
       .nodeThreeObject((node) => {
         const groupId = node.group;
         const nodeId = node.id;
@@ -432,10 +431,6 @@
 
           // 3D 메시 생성
           const svgMesh = new THREE.Mesh(new THREE.PlaneGeometry(15, 15), svgMaterial); // 노드 크기를 조절
-
-
-
-
           const logoTexture = textureLoader.load(imageSrc);
           logoTexture.encoding = THREE.sRGBEncoding;
 
@@ -482,12 +477,7 @@
           const group = new THREE.Group();
           group.add(image);
 
-          // if (nodeId === "수상") {
-          //   group.position.set(-50, 0, 0); // 수정: 원하는 좌표로 변경
-          // } else {
-          //   group.position.set(50, 78, 0); // Default position
-          // }
-
+          image.renderOrder = 1;
 
           return group;
         }
@@ -527,6 +517,7 @@
       );
     }
 
+    Graph.linkOpacity(0.08);
 
 
     Graph.onNodeClick((node) => {
