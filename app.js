@@ -47,9 +47,9 @@ const nodeImages = {
     홈페이지: "image/Homepage.svg",
     "네이버 블로그": "image/Blog.svg",
     카카오톡: "image/Kakao.svg",
-    "중소벤처기업부 경영혁신 부문 장관상": "image/Win.svg",
-    "대한민국 엔지니어상": "image/Win.svg",
-    "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": "image/Win.svg",
+    "중소벤처기업부 경영혁신 부문 장관상": "image/Win3.svg",
+    "대한민국 엔지니어상": "image/Win2.svg",
+    "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": "image/Win1.svg",
   },
 };
 
