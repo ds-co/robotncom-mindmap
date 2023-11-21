@@ -1,5 +1,6 @@
 const distance = 270;
 let angle = 15;
+let isModalOpen = false;
 
 // Function to update node positions and sizes on window resize
 function handleWindowResize() {
@@ -131,9 +132,9 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       }
 
       // TextureLoader를 사용하여 SVG 텍스처를 로드합니다.
-      const textureLoader = new THREE.TextureLoader();
-      const svgTexture = textureLoader.load(imageSrc);
-      svgTexture.encoding = THREE.sRGBEncoding;
+      // const textureLoader = new THREE.TextureLoader();
+      // const svgTexture = textureLoader.load(imageSrc);
+      // svgTexture.encoding = THREE.sRGBEncoding;
 
       // 텍스처의 인코딩을 sRGB로 설정하고,
       // MeshBasicMaterial을 생성하여 텍스처를 적용합니다.
@@ -151,9 +152,6 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       const logoTexture = textureLoader.load(imageSrc);
       logoTexture.encoding = THREE.sRGBEncoding;
 
-      // 로고 텍스처의 감싸기 모드를 설정합니다.
-      logoTexture.wrapS = THREE.ClampToEdgeWrapping;
-      logoTexture.wrapT = THREE.ClampToEdgeWrapping;
 
       // MeshBasicMaterial을 생성하여 로고 텍스처를 적용합니다.
       // const logoMaterial = new THREE.MeshBasicMaterial({
@@ -201,9 +199,7 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       //   showModal(nodeId);
       // };
 
-      // 이미지의 z 위치를 조정하고 렌더 순서를 설정합니다.
-      image.position.z = -0.1;
-      image.renderOrder = 50;
+      
 
       // THREE.Group을 생성하고 이미지를 추가합니다.
       const group = new THREE.Group();
@@ -335,13 +331,24 @@ Graph.linkOpacity(1.0);
 //   );
 // }
 
+// Add an event listener for the modal open and close events
+window.addEventListener('modalOpen', () => {
+  isModalOpen = true;
+});
+
+window.addEventListener('modalClose', () => {
+  isModalOpen = false;
+});
+
 // Camera orbit
 setInterval(() => {
-  Graph.cameraPosition({
-    x: distance * Math.sin(angle),
-    z: distance * Math.cos(angle),
-  });
-  angle += Math.PI / 6500;
+  if (!isModalOpen) {
+    Graph.cameraPosition({
+      x: distance * Math.sin(angle),
+      z: distance * Math.cos(angle),
+    });
+    angle += Math.PI / 6500;
+  }
 }, 10);
 
 const textureLoader = new THREE.TextureLoader();
@@ -355,6 +362,8 @@ function showNaafaModal() {
   const modal = document.getElementById("NaafaModalBackground");
   modal.style.display = "flex";
   window.addEventListener("click", hideNaafaModal);
+  // Dispatch modal open event
+  window.dispatchEvent(new Event('modalOpen'));
 }
 
 // Function to hide Naafa modal
@@ -362,6 +371,8 @@ function hideNaafaModal(event) {
   event.stopPropagation();
   const modal = document.getElementById("NaafaModalBackground");
   modal.style.display = "none";
+  // Dispatch modal close event
+  window.dispatchEvent(new Event('modalClose'));
 }
 
 document
@@ -373,6 +384,8 @@ function showFailerModal() {
   const modal = document.getElementById("FailerModalBackground");
   modal.style.display = "flex";
   window.addEventListener("click", hideFailerModal);
+  // Dispatch modal open event
+  window.dispatchEvent(new Event('modalOpen'));
 }
 
 // Function to hide Failer modal
@@ -380,6 +393,8 @@ function hideFailerModal(event) {
   event.stopPropagation();
   const modal = document.getElementById("FailerModalBackground");
   modal.style.display = "none";
+  // Dispatch modal close event
+  window.dispatchEvent(new Event('modalClose'));
 }
 
 document
@@ -397,6 +412,8 @@ function showNolgaModal() {
 
   modal.style.display = "flex";
   window.addEventListener("click", hideNolgaModal);
+  // Dispatch modal open event
+  window.dispatchEvent(new Event('modalOpen'));
 }
 
 // Function to hide Nolga modal
@@ -410,6 +427,8 @@ function hideNolgaModal(event) {
   }
 
   modal.style.display = "none";
+  // Dispatch modal close event
+  window.dispatchEvent(new Event('modalClose'));
 }
 
 document
@@ -420,6 +439,8 @@ function showTtackModal() {
   const modal = document.getElementById("TtackModalBackground");
   modal.style.display = "flex";
   window.addEventListener("click", hideTtackModal);
+  // Dispatch modal open event
+  window.dispatchEvent(new Event('modalOpen'));
 }
 
 // Function to hide Ttack modal
@@ -427,6 +448,8 @@ function hideTtackModal(event) {
   event.stopPropagation();
   const modal = document.getElementById("TtackModalBackground");
   modal.style.display = "none";
+  // Dispatch modal close event
+  window.dispatchEvent(new Event('modalClose'));
 }
 
 document
@@ -438,6 +461,8 @@ function showPayModal() {
   const modal = document.getElementById("PayModalBackground");
   modal.style.display = "flex";
   window.addEventListener("click", hidePayModal);
+  // Dispatch modal open event
+  window.dispatchEvent(new Event('modalOpen'));
 }
 
 // Function to hide Pay modal
@@ -445,6 +470,8 @@ function hidePayModal(event) {
   event.stopPropagation();
   const modal = document.getElementById("PayModalBackground");
   modal.style.display = "none";
+  // Dispatch modal close event
+  window.dispatchEvent(new Event('modalClose'));
 }
 document
   .getElementById("closePayModal")
@@ -455,6 +482,8 @@ function showTeamModal() {
   const modal = document.getElementById("TeamModalBackground");
   modal.style.display = "flex";
   window.addEventListener("click", hideTeamModal);
+  // Dispatch modal open event
+  window.dispatchEvent(new Event('modalOpen'));
 }
 
 // Function to hide Team modal
@@ -462,6 +491,8 @@ function hideTeamModal(event) {
   event.stopPropagation();
   const modal = document.getElementById("TeamModalBackground");
   modal.style.display = "none";
+   // Dispatch modal close event
+   window.dispatchEvent(new Event('modalClose'));
 }
 document
   .getElementById("closeTeamModal")
