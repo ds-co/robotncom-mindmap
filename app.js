@@ -56,7 +56,9 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
   .jsonUrl("../datasets/miserables.json")
   .nodeLabel("id")
   .nodeAutoColorBy("group")
+  .linkDirectionalParticleSpeed(0.02)  // 조절할 값입니다
   .linkWidth(2.5)
+  
   // 네비게이션 컨트롤 비활성화
   .enableNavigationControls(false)
   // 노드 드래그 비활성화
@@ -64,24 +66,24 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
   .onNodeClick((node, event) => {
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
-  
+
     // Calculate normalized device coordinates
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-  
+
     // Update the picking ray with the camera and mouse position
     raycaster.setFromCamera(mouse, Graph.camera());
-  
+
     // Check for intersections with the node
     const intersects = raycaster.intersectObject(node.__threeObj, true);
-  
-    console.log('Intersects:', intersects); // Add this line for debugging
-  
+
+    console.log("Intersects:", intersects); // Add this line for debugging
+
     if (intersects.length > 0) {
       // Clicked inside the node image
       clickedNodeId = node.id;
       console.log(`이미지 안쪽을 클릭했습니다. ID: ${clickedNodeId}`);
-  
+
       // Call the appropriate modal function based on the clicked node
       switch (clickedNodeId) {
         case "나아파":
@@ -103,6 +105,10 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
         case "문자페이":
           console.log("Calling showPayModal");
           showPayModal();
+          break;
+        case "팀웍":
+          console.log("Calling showTeamModal");
+          showTeamModal();
           break;
         default:
           break;
@@ -170,7 +176,7 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
 
       // 이미지 메시를 생성하고 크기를 조절합니다
       const image = new THREE.Mesh(
-        new THREE.PlaneGeometry(15,15),
+        new THREE.PlaneGeometry(15, 15),
         imageMaterial
       );
 
@@ -206,15 +212,42 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       return group;
     }
   })
-
+  
   .onEngineTick(() => {
-    Graph.graphData().nodes.forEach((n) => {
-      if (n.id === "로봇앤컴") {
-        n.__threeObj.scale.set(4, 4, 4);
-      } else if (["플랫폼", "기술", "수상", "SNS"].includes(n.id)) {
-        n.__threeObj.scale.set(2, 2, 2);
-      }
-    });
+    const graphData = Graph.graphData();
+    const centralNode = graphData.nodes.find((n) => n.id === "로봇앤컴");
+    const techNode = graphData.nodes.find((n) => n.id === "기술");
+    const platformNode = graphData.nodes.find((n) => n.id === "플랫폼");
+    const awardNode = graphData.nodes.find((n) => n.id === "수상");
+    const snsNode = graphData.nodes.find((n) => n.id === "SNS");
+
+    if (centralNode && techNode && platformNode && awardNode && snsNode) {
+      const distanceX = 100; // Adjust this distance based on your preference
+      const distanceY = 25; // Adjust this distance based on your preference
+
+      centralNode.__threeObj.scale.set(4, 4, 4);
+      techNode.__threeObj.scale.set(2, 2, 2);
+      platformNode.__threeObj.scale.set(2, 2, 2);
+      awardNode.__threeObj.scale.set(2, 2, 2);
+      snsNode.__threeObj.scale.set(2, 2, 2);
+
+      // Set positions relative to the central node
+      techNode.x = centralNode.x - distanceX;
+      techNode.y = centralNode.y + distanceY;
+      techNode.z = centralNode.z;
+
+      platformNode.x = centralNode.x + distanceX;
+      platformNode.y = centralNode.y + distanceY;
+      platformNode.z = centralNode.z;
+
+      awardNode.x = centralNode.x - distanceX;
+      awardNode.y = centralNode.y - distanceY;
+      awardNode.z = centralNode.z;
+
+      snsNode.x = centralNode.x + distanceX;
+      snsNode.y = centralNode.y - distanceY;
+      snsNode.z = centralNode.z;
+    }
   });
 
 // function showModal(nodeId) {
@@ -301,7 +334,6 @@ Graph.linkOpacity(1.0);
 //     3000
 //   );
 // }
-
 
 // Camera orbit
 setInterval(() => {
@@ -418,9 +450,27 @@ document
   .getElementById("closePayModal")
   .addEventListener("click", hidePayModal);
 
+// Function to show Team modal
+function showTeamModal() {
+  const modal = document.getElementById("TeamModalBackground");
+  modal.style.display = "flex";
+  window.addEventListener("click", hideTeamModal);
+}
+
+// Function to hide Team modal
+function hideTeamModal(event) {
+  event.stopPropagation();
+  const modal = document.getElementById("TeamModalBackground");
+  modal.style.display = "none";
+}
+document
+  .getElementById("closeTeamModal")
+  .addEventListener("click", hideTeamModal);
+
+
 window.showNaafaModal = showNaafaModal;
 window.showFailerModal = showFailerModal;
 window.showNolgaModal = showNolgaModal;
 window.showTtackModal = showTtackModal;
 window.showPayModal = showPayModal;
-
+window.showTeamModal = showTeamModal;
