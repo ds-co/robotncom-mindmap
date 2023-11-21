@@ -1,4 +1,25 @@
-const distance = 350;
+const distance = 270;
+let angle = 15;
+
+// Function to update node positions and sizes on window resize
+function handleWindowResize() {
+  const newWidth = window.innerWidth;
+  const newHeight = window.innerHeight;
+
+  Graph.width(newWidth);
+  Graph.height(newHeight);
+
+  Graph.graphData().nodes.forEach((node) => {
+    if (["로봇앤컴", "플랫폼", "기술", "수상", "SNS"].includes(node.id)) {
+      // You can adjust the scale factor based on your needs
+      const scaleFactor = 2;
+      node.__threeObj.scale.set(scaleFactor, scaleFactor, scaleFactor);
+    }
+  });
+}
+
+// Add event listener for window resize
+window.addEventListener("resize", handleWindowResize);
 
 const nodeImages = {
   1: "image/logo.svg",
@@ -41,34 +62,51 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
   // 노드 드래그 비활성화
   .enableNodeDrag(false)
   .onNodeClick((node, event) => {
-    clickedNodeId = node.id;
-    // intersects 배열이 비어있지 않으면 노드 이미지 안쪽을 클릭한 것으로 간주
-    console.log(`이미지 안쪽을 클릭했습니다. ID: ${clickedNodeId}`);
-    // 모달을 표시하는 코드 등을 여기에 추가
-    // 예를 들어, 다음과 같이 모달을 표시할 수 있습니다.
-    switch (clickedNodeId) {
-      case "나아파":
-        console.log("Calling showNaafaModal");
-        showNaafaModal();
-        break;
-      case "페일러톡":
-        console.log("Calling showFailerModal");
-        showFailerModal();
-        break;
-      case "놀가":
-        console.log("Calling showNolgaModal");
-        showNolgaModal();
-        break;
-      case "딱따구리":
-        console.log("Calling showTtackModal");
-        showTtackModal();
-        break;
-      case "문자페이":
-        console.log("Calling showPayModal");
-        showPayModal();
-        break;
-      default:
-        break;
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+  
+    // Calculate normalized device coordinates
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+  
+    // Update the picking ray with the camera and mouse position
+    raycaster.setFromCamera(mouse, Graph.camera());
+  
+    // Check for intersections with the node
+    const intersects = raycaster.intersectObject(node.__threeObj, true);
+  
+    console.log('Intersects:', intersects); // Add this line for debugging
+  
+    if (intersects.length > 0) {
+      // Clicked inside the node image
+      clickedNodeId = node.id;
+      console.log(`이미지 안쪽을 클릭했습니다. ID: ${clickedNodeId}`);
+  
+      // Call the appropriate modal function based on the clicked node
+      switch (clickedNodeId) {
+        case "나아파":
+          console.log("Calling showNaafaModal");
+          showNaafaModal();
+          break;
+        case "페일러톡":
+          console.log("Calling showFailerModal");
+          showFailerModal();
+          break;
+        case "놀가":
+          console.log("Calling showNolgaModal");
+          showNolgaModal();
+          break;
+        case "딱따구리":
+          console.log("Calling showTtackModal");
+          showTtackModal();
+          break;
+        case "문자페이":
+          console.log("Calling showPayModal");
+          showPayModal();
+          break;
+        default:
+          break;
+      }
     }
   })
   .nodeThreeObject((node) => {
@@ -132,7 +170,7 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
 
       // 이미지 메시를 생성하고 크기를 조절합니다
       const image = new THREE.Mesh(
-        new THREE.PlaneGeometry(17, 17),
+        new THREE.PlaneGeometry(15,15),
         imageMaterial
       );
 
@@ -151,13 +189,19 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
         image.rotation.set(euler.x, euler.y, euler.z);
       };
 
-      // THREE.Group을 생성하고 이미지를 추가합니다.
-      const group = new THREE.Group();
-      group.add(image);
+      // // 이미지 메시에 클릭 이벤트를 추가합니다.
+      // image.onClick = function (event) {
+      //   // 클릭된 경우 여기서 원하는 작업을 수행하세요.
+      //   showModal(nodeId);
+      // };
 
       // 이미지의 z 위치를 조정하고 렌더 순서를 설정합니다.
       image.position.z = -0.1;
       image.renderOrder = 50;
+
+      // THREE.Group을 생성하고 이미지를 추가합니다.
+      const group = new THREE.Group();
+      group.add(image);
 
       return group;
     }
@@ -173,33 +217,33 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
     });
   });
 
-  function showModal(nodeId) {
-    // 모달 표시 함수
-    switch (nodeId) {
-      case "나아파":
-        console.log("Calling showNaafaModal");
-        showNaafaModal();
-        break;
-      case "페일러톡":
-        console.log("Calling showFailerModal");
-        showFailerModal();
-        break;
-      case "놀가":
-        console.log("Calling showNolgaModal");
-        showNolgaModal();
-        break;
-      case "딱따구리":
-        console.log("Calling showTtackModal");
-        showTtackModal();
-        break;
-      case "문자페이":
-        console.log("Calling showPayModal");
-        showPayModal();
-        break;
-      default:
-        break;
-    }
-  }
+// function showModal(nodeId) {
+//   // 모달 표시 함수
+//   switch (nodeId) {
+//     case "나아파":
+//       console.log("Calling showNaafaModal");
+//       showNaafaModal();
+//       break;
+//     case "페일러톡":
+//       console.log("Calling showFailerModal");
+//       showFailerModal();
+//       break;
+//     case "놀가":
+//       console.log("Calling showNolgaModal");
+//       showNolgaModal();
+//       break;
+//     case "딱따구리":
+//       console.log("Calling showTtackModal");
+//       showTtackModal();
+//       break;
+//     case "문자페이":
+//       console.log("Calling showPayModal");
+//       showPayModal();
+//       break;
+//     default:
+//       break;
+//   }
+// }
 Graph.linkOpacity(1.0);
 // Graph.onNodeClick((node) => {
 //   console.log("Node clicked:", node);
@@ -258,8 +302,8 @@ Graph.linkOpacity(1.0);
 //   );
 // }
 
-// camera orbit
-let angle = 15;
+
+// Camera orbit
 setInterval(() => {
   Graph.cameraPosition({
     x: distance * Math.sin(angle),
@@ -379,3 +423,4 @@ window.showFailerModal = showFailerModal;
 window.showNolgaModal = showNolgaModal;
 window.showTtackModal = showTtackModal;
 window.showPayModal = showPayModal;
+
