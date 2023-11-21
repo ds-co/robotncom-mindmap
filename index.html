@@ -6,6 +6,22 @@
         margin: 0;
         overflow: hidden;
       }
+      #intro-section {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(83, 83, 83, 0.336);
+        /* color: rgb(0, 0, 0); */
+        font-size: 3em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+        transition: opacity 1s ease-in-out; /* 1초 동안 fade-out 트랜지션 설정 */
+      }
        /* #graph-section {
         position: absolute;
         top: 50%;
@@ -63,6 +79,7 @@
       #3d-graph {
         width: 100%;
         height: 100vh;
+        /* background-color: transparent; */
       }
       .modal {
         height: 650px;
@@ -179,6 +196,13 @@
 </head>
 
 <body>
+  <section id="intro-section" style=" z-index: 2;background-color: rgba(119, 119, 119, 0.733); text-align: center;">
+    <h1 style="color: white;">
+      전 세계를 감동시킬<br>
+      IT혁신<br>
+      우리는 <span style="color: blue;">로봇앤컴</span> 입니다.
+    </h1>
+  </section>
   <!-- <section id="section1" style=" z-index: 2;background-color: rgba(0, 0, 0, 0.7);">
     <h1 style="color: white; z-index: 3;">전 세계를 감동시킬</h1>
   </section>
@@ -198,8 +222,6 @@
     <div id="myModal" class="modal">
       <span id="closeModal">&times;</span>
       <div style="flex: 1">
-        <img src="Group.png" alt="" />
-        <img src="Vector.png" alt="" />
         <div>
           <img src="p.png" alt="Your Image" style="margin-right: 10px" />
           <img src="h.png" alt="Your Image" />
@@ -242,6 +264,9 @@
   <div id="3d-graph"></div>
 
   <script>
+
+
+    
 
     // const sections = document.querySelectorAll('section');
     //             let currentSection = 0;
@@ -288,14 +313,14 @@
 
 
 
-    function hideModal() {
-      event.stopPropagation();
-      const modal = document.getElementById("Modalbackground");
-      const graphSection = document.getElementById("graph-section");
+    // function hideModal() {
+    //   event.stopPropagation();
+    //   const modal = document.getElementById("Modalbackground");
+    //   const graphSection = document.getElementById("graph-section");
 
-      graphSection.classList.remove("fadeOut");
-      modal.style.display = "none";
-    }
+    //   graphSection.classList.remove("fadeOut");
+    //   modal.style.display = "none";
+    // }
 
     document
       .getElementById("closeModal")
@@ -352,6 +377,8 @@
       .jsonUrl("../datasets/miserables.json")
       .nodeLabel("id")
       .nodeAutoColorBy("group")
+      
+      
       .enableNavigationControls(false)
       .enableNodeDrag(false)
       .onNodeClick((node) => {
@@ -365,10 +392,14 @@
         }
       }
       )
+      
+      
+      
 
       .linkThreeObject((link) => {
         const whiteColor = new THREE.Color("white");
         // const lineWidth = 555;
+        
         const material = new THREE.LineBasicMaterial({
           color: whiteColor,
           transparent: true,
@@ -392,6 +423,7 @@
         }
 
         const textureLoader = new THREE.TextureLoader();
+        backgroundTexture.encoding = THREE.sRGBEncoding;
 
         const svgTexture = textureLoader.load(imageSrc);
         svgTexture.encoding = THREE.sRGBEncoding;
@@ -436,9 +468,10 @@
           imageMaterial
         );
 
+        
+
         image.position.z = -0.1;
         image.renderOrder = 50;
-        // image.position.z = -0.5; // 이 값을 조절하여 흰 선이 노드 뒤로 가게 합니다.
 
         image.onBeforeRender = function (
           renderer,
@@ -456,6 +489,7 @@
         const group = new THREE.Group();
         group.add(image);
         imageScene.add(group);
+        
 
         return group;
       }
@@ -466,11 +500,14 @@
         Graph.graphData().nodes.forEach((n) => {
           if (n.id === "로봇앤컴") {
             n.__threeObj.scale.set(4, 4, 4);
+        
           } else if (["플랫폼", "기술", "수상", "SNS"].includes(n.id)) {
             n.__threeObj.scale.set(2, 2, 2);
+            
           }
         });
       });
+
 
     window.addEventListener("resize", () => {
       const graphContainer = document.getElementById("3d-graph");
@@ -486,7 +523,7 @@
 
     // Function to zoom in to a node
     function zoomInToNode(node) {
-      const distance = 40;
+      const distance = 20;
       const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
 
       Graph.cameraPosition(
@@ -537,7 +574,7 @@
     
 
     // camera orbit
-    let angle = 25;
+    let angle = 35;
     setInterval(() => {
       Graph.cameraPosition({
         x: distance * Math.sin(angle),
@@ -547,7 +584,8 @@
     }, 10);
 
     const textureLoader = new THREE.TextureLoader();
-    const backgroundTexture = textureLoader.load("우주.png");
+    const backgroundTexture = textureLoader.load("back2.jpg");
+    backgroundTexture.encoding = THREE.sRGBEncoding;
     Graph.renderer().setClearColor(new THREE.Color("black"));
     backgroundTexture.minFilter = THREE.NearestFilter;
     Graph.scene().background = backgroundTexture;
@@ -569,9 +607,32 @@
       modal.style.display = "none";
     }
 
-    document
-      .getElementById("closeModal")
-      .addEventListener("click", hideModal);
+    document.addEventListener("DOMContentLoaded", function () {
+      const introSection = document.getElementById("intro-section");
+      let startTime;
+
+      function animate(time) {
+        if (!startTime) {
+          startTime = time;
+        }
+
+        const elapsed = time - startTime;
+        
+        // Set initial opacity to 1
+        introSection.style.opacity = 1;
+
+        // Schedule the fade-out after 1 minute
+        if (elapsed < 6000) {
+          introSection.style.opacity = 1 - elapsed / 4000;
+          requestAnimationFrame(animate);
+        } else {
+          introSection.style.display = "none";
+        }
+      }
+
+      // Start the animation
+      requestAnimationFrame(animate);
+    });
   </script>
 </body>
 
