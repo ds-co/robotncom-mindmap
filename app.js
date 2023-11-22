@@ -11,7 +11,7 @@ function handleWindowResize() {
   Graph.height(newHeight);
 
   Graph.graphData().nodes.forEach((node) => {
-    if (["로봇앤컴", "플랫폼", "기술", "수상", "SNS"].includes(node.id)) {
+    if (["RobotNcom", "Platform", "technology", "Awards", "SNS"].includes(node.id)) {
       // You can adjust the scale factor based on your needs
       const scaleFactor = 2;
       node.__threeObj.scale.set(scaleFactor, scaleFactor, scaleFactor);
@@ -25,31 +25,31 @@ window.addEventListener("resize", handleWindowResize);
 const nodeImages = {
   1: "image/logo.svg",
   2: {
-    플랫폼: "image/Platform.svg",
-    기술: "image/SI.svg",
+    Platform: "image/Platform.svg",
+    technology: "image/SI.svg",
     SNS: "image/SNS.svg",
-    수상: "image/Win.svg",
+    Awards: "image/Win.svg",
   },
   3: {
-    페일러톡: "image/Failertalk.svg",
-    딱따구리: "image/Ttakttaguri.svg",
-    나아파: "image/Naafaa.svg",
-    문자페이: "image/Moonjapay.svg",
-    놀가: "image/Nolga.svg",
-    팀웍: "image/Teamwork.svg",
-    "서버 솔루션": "image/Server.svg",
-    "보안 솔루션": "image/Security.svg",
-    "네트워크 솔루션": "image/Network.svg",
-    "Computer HW": "image/Hardware.svg",
-    보이스인프라: "image/Voiceinfra.svg",
+    Failertalk: "image/Failertalk.svg",
+    Ttagttaguli: "image/Ttakttaguri.svg",
+    naafaa: "image/Naafaa.svg",
+    moonjapay: "image/Moonjapay.svg",
+    nolga: "image/Nolga.svg",
+    TeamWork: "image/Teamwork.svg",
+    "server solution": "image/Server.svg",
+    "security solutions": "image/Security.svg",
+    "network solutions": "image/Network.svg",
+    "network solutions": "image/Hardware.svg",
+    "Voice Infrastructure": "image/Voiceinfra.svg",
     "Computer SW": "image/Software.svg",
-    인스타그램: "image/Insta.svg",
-    홈페이지: "image/Homepage.svg",
-    "네이버 블로그": "image/Blog.svg",
-    카카오톡: "image/Kakao.svg",
-    "중소벤처기업부 경영혁신 부문 장관상": "image/Win3.svg",
-    "대한민국 엔지니어상": "image/Win2.svg",
-    "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": "image/Win1.svg",
+    Instagram: "image/Insta.svg",
+    homepage: "image/Homepage.svg",
+    "naver blog": "image/Blog.svg",
+    kakaotalk: "image/Kakao.svg",
+    "MSS Ministry's Business Innovation Award": "image/Win3.svg",
+    "Korea Engineer Award": "image/Win2.svg",
+    "Top 100 Korean Brand Award [IT Platform]": "image/Win1.svg",
   },
 };
 
@@ -87,27 +87,27 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
 
       // Call the appropriate modal function based on the clicked node
       switch (clickedNodeId) {
-        case "나아파":
+        case "naafaa":
           console.log("Calling showNaafaModal");
           showNaafaModal();
           break;
-        case "페일러톡":
+        case "Failertalk":
           console.log("Calling showFailerModal");
           showFailerModal();
           break;
-        case "놀가":
+        case "nolga":
           console.log("Calling showNolgaModal");
           showNolgaModal();
           break;
-        case "딱따구리":
+        case "Ttagttaguli":
           console.log("Calling showTtackModal");
           showTtackModal();
           break;
-        case "문자페이":
+        case "moonjapay":
           console.log("Calling showPayModal");
           showPayModal();
           break;
-        case "팀웍":
+        case "TeamWork":
           console.log("Calling showTeamModal");
           showTeamModal();
           break;
@@ -211,10 +211,10 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
   
   .onEngineTick(() => {
     const graphData = Graph.graphData();
-    const centralNode = graphData.nodes.find((n) => n.id === "로봇앤컴");
-    const techNode = graphData.nodes.find((n) => n.id === "기술");
-    const platformNode = graphData.nodes.find((n) => n.id === "플랫폼");
-    const awardNode = graphData.nodes.find((n) => n.id === "수상");
+    const centralNode = graphData.nodes.find((n) => n.id === "RobotNcom");
+    const techNode = graphData.nodes.find((n) => n.id === "technology");
+    const platformNode = graphData.nodes.find((n) => n.id === "Platform");
+    const awardNode = graphData.nodes.find((n) => n.id === "Awards");
     const snsNode = graphData.nodes.find((n) => n.id === "SNS");
 
     if (centralNode && techNode && platformNode && awardNode && snsNode) {
