@@ -7,8 +7,6 @@
     {"id": "Ttagttaguli", "group": 3},
     {"id": "naafaa", "group": 3},
     {"id": "moonjapay", "group": 3},
-    {"id": "nolga", "group": 3},
-    {"id": "TeamWork", "group": 3},
 
     {"id": "technology", "group": 2},
     {"id": "server solution", "group": 3},
@@ -36,8 +34,6 @@
     {"source": "Ttagttaguli", "target": "Platform", "value": 2},
     {"source": "naafaa", "target": "Platform", "value": 2},
     {"source": "moonjapay", "target": "Platform", "value": 2},
-    {"source": "nolga", "target": "Platform", "value": 2},
-    {"source": "TeamWork", "target": "Platform", "value": 2},
 
     {"source": "technology", "target": "RobotNcom", "value": 1},
     {"source": "server solution", "target": "technology", "value": 2},

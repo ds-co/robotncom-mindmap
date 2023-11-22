@@ -35,8 +35,6 @@ const nodeImages = {
     Ttagttaguli: "image/Ttakttaguri.svg",
     naafaa: "image/Naafaa.svg",
     moonjapay: "image/Moonjapay.svg",
-    nolga: "image/Nolga.svg",
-    TeamWork: "image/Teamwork.svg",
     "server solution": "image/Server.svg",
     "security solutions": "image/Security.svg",
     "network solutions": "image/Network.svg",
@@ -95,10 +93,6 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
           console.log("Calling showFailerModal");
           showFailerModal();
           break;
-        case "nolga":
-          console.log("Calling showNolgaModal");
-          showNolgaModal();
-          break;
         case "Ttagttaguli":
           console.log("Calling showTtackModal");
           showTtackModal();
@@ -106,10 +100,6 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
         case "moonjapay":
           console.log("Calling showPayModal");
           showPayModal();
-          break;
-        case "TeamWork":
-          console.log("Calling showTeamModal");
-          showTeamModal();
           break;
         default:
           break;
@@ -373,40 +363,6 @@ document
   .getElementById("closeFailerModal")
   .addEventListener("click", hideFailerModal);
 
-// Function to show Nolga modal
-function showNolgaModal() {
-  console.log("showNolgaModal function called");
-  const modal = document.getElementById("NolgaModalBackground");
-  if (!modal) {
-    console.error("NolgaModalBackground not found!");
-    return;
-  }
-
-  modal.style.display = "flex";
-  window.addEventListener("click", hideNolgaModal);
-  // Dispatch modal open event
-  window.dispatchEvent(new Event('modalOpen'));
-}
-
-// Function to hide Nolga modal
-function hideNolgaModal(event) {
-  event.stopPropagation();
-  console.log("Hide Nolga Modal");
-  const modal = document.getElementById("NolgaModalBackground");
-  if (!modal) {
-    console.error("NolgaModalBackground not found!");
-    return;
-  }
-
-  modal.style.display = "none";
-  // Dispatch modal close event
-  window.dispatchEvent(new Event('modalClose'));
-}
-
-document
-  .getElementById("closeNolgaModal")
-  .addEventListener("click", hideNolgaModal);
-
 function showTtackModal() {
   const modal = document.getElementById("TtackModalBackground");
   modal.style.display = "flex";
@@ -449,31 +405,9 @@ document
   .getElementById("closePayModal")
   .addEventListener("click", hidePayModal);
 
-// Function to show Team modal
-function showTeamModal() {
-  const modal = document.getElementById("TeamModalBackground");
-  modal.style.display = "flex";
-  window.addEventListener("click", hideTeamModal);
-  // Dispatch modal open event
-  window.dispatchEvent(new Event('modalOpen'));
-}
-
-// Function to hide Team modal
-function hideTeamModal(event) {
-  event.stopPropagation();
-  const modal = document.getElementById("TeamModalBackground");
-  modal.style.display = "none";
-   // Dispatch modal close event
-   window.dispatchEvent(new Event('modalClose'));
-}
-document
-  .getElementById("closeTeamModal")
-  .addEventListener("click", hideTeamModal);
 
 
 window.showNaafaModal = showNaafaModal;
 window.showFailerModal = showFailerModal;
-window.showNolgaModal = showNolgaModal;
 window.showTtackModal = showTtackModal;
 window.showPayModal = showPayModal;
-window.showTeamModal = showTeamModal;
