@@ -40,7 +40,7 @@ const nodeImages = {
     "server solution": "image/Server.svg",
     "security solutions": "image/Security.svg",
     "network solutions": "image/Network.svg",
-    "network solutions": "image/Hardware.svg",
+    "Computer HW": "image/Hardware.svg",
     "Voice Infrastructure": "image/Voiceinfra.svg",
     "Computer SW": "image/Software.svg",
     Instagram: "image/Insta.svg",
@@ -208,42 +208,14 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       return group;
     }
   })
-  
   .onEngineTick(() => {
-    const graphData = Graph.graphData();
-    const centralNode = graphData.nodes.find((n) => n.id === "RobotNcom");
-    const techNode = graphData.nodes.find((n) => n.id === "technology");
-    const platformNode = graphData.nodes.find((n) => n.id === "Platform");
-    const awardNode = graphData.nodes.find((n) => n.id === "Awards");
-    const snsNode = graphData.nodes.find((n) => n.id === "SNS");
-
-    if (centralNode && techNode && platformNode && awardNode && snsNode) {
-      const distanceX = 100; // Adjust this distance based on your preference
-      const distanceY = 25; // Adjust this distance based on your preference
-
-      centralNode.__threeObj.scale.set(4, 4, 4);
-      techNode.__threeObj.scale.set(2, 2, 2);
-      platformNode.__threeObj.scale.set(2, 2, 2);
-      awardNode.__threeObj.scale.set(2, 2, 2);
-      snsNode.__threeObj.scale.set(2, 2, 2);
-
-      // Set positions relative to the central node
-      techNode.x = centralNode.x - distanceX;
-      techNode.y = centralNode.y + distanceY;
-      techNode.z = centralNode.z;
-
-      platformNode.x = centralNode.x + distanceX;
-      platformNode.y = centralNode.y + distanceY;
-      platformNode.z = centralNode.z;
-
-      awardNode.x = centralNode.x - distanceX;
-      awardNode.y = centralNode.y - distanceY;
-      awardNode.z = centralNode.z;
-
-      snsNode.x = centralNode.x + distanceX;
-      snsNode.y = centralNode.y - distanceY;
-      snsNode.z = centralNode.z;
-    }
+    Graph.graphData().nodes.forEach((n) => {
+      if (n.id === "RobotNcom") {
+        n.__threeObj.scale.set(4, 4, 4);
+      } else if (["Platform", "technology", "Awards", "SNS"].includes(n.id)) {
+        n.__threeObj.scale.set(2, 2, 2);
+      }
+    });
   });
 
 // function showModal(nodeId) {
