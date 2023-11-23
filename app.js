@@ -2,6 +2,18 @@ const distance = 270;
 let angle = 15;
 let isModalOpen = false;
 
+// Function to calculate distance between two nodes with units
+function calculateDistanceWithUnits(node1, node2) {
+  const dx = node1.x - node2.x;
+  const dy = node1.y - node2.y;
+  const dz = node1.z - node2.z;
+
+  // Return the coordinates
+  return { x: dx, y: dy, z: dz };
+}
+
+
+
 
 const nodeImages = {
   1: "image/logo.svg",
@@ -37,9 +49,8 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
   .nodeLabel("id")
   .nodeAutoColorBy("group")
   .linkDirectionalParticleSpeed(0.02)  // 조절할 값입니다
-  .linkWidth(2.5)
+  .linkWidth(1.0)
   .linkOpacity(1.0)
-  
   // 네비게이션 컨트롤 비활성화
   .enableNavigationControls(false)
   // 노드 드래그 비활성화
@@ -47,49 +58,81 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
   .onNodeClick((node, event) => {
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
-
+  
     // Calculate normalized device coordinates
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
+  
     // Update the picking ray with the camera and mouse position
     raycaster.setFromCamera(mouse, Graph.camera());
-
+  
     // Check for intersections with the node
     const intersects = raycaster.intersectObject(node.__threeObj, true);
-
+  
     console.log("Intersects:", intersects); // Add this line for debugging
-
+  
+    // Check if the clicked node is one of the target nodes
+    if (
+      ["Failertalk", "Ttagttaguli", "naafaa", "moonjapay", "server solution", "security solutions", "Computer HW", "Voice Infrastructure", "network solutions", "Computer SW", "MSS Ministry's Business Innovation Award", "Korea Engineer Award", "Top 100 Korean Brand Award [IT Platform]", "Instagram", "homepage", "naver blog", "kakaotalk"].includes(node.id)
+    ) {
+      const targetNodes = ["Failertalk", "Ttagttaguli", "naafaa", "moonjapay", "server solution", "security solutions", "Computer HW", "Voice Infrastructure", "network solutions", "Computer SW", "MSS Ministry's Business Innovation Award", "Korea Engineer Award", "Top 100 Korean Brand Award [IT Platform]", "Instagram", "homepage", "naver blog", "kakaotalk"];
+  
+      // Find the positions of the target nodes
+      const targetNodePositions = targetNodes.map((targetNode) => {
+        const targetNodeData = Graph.graphData().nodes.find(
+          (n) => n.id === targetNode
+        );
+        return {
+          id: targetNode,
+          position: {
+            x: targetNodeData.x,
+            y: targetNodeData.y,
+            z: targetNodeData.z,
+          },
+        };
+      });
+  
+      // Log X, Y coordinates
+      targetNodePositions.forEach((target) => {
+        const coordinates = calculateDistanceWithUnits(node, target.position);
+        console.log(
+          `Coordinates from ${node.id} to ${target.id}: X=${coordinates.x.toFixed(
+            2
+          )}, Y=${coordinates.y.toFixed(2)}`
+        );
+      });
+    }
+  
     if (intersects.length > 0) {
       // Clicked inside the node image
       clickedNodeId = node.id;
       console.log(`이미지 안쪽을 클릭했습니다. ID: ${clickedNodeId}`);
-
+  
       // Call the appropriate modal function based on the clicked node
-      switch (clickedNodeId) {
+      switch (node.id) {
         case "naafaa":
-          console.log("Calling showNaafaModal");
           showNaafaModal();
           break;
         case "Failertalk":
-          console.log("Calling showFailerModal");
           showFailerModal();
           break;
-        case "nolga":
-          console.log("Calling showNolgaModal");
-          showNolgaModal();
-          break;
         case "Ttagttaguli":
-          console.log("Calling showTtackModal");
           showTtackModal();
           break;
         case "moonjapay":
-          console.log("Calling showPayModal");
           showPayModal();
           break;
-        case "TeamWork":
-          console.log("Calling showTeamModal");
-          showTeamModal();
+        case "kakaotalk":
+          window.location.href = "http://pf.kakao.com/_VMxcds";
+          break;
+        case "Instagram":
+          window.location.href = "https://www.instagram.com/robot_n_com/";
+          break;
+        case "homepage":
+          window.location.href = "https://www.robotncom.com/";
+          break;
+        case "naver blog":
+          window.location.href = "https://blog.naver.com/robotncom";
           break;
         default:
           break;
