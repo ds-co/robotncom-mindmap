@@ -11,7 +11,9 @@ function handleWindowResize() {
   Graph.height(newHeight);
 
   Graph.graphData().nodes.forEach((node) => {
-    if (["RobotNcom", "Platform", "technology", "Awards", "SNS"].includes(node.id)) {
+    if (
+      ["RobotNcom", "Platform", "technology", "Awards", "SNS"].includes(node.id)
+    ) {
       // You can adjust the scale factor based on your needs
       const scaleFactor = 2;
       node.__threeObj.scale.set(scaleFactor, scaleFactor, scaleFactor);
@@ -55,9 +57,9 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
   .jsonUrl("../datasets/miserables.json")
   .nodeLabel("id")
   .nodeAutoColorBy("group")
-  .linkDirectionalParticleSpeed(0.02)  // 조절할 값입니다
+  .linkDirectionalParticleSpeed(0.02) // 조절할 값입니다
   .linkWidth(1.3)
-  
+
   // 네비게이션 컨트롤 비활성화
   .enableNavigationControls(false)
   // 노드 드래그 비활성화
@@ -84,22 +86,30 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       console.log(`이미지 안쪽을 클릭했습니다. ID: ${clickedNodeId}`);
 
       // Call the appropriate modal function based on the clicked node
-      switch (clickedNodeId) {
+      switch (node.id) {
         case "naafaa":
-          console.log("Calling showNaafaModal");
           showNaafaModal();
           break;
         case "Failertalk":
-          console.log("Calling showFailerModal");
           showFailerModal();
           break;
         case "Ttagttaguli":
-          console.log("Calling showTtackModal");
           showTtackModal();
           break;
         case "moonjapay":
-          console.log("Calling showPayModal");
           showPayModal();
+          break;
+        case "kakaotalk":
+          window.location.href = "http://pf.kakao.com/_VMxcds";
+          break;
+        case "Instagram":
+          window.location.href = "https://www.instagram.com/robot_n_com/";
+          break;
+        case "homepage":
+          window.location.href = "https://www.robotncom.com/";
+          break;
+        case "naver blog":
+          window.location.href = "https://blog.naver.com/robotncom";
           break;
         default:
           break;
@@ -141,7 +151,6 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       // 로고 텍스처를 로드하고 인코딩을 sRGB로 설정합니다.
       const logoTexture = textureLoader.load(imageSrc);
       logoTexture.encoding = THREE.sRGBEncoding;
-
 
       // MeshBasicMaterial을 생성하여 로고 텍스처를 적용합니다.
       // const logoMaterial = new THREE.MeshBasicMaterial({
@@ -188,8 +197,6 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       //   // 클릭된 경우 여기서 원하는 작업을 수행하세요.
       //   showModal(nodeId);
       // };
-
-      
 
       // THREE.Group을 생성하고 이미지를 추가합니다.
       const group = new THREE.Group();
@@ -294,11 +301,11 @@ Graph.linkOpacity(1.0);
 // }
 
 // Add an event listener for the modal open and close events
-window.addEventListener('modalOpen', () => {
+window.addEventListener("modalOpen", () => {
   isModalOpen = true;
 });
 
-window.addEventListener('modalClose', () => {
+window.addEventListener("modalClose", () => {
   isModalOpen = false;
 });
 
@@ -325,7 +332,7 @@ function showNaafaModal() {
   modal.style.display = "flex";
   window.addEventListener("click", hideNaafaModal);
   // Dispatch modal open event
-  window.dispatchEvent(new Event('modalOpen'));
+  window.dispatchEvent(new Event("modalOpen"));
 }
 
 // Function to hide Naafa modal
@@ -334,7 +341,7 @@ function hideNaafaModal(event) {
   const modal = document.getElementById("NaafaModalBackground");
   modal.style.display = "none";
   // Dispatch modal close event
-  window.dispatchEvent(new Event('modalClose'));
+  window.dispatchEvent(new Event("modalClose"));
 }
 
 document
@@ -347,7 +354,7 @@ function showFailerModal() {
   modal.style.display = "flex";
   window.addEventListener("click", hideFailerModal);
   // Dispatch modal open event
-  window.dispatchEvent(new Event('modalOpen'));
+  window.dispatchEvent(new Event("modalOpen"));
 }
 
 // Function to hide Failer modal
@@ -356,7 +363,7 @@ function hideFailerModal(event) {
   const modal = document.getElementById("FailerModalBackground");
   modal.style.display = "none";
   // Dispatch modal close event
-  window.dispatchEvent(new Event('modalClose'));
+  window.dispatchEvent(new Event("modalClose"));
 }
 
 document
@@ -368,7 +375,7 @@ function showTtackModal() {
   modal.style.display = "flex";
   window.addEventListener("click", hideTtackModal);
   // Dispatch modal open event
-  window.dispatchEvent(new Event('modalOpen'));
+  window.dispatchEvent(new Event("modalOpen"));
 }
 
 // Function to hide Ttack modal
@@ -377,7 +384,7 @@ function hideTtackModal(event) {
   const modal = document.getElementById("TtackModalBackground");
   modal.style.display = "none";
   // Dispatch modal close event
-  window.dispatchEvent(new Event('modalClose'));
+  window.dispatchEvent(new Event("modalClose"));
 }
 
 document
@@ -390,7 +397,7 @@ function showPayModal() {
   modal.style.display = "flex";
   window.addEventListener("click", hidePayModal);
   // Dispatch modal open event
-  window.dispatchEvent(new Event('modalOpen'));
+  window.dispatchEvent(new Event("modalOpen"));
 }
 
 // Function to hide Pay modal
@@ -399,13 +406,11 @@ function hidePayModal(event) {
   const modal = document.getElementById("PayModalBackground");
   modal.style.display = "none";
   // Dispatch modal close event
-  window.dispatchEvent(new Event('modalClose'));
+  window.dispatchEvent(new Event("modalClose"));
 }
 document
   .getElementById("closePayModal")
   .addEventListener("click", hidePayModal);
-
-
 
 window.showNaafaModal = showNaafaModal;
 window.showFailerModal = showFailerModal;
