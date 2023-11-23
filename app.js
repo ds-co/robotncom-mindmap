@@ -3,8 +3,6 @@ let angle = 15;
 let isModalOpen = false;
 
 
-
-
 const nodeImages = {
   1: "image/logo.svg",
   2: {
@@ -40,6 +38,7 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
   .nodeAutoColorBy("group")
   .linkDirectionalParticleSpeed(0.02)  // 조절할 값입니다
   .linkWidth(2.5)
+  .linkOpacity(1.0)
   
   // 네비게이션 컨트롤 비활성화
   .enableNavigationControls(false)
@@ -162,8 +161,8 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
     const snsNode = graphData.nodes.find((n) => n.id === "SNS");
 
     if (centralNode && techNode && platformNode && awardNode && snsNode) {
-      const distanceX = 100;
-      const distanceY = 25;
+      const distanceX = 100; // Adjust this distance based on your preference
+      const distanceY = 25; // Adjust this distance based on your preference
 
       centralNode.__threeObj.scale.set(4, 4, 4);
       techNode.__threeObj.scale.set(2, 2, 2);
@@ -171,6 +170,7 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       awardNode.__threeObj.scale.set(2, 2, 2);
       snsNode.__threeObj.scale.set(2, 2, 2);
 
+      // Set positions relative to the central node
       techNode.x = centralNode.x - distanceX;
       techNode.y = centralNode.y + distanceY;
       techNode.z = centralNode.z;
@@ -187,26 +187,10 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       snsNode.y = centralNode.y - distanceY;
       snsNode.z = centralNode.z;
     }
-
-    // Update camera position based on window size and angle
-    if (!isModalOpen) {
-      const newWidth = window.innerWidth;
-      const newHeight = window.innerHeight;
-
-      Graph.cameraPosition({
-        x: distance * Math.sin(angle),
-        z: distance * Math.cos(angle),
-      });
-
-      Graph.width(newWidth);
-      Graph.height(newHeight);
-
-      angle += Math.PI / 6500;
-    }
   });
 
-Graph.linkOpacity(1.0);
 
+// Add an event listener for the modal open and close events
 window.addEventListener('modalOpen', () => {
   isModalOpen = true;
 });
@@ -215,19 +199,6 @@ window.addEventListener('modalClose', () => {
   isModalOpen = false;
 });
 
-// Add an event listener for window resize
-window.addEventListener('resize', () => {
-  const newWidth = window.innerWidth;
-  const newHeight = window.innerHeight;
-
-  Graph.cameraPosition({
-    x: distance * Math.sin(angle),
-    z: distance * Math.cos(angle),
-  });
-
-  Graph.width(newWidth);
-  Graph.height(newHeight);
-});
 
 // Camera orbit
 setInterval(() => {
@@ -240,6 +211,14 @@ setInterval(() => {
   }
 }, 10);
 
+// Use Three.js onWindowResize event to handle window resize
+window.addEventListener('resize', () => {
+  Graph.width(window.innerWidth);
+  Graph.height(window.innerHeight);
+
+  // Recenter nodes on window resize
+  centerNodes();
+});
 
 const textureLoader = new THREE.TextureLoader();
 const backgroundTexture = textureLoader.load("image/backimg.jpg");
@@ -353,4 +332,3 @@ window.showNaafaModal = showNaafaModal;
 window.showFailerModal = showFailerModal;
 window.showTtackModal = showTtackModal;
 window.showPayModal = showPayModal;
-
