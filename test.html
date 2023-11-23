@@ -1,88 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      #intro-section {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        font-size: 3em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+        transition: opacity 100s ease-in-out; /* 1초 동안 fade-out 트랜지션 설정 */
+      }
 
-<head>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
 
-    }
+      #3d-graph {
+        width: 100%;
+        height: 100vh;
+        /* background-color: transparent; */
+      }
+      .modal {
+        height: 650px;
+        width: 1080px;
+        padding: 20px;
+        border-radius: 10px;
+        backdrop-filter: blur(10px); /* Added blur effect to the background */
+        box-shadow: 0 0 10px rgba(225, 225, 225, 0.5);
+        z-index: 1;
+        border: 0.5px solid #ffffff;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+      }
 
-    #3d-graph {
-      width: 100%;
+      .modal h2 {
+        font-weight: bold;
+      }
+
+      #closeModal {
+        position: absolute;
+        top: 10px;
+        right: 10px; /* Updated to move the close button to the right */
+        font-size: 20px;
+        cursor: pointer;
+        background-color: #d9d9d950;
+        border-radius: 50%;
+        width: 30px; /* Set width and height to create a circular shape */
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        color: #fff; /* Set the color of the 'x' */
+        border: none;
+        outline: none;
+        text-align: center;
+      }
+      .image-container {
+        display: flex;
+        justify-content: flex-end; /* Align images to the right */
+      }
+
+      .image-container img {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 45%;
+      }
+      .custom-button {
+        padding: 6px 10px;
+        margin: 10px;
+        border: 1px solid #ffffff;
+        background-color: #d9d9d959;
+        border-radius: 50px;
+        color: #ffffff;
+        cursor: pointer;
+      }
+
+      #graph-container {
+      position: relative;
+      width: 100vw;
       height: 100vh;
+      overflow: hidden;
     }
 
-    .modal {
-      height: 650px;
-      width: 1200px;
-      padding: 20px;
-      border-radius: 10px;
-      backdrop-filter: blur(10px);
-      /* Added blur effect to the background */
-      box-shadow: 0 0 10px rgba(225, 225, 225, 0.5);
-      z-index: 1;
-      border: 0.5px solid #ffffff;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      overflow: auto;
-    }
-
-    .modal h2 {
-      font-weight: bold;
-    }
-
-    #closeNaafaModal,
-    #closeFailerModal,
-    #closeNolgaModal,
-    #closeTtackModal,
-    #closePayModal {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      /* Updated to move the close button to the right */
-      font-size: 20px;
-      cursor: pointer;
-      background-color: #d9d9d950;
-      border-radius: 50%;
-      width: 30px;
-      /* Set width and height to create a circular shape */
-      height: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0;
-      color: #fff;
-      /* Set the color of the 'x' */
-      border: none;
-      outline: none;
-      text-align: center;
-    }
-
-    .image-container {
-      display: flex;
-      justify-content: flex-end;
-      /* Align images to the right */
-    }
-
-    .image-container img {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 38%;
-    }
-
-    .custom-button {
-      padding: 6px 10px;
-      margin: 10px;
-      border: 1px solid #ffffff;
-      background-color: #d9d9d959;
-      border-radius: 50px;
-      color: #ffffff;
-      cursor: pointer;
-    }
 
     @media (max-width: 768px) {
       .image-container img {
@@ -102,13 +112,32 @@
         /* Center the button horizontally */
       }
     }
+      #intro-section h1 {
+              color: blue;
+              font-family : serif;
+      }
+      #intro-section p {
+              cursor: pointer;
+              color: white;
+              font-family : serif;
+      }
+
   </style>
   <script src="//unpkg.com/three"></script>
   <script src="//unpkg.com/3d-force-graph"></script>
 </head>
 
 <body>
-  <div id="NaafaModalBackground" style="
+  
+  <section id="intro-section" style="z-index: 2; background-color: rgb(0, 0, 0); ">
+    <h1>ROBOT N COM</h1>
+    <p id="platform-link" >Platform</p>
+    <p id="SI-link">SI</p>
+    
+  </section>
+
+
+  <div id="Modalbackground" style="
         height: 100vh;
         width: 100vw;
         position: fixed;
@@ -117,8 +146,8 @@
         align-items: center;
         z-index: 100;
       ">
-    <div id="naafaModal" class="modal">
-      <span id="closeNaafaModal">&times;</span>
+    <div id="myModal" class="modal">
+      <span id="closeModal">&times;</span>
       <div style="flex: 1">
         <div>
           <img src="p.png" alt="Your Image" style="margin-right: 10px" />
@@ -133,11 +162,12 @@
         </div>
 
         <h1>나아파 Naafaa</h1>
-        <p>나아파는 가나다라마바사아자차카타파하</p>
+        <p>나아파는 가나다라마바사아자차카타파하<br>나아파는 가나다라마바사아자차카타파하<br>나아파는 가나다라마바사아자차카타파하<br>나아파는 가나다라마바사아자차카타파하<br>나아파는
+          가나다라마바사아자차카타파하<br>나아파는 가나다라마바사아자차카타파하<br>나아파는 가나다라마바사아자차카타파하<br>나아파는 가나다라마바사아자차카타파하</p>
       </div>
       <div class="image-container">
         <div>
-          <img src="Naafaa2.svg" alt="Naafa Image" />
+          <img src="Naafaa2.png" alt="Naafa Image" />
         </div>
       </div>
       <div style="width: 35%">
@@ -154,244 +184,73 @@
           CRM+EMR+APP+HR
         </button>
       </div>
-    </div>
-  </div>
-
-  <div id="FailerModalBackground" style="
-        height: 100vh;
-        width: 100vw;
-        position: fixed;
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 100;
-      ">
-    <div id="failerModal" class="modal">
-      <span id="closeFailerModal">&times;</span>
-      <div style="flex: 1">
-        <div>
-          <img src="p.png" alt="Your Image" style="margin-right: 10px" />
-          <img src="F.png" alt="Your Image" />
-          <p style="
-                float: right;
-                color: rgba(255, 255, 255, 0.822);
-                margin-right: 10px;
-              ">
-            Platfrom 02
-          </p>
-        </div>
-
-        <h1>페일러톡 FailerTalk</h1>
-        <p>페일러톡은 가나다라마바사아자차카타파하</p>
-      </div>
-      <div class="image-container">
-        <div>
-          <img src="Failer2.svg" alt="Naafa Image"  />
-        </div>
-      </div>
-      <div style="width: 35%">
-        <button class="custom-button" onclick="showFailerModal()">
-          나의 실수·실패 공유
-        </button>
-        <button class="custom-button" onclick="showFailerModal()">
-          소통 커뮤니티
-        </button>
-        <button class="custom-button" onclick="showFailerModal()">
-          어쩌고 저쩌고
-        </button>
-        <button class="custom-button" onclick="showFailerModal()">
-          어쩌고 저쩌고
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div id="NolgaModalBackground" style="
-        height: 100vh;
-        width: 100vw;
-        position: fixed;
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 100;
-      ">
-    <div id="NolgaModal" class="modal">
-      <span id="closeNolgaModal">&times;</span>
-      <div style="flex: 1">
-        <div>
-          <img src="p.png" alt="Your Image" style="margin-right: 10px" />
-          <img src="N.png" alt="Your Image" />
-          <p style="
-                float: right;
-                color: rgba(255, 255, 255, 0.822);
-                margin-right: 10px;
-              ">
-            Platfrom 03
-          </p>
-        </div>
-
-        <h1>놀가 Nolga</h1>
-        <p>놀가는 가나다라마바사아자차카타파하</p>
-      </div>
-      <div class="image-container">
-        <div>
-          <img src="Nolga2.svg" alt="Naafa Image"  />
-        </div>
-      </div>
-      <div style="width: 35%">
-        <button class="custom-button" onclick="showNolgaModal()">
-          농어촌 빈집 장기 임대플랫폼
-        </button>
-        <button class="custom-button" onclick="showNolgaModal()">
-          전자 계약
-        </button>
-        <button class="custom-button" onclick="showNolgaModal()">
-          스마트팜
-        </button>
-        <button class="custom-button" onclick="showNolgaModal()">
-          리모델링
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div id="TtackModalBackground" style="
-        height: 100vh;
-        width: 100vw;
-        position: fixed;
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 100;
-      ">
-    <div id="ttackModal" class="modal">
-      <span id="closeTtackModal">&times;</span>
-      <div style="flex: 1">
-        <div>
-          <img src="p.png" alt="Your Image" style="margin-right: 10px" />
-          <img src="T.png" alt="Your Image" />
-          <p style="
-                float: right;
-                color: rgba(255, 255, 255, 0.822);
-                margin-right: 10px;
-              ">
-            Platfrom 04
-          </p>
-        </div>
-
-        <h1>딱따구리 TtackTaguri</h1>
-        <p>딱따구리는 가나다라마바사아자차카타파하</p>
-      </div>
-      <div class="image-container">
-        <div>
-          <img src="Ttackttaguri2.svg" alt="TtackTaguri Image"  />
-        </div>
-      </div>
-      <div style="width: 35%">
-        <button class="custom-button" onclick="showTtackModal()">
-          딱따구리 기능 1
-        </button>
-        <button class="custom-button" onclick="showTtackModal()">
-          딱따구리 기능 2
-        </button>
-        <button class="custom-button" onclick="showTtackModal()">
-          딱따구리 기능 3
-        </button>
-        <button class="custom-button" onclick="showTtackModal()">
-          딱따구리 기능 4
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div id="PayModalBackground" style="
-        height: 100vh;
-        width: 100vw;
-        position: fixed;
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 100;
-      ">
-    <div id="payModal" class="modal">
-      <span id="closePayModal">&times;</span>
-      <div style="flex: 1">
-        <div>
-          <img src="p.png" alt="Your Image" style="margin-right: 10px" />
-          <img src="m.png" alt="Your Image" />
-          <p style="
-                float: right;
-                color: rgba(255, 255, 255, 0.822);
-                margin-right: 10px;
-              ">
-            Platfrom 04
-          </p>
-        </div>
-
-        <h1>문자페이 Moonjapay</h1>
-        <p>문자페이는 가나다라마바사아자차카타파하</p>
-      </div>
-      <div class="image-container">
-        <div>
-          <img src="Moonjapay2.svg" alt="Moonjapay Image" width="55%" />
-        </div>
-      </div>
-      <div style="width: 35%">
-        <button class="custom-button" onclick="showPayModal()">
-          문자페이 기능 1
-        </button>
-        <button class="custom-button" onclick="showPayModal()">
-          문자페이 기능 2
-        </button>
-        <button class="custom-button" onclick="showPayModal()">
-          문자페이 기능 3
-        </button>
-        <button class="custom-button" onclick="showPayModal()">
-          문자페이 기능 4
-        </button>
-      </div>
+      
     </div>
   </div>
 
   <div id="3d-graph"></div>
+  
 
   <script>
-    const distance = 245;
+
+        
+
+    document.getElementById("platform-link").addEventListener("click", function () {
+            // Redirect to another page when the "Platform" text is clicked
+            window.location.href = "platform.html";
+        });
+    document.getElementById("SI-link").addEventListener("click", function () {
+            // Redirect to another page when the "Platform" text is clicked
+            window.location.href = "SI.html";
+        });
+
+
+
+    document
+      .getElementById("closeModal")
+      .addEventListener("click", hideModal);
+
+    const distance = 270;
+
+    const imageScene = new THREE.Scene();
 
     const nodeImages = {
       1: "logo.svg",
       2: {
-        플랫폼: "Platform.svg",
-        기술: "SI.svg",
+        Platform: "Platform.svg",
+        SI: "SI.svg",
         SNS: "SNS.svg",
-        수상: "Win.svg",
-      },
+        Awards: "수상.svg",
+      }, 
       3: {
-        페일러톡: "Failertalk.svg",
-        딱따구리: "Ttakttaguri.svg",
-        나아파: "Naafaa.svg",
-        문자페이: "Moonjapay.svg",
-        놀가: "Nolga.svg",
-        "서버 솔루션": "Server.svg",
-        "보안 솔루션": "Security.svg",
-        "네트워크 솔루션": "Network.svg",
-        "Computer HW": "Hardware.svg",
-        보이스인프라: "Voiceinfra.svg",
-        "Computer SW": "Software.svg",
-        인스타그램: "Insta.svg",
-        홈페이지: "Home.svg",
-        "네이버 블로그": "Blog.svg",
-        카카오톡: "Kakao.svg",
-        "중소벤처기업부 경영혁신 부문 장관상": "Win.svg",
-        "대한민국 엔지니어상": "Win.svg",
-        "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": "Win.svg",
+        Failertalk: "페일러톡.svg",
+        Ttagttaguli: "딱따구리.svg",
+        naafaa: "NAAFAA.svg",
+        moonjapay: "문자페이.svg",
+        // 놀가: "놀가.svg",
+        // 팀WORK: "팀WORK.svg",
+        "server solution": "Server.svg",
+        // "보안 솔루션": "Security.svg",
+        "network solutions": "Network.svg",
+        "Computer HW": "Hardware.svg", 
+        "Voice Infrastructure": "Voice infra.svg",
+        // "Computer SW": "Software.svg",
+        Instagram: "Instagram.svg",
+        Homepage: "Homepage.svg",
+        "Naver Blog": "Blog.svg",
+        Kakaotalk: "Kakaotalk.svg",
+        "MSS Ministry's Business Innovation Award": "수상.svg",
+        "Korea Engineer Award": "수상.svg",
+        "Top 100 Korean Brand Award [IT Platform]": "수상.svg",
       },
     };
-
+    
     const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       .jsonUrl("../datasets/miserables.json")
       .nodeLabel("id")
       .nodeAutoColorBy("group")
+      
+      
       .enableNavigationControls(false)
       .enableNodeDrag(false)
       .onNodeClick((node) => {
@@ -403,81 +262,142 @@
             console.log(`Node "${nodeId}" clicked!`);
           }
         }
+      }
+      )
+      
+      
+      
+
+      .linkThreeObject((link) => {
+        const whiteColor = new THREE.Color("white");
+        // const lineWidth = 555;
+        
+        const material = new THREE.LineBasicMaterial({
+          color: whiteColor,
+          transparent: true,
+          // opacity: link.source.group === "yourWhiteGroup" && link.target.group === "yourWhiteGroup" ? 1 : 1, // 조건에 따라 투명도 조절
+          // linewidth: lineWidth, // 굵기 설정
+        });
+        return new THREE.Line(link.geometry, material);
       })
+      
 
-      .nodeThreeObject((node) => {
-        const groupId = node.group;
-        const nodeId = node.id;
+      
+    .nodeThreeObject((node) => {
+      const groupId = node.group;
+      const nodeId = node.id;
 
-        if (nodeImages[groupId]) {
-          let imageSrc = nodeImages[groupId];
+      if (nodeImages[groupId]) {
+        let imageSrc = nodeImages[groupId];
 
-          if (typeof imageSrc === "object" && imageSrc[nodeId]) {
-            imageSrc = imageSrc[nodeId];
-          }
-
-          const textureLoader = new THREE.TextureLoader();
-          const logoTexture = textureLoader.load(imageSrc);
-
-          logoTexture.wrapS = THREE.ClampToEdgeWrapping;
-          logoTexture.wrapT = THREE.ClampToEdgeWrapping;
-
-          
-
-
-
-          const imageMaterial = new THREE.MeshBasicMaterial({
-            map: logoTexture,
-            depthTest: false,
-            transparent: true,
-            opacity: 0.7, // Adjust the opacity value as needed (0 is fully transparent, 1 is fully opaque)
-            side: THREE.DoubleSide,
-          });
-
-          const image = new THREE.Mesh(
-            new THREE.PlaneGeometry(20, 20),
-            imageMaterial
-          );
-
-          image.onBeforeRender = function (
-            renderer,
-            scene,
-            camera,
-            geometry,
-            material,
-            group
-          ) {
-            const euler = new THREE.Euler();
-            euler.copy(camera.rotation);
-            image.rotation.set(euler.x, euler.y, euler.z);
-          };
-
-          const group = new THREE.Group();
-          group.add(image);
-
-          return group;
+      
+        if (typeof imageSrc === "object" && imageSrc[nodeId]) {
+          imageSrc = imageSrc[nodeId];
         }
-      })
+
+        const textureLoader = new THREE.TextureLoader();
+        backgroundTexture.encoding = THREE.sRGBEncoding;
+
+        const svgTexture = textureLoader.load(imageSrc);
+        svgTexture.encoding = THREE.sRGBEncoding;
+        const svgMaterial = new THREE.MeshBasicMaterial({
+          map: svgTexture,
+          depthTest: false,
+          transparent: true,
+          side: THREE.DoubleSide,
+        });
+
+        // 3D 메시 생성
+        const svgMesh = new THREE.Mesh(new THREE.PlaneGeometry(15, 15), svgMaterial); // 노드 크기를 조절
+
+        const logoTexture = textureLoader.load(imageSrc);
+        logoTexture.encoding = THREE.sRGBEncoding;
+
+        logoTexture.wrapS = THREE.ClampToEdgeWrapping;
+        logoTexture.wrapT = THREE.ClampToEdgeWrapping;
+
+        const logoMaterial = new THREE.MeshBasicMaterial({
+          map: logoTexture,
+          depthTest: false,
+          transparent: true,
+          side: THREE.DoubleSide,
+        });
+
+        const logo = new THREE.Mesh(new THREE.PlaneGeometry(5, 5), logoMaterial);
+
+        const imageMaterial = new THREE.MeshBasicMaterial({
+          map: logoTexture,
+          depthTest: false,
+          transparent: true,
+          opacity: 1,
+          side: THREE.DoubleSide,
+          renderOrder: -1,
+        });
+
+        
+
+        const image = new THREE.Mesh(
+          new THREE.PlaneGeometry(17, 17),
+          imageMaterial
+        );
+
+        
+
+        image.position.z = -0.1;
+        image.renderOrder = 50;
+
+        image.onBeforeRender = function (
+          renderer,
+          scene,
+          camera,
+          geometry,
+          material,
+          group
+        ) {
+          const euler = new THREE.Euler();
+          euler.copy(camera.rotation);
+          image.rotation.set(euler.x, euler.y, euler.z);
+        };
+
+        const group = new THREE.Group();
+        group.add(image);
+        imageScene.add(group);
+        
+
+        return group;
+      }
+    })
+      
+
       .onEngineTick(() => {
         Graph.graphData().nodes.forEach((n) => {
-          if (n.id === "로봇앤컴") {
-            n.__threeObj.scale.set(3, 3, 3);
-          } else if (["플랫폼", "기술", "수상", "SNS"].includes(n.id)) {
+          if (n.id === "Robot N Com") {
+            n.__threeObj.scale.set(4, 4, 4);
+            n.__threeObj.position.x = 22;
+        
+          } else if (["Platform", "SI", "Awards", "SNS"].includes(n.id)) {
             n.__threeObj.scale.set(2, 2, 2);
+            
           }
         });
       });
+
 
     window.addEventListener("resize", () => {
       const graphContainer = document.getElementById("3d-graph");
       Graph.width(graphContainer.offsetWidth).height(
         graphContainer.offsetHeight
       );
+
     });
+
+    
+
+    // setInitialCameraPosition();
 
     // Function to zoom in to a node
     function zoomInToNode(node) {
-      const distance = 40;
+      const distance = 20;
       const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
 
       Graph.cameraPosition(
@@ -491,203 +411,109 @@
       );
     }
 
-
-
     Graph.onNodeClick((node) => {
-      console.log("Node clicked:", node);
-
       const nodeId = node.id;
-      const nodeGroup = node.group;
 
-      console.log(`Clicked Node: ${nodeId}, Group: ${nodeGroup}`);
-
-      if (nodeImages[nodeGroup]) {
-        const imageSrc = nodeImages[nodeGroup];
-        if (typeof imageSrc === "object" && imageSrc[nodeId]) {
-          // You can add any action you want when a node is clicked
-          console.log(`Node "${nodeId}" clicked!`);
-
-          // 여기에서 모달을 띄우도록 수정
-          switch (nodeId) {
-            case "나아파":
-              showNaafaModal();
-              break;
-            case "페일러톡":
-              showFailerModal();
-              break;
-            case "놀가":
-              showNolgaModal();
-              break;
-            case "딱따구리":
-              showTtackModal();
-              break;
-            case "문자페이":
-              showPayModal();
-              break;
-            // Add more cases as needed
-            default:
-              break;
-          }
-
-          return; // Exit early if it's an image node
-        }
-      }
-
-      // If not an image node, proceed with your other conditions
-      if (nodeGroup === 3) {
-        switch (nodeId) {
-          case "나아파":
-            showNaafaModal();
-            break;
-          case "페일러톡":
-            showFailerModal();
-            break;
-          case "놀가":
-            showNolgaModal();
-            break;
-          case "딱따구리":
-            showTtackModal();
-            break;
-          case "문자페이":
-            showPayModal();
-            break;
-          // Add more cases as needed
-          default:
-            break;
-        }
-      } else if (["인스타그램", "홈페이지", "네이버 블로그", "카카오톡"].includes(nodeId)) {
-        window.open(getLinkForNode(nodeId), "_blank");
+      if (
+        nodeId === "나아파" ||
+        [
+          "페일러톡",
+          "딱따구리",
+          "나아파",
+          "문자페이",
+          "놀가",
+          "서버 솔루션",
+          "보안 솔루션",
+          "Computer HW",
+          "보이스인프라",
+          "네트워크 솔루션",
+          "Computer SW",
+          "중소벤처기업부 경영혁신 부문 장관상",
+          "대한민국 엔지니어상",
+          "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상",
+        ].includes(nodeId)
+      ) {
+        showNaafaModal();
+      } else if (node.id === "인스타그램") {
+        window.open("https://www.instagram.com/robot_n_com/", "_blank");
+      } else if (node.id === "홈페이지") {
+        window.open("https://www.robotncom.com/", "_blank");
+      } else if (node.id === "네이버 블로그") {
+        window.open("https://blog.naver.com/robotncom", "_blank");
+      } else if (node.id === "카카오톡") {
+        window.open("http://pf.kakao.com/_VMxcds", "_blank");
       }
     });
 
 
+    // Graph.cameraPosition({
+    //   x: distance * Math.sin(Math.PI / 3), // Set your desired angle in radians
+    //   z: distance * Math.cos(Math.PI / 3), // Set your desired angle in radians
+    // });
+    
+
     // camera orbit
-    let angle = 10;
+    let angle = 29;
     setInterval(() => {
       Graph.cameraPosition({
         x: distance * Math.sin(angle),
         z: distance * Math.cos(angle),
       });
-      angle += Math.PI / 200;
+      angle += Math.PI /6500;
     }, 10);
 
     const textureLoader = new THREE.TextureLoader();
-    const backgroundTexture = textureLoader.load(
-      "https://cdn.pixabay.com/photo/2016/09/08/12/00/stars-1654074_1280.jpg"
-    );
-
-    Graph.renderer().setClearColor(new THREE.Color("rgba(0, 0, 0, 1)")); // Set alpha value (0.8 for 80% opacity)
+    
+    const backgroundTexture = textureLoader.load("back2.jpg");
+    backgroundTexture.encoding = THREE.sRGBEncoding;
+    Graph.renderer().setClearColor(new THREE.Color("black"));
     backgroundTexture.minFilter = THREE.NearestFilter;
     Graph.scene().background = backgroundTexture;
 
     function showNaafaModal() {
-      const modal = document.getElementById("NaafaModalBackground");
+      console.log("showNaafaModal called");
+      const modal = document.getElementById("Modalbackground");
       modal.style.display = "flex";
-      window.addEventListener("click", hideNaafaModal);
+
+      
+
+      modal.addEventListener("click", hideModal);
+
     }
 
-    // Function to hide Naafa modal
-    function hideNaafaModal(event) {
+    function hideModal() {
       event.stopPropagation();
-      const modal = document.getElementById("NaafaModalBackground");
+      const modal = document.getElementById("Modalbackground");
       modal.style.display = "none";
     }
 
-    document.getElementById("closeNaafaModal").addEventListener("click", hideNaafaModal);
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      const introSection = document.getElementById("intro-section");
+      let startTime;
 
-    // Function to show Failer modal
-    function showFailerModal() {
-      const modal = document.getElementById("FailerModalBackground");
-      modal.style.display = "flex";
-      window.addEventListener("click", hideFailerModal);
-    }
+      function animate(time) {
+        if (!startTime) {
+          startTime = time;
+        }
 
-    // Function to hide Failer modal
-    function hideFailerModal(event) {
-      event.stopPropagation();
-      const modal = document.getElementById("FailerModalBackground");
-      modal.style.display = "none";
-    }
+        const elapsed = time - startTime;
+        
+        // Set initial opacity to 1
+        introSection.style.opacity = 1;
 
-    document.getElementById("closeFailerModal").addEventListener("click", hideFailerModal);
-
-    // Function to show Nolga modal
-    function showNolgaModal() {
-      console.log("showNolgaModal function called");
-      const modal = document.getElementById("NolgaModalBackground");
-      if (!modal) {
-        console.error("NolgaModalBackground not found!");
-        return;
+        // Schedule the fade-out after 1 minute
+        if (elapsed < 6000) {
+          introSection.style.opacity = 1 - elapsed / 4000;
+          requestAnimationFrame(animate);
+        } else {
+          introSection.style.display = "none";
+        }
       }
 
-      modal.style.display = "flex";
-      window.addEventListener("click", hideNolgaModal);
-    }
-
-    // Function to hide Nolga modal
-    function hideNolgaModal(event) {
-      event.stopPropagation();
-      console.log("Hide Nolga Modal");
-      const modal = document.getElementById("NolgaModalBackground");
-      if (!modal) {
-        console.error("NolgaModalBackground not found!");
-        return;
-      }
-
-      modal.style.display = "none";
-    }
-
-    document.getElementById("closeNolgaModal").addEventListener("click", hideNolgaModal);
-
-    function showTtackModal() {
-      const modal = document.getElementById("TtackModalBackground");
-      modal.style.display = "flex";
-      window.addEventListener("click", hideTtackModal);
-    }
-
-    // Function to hide Ttack modal
-    function hideTtackModal(event) {
-      event.stopPropagation();
-      const modal = document.getElementById("TtackModalBackground");
-      modal.style.display = "none";
-    }
-
-    document.getElementById("closeTtackModal").addEventListener("click", hideTtackModal);
-
-    // Function to show Pay modal
-    function showPayModal() {
-      const modal = document.getElementById("PayModalBackground");
-      modal.style.display = "flex";
-      window.addEventListener("click", hidePayModal);
-    }
-
-    // Function to hide Pay modal
-    function hidePayModal(event) {
-      event.stopPropagation();
-      const modal = document.getElementById("PayModalBackground");
-      modal.style.display = "none";
-    }
-
-    document.getElementById("closePayModal").addEventListener("click", hidePayModal);
-
-
-
-
-    window.showNaafaModal = showNaafaModal;
-    window.showFailerModal = showFailerModal;
-    window.showNolgaModal = showNolgaModal;
-    window.showTtackModal = showTtackModal;
-    window.showPayModal = showPayModal;
-
-    function getLinkForNode(nodeId) {
-      const linkMap = {
-        "인스타그램": "https://www.instagram.com/robot_n_com/",
-        "홈페이지": "https://www.robotncom.com/",
-        "네이버 블로그": "https://blog.naver.com/robotncom",
-        "카카오톡": "http://pf.kakao.com/_VMxcds",
-      };
-      return linkMap[nodeId] || "#";
-    }
+      // Start the animation
+      requestAnimationFrame(animate);
+    });
   </script>
 </body>
 

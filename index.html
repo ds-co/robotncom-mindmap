@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+
     <style>
       body {
         margin: 0;
@@ -12,9 +19,9 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(83, 83, 83, 0.336);
+        /* background-color: rgba(83, 83, 83, 0.336); */
         /* color: rgb(0, 0, 0); */
-        font-size: 3em;
+        font-size: 2.5vw;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -190,25 +197,66 @@
         /* Center the button horizontally */
       }
     }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+    }
+
+    #intro-section h1 {
+        opacity: 0;
+        animation: fadeIn 35s ease-in-out forwards;
+        font-size: 7vw; /* Adjust the font size as needed */
+    }
+
+    #intro-section p{
+      cursor: pointer;
+    }
+    
+    
+    
   </style>
+  
   <script src="//unpkg.com/three"></script>
   <script src="//unpkg.com/3d-force-graph"></script>
 </head>
 
 <body>
-  <section id="intro-section" style=" z-index: 2;background-color: rgba(119, 119, 119, 0.733); text-align: center;">
+  
+  <!-- <section id="intro-section" style=" z-index: 2;background-color: rgb(0, 0, 0); text-align: center;">
     <h1 style="color: white;">
       전 세계를 감동시킬<br>
       IT혁신<br>
       우리는 <span style="color: blue;">로봇앤컴</span> 입니다.
     </h1>
+  </section> -->
+  <section id="intro-section" style=" z-index: 2;background-color: black; ">
+    <p  style="color: #3366FF; position: absolute; left : 50px; top : 20px ; font-size: 2.5vw; font-family: 'Russo One', sans-serif;" >ROBOT N COM</p>
+    <p id="platform-link" style="color: white; position: absolute; left : 490px; top : 50px ; font-size: 0.6em; font-family: 'Nanum Gothic Coding', monospace;">PLATFORM</p>
+    <p id="SI-link" style="color: white; position: absolute; left : 700px; top : 50px ; font-size: 0.6em; font-family: 'Nanum Gothic Coding', monospace;">SI</p>
+    <h1 style="color: white; position: absolute; top: 120px; right: 170px; animation-delay: 0.2s; font-family: 'Nanum Gothic Coding', monospace;">
+      세계적 감동
+    </h1>
+    <h1 style="color: white; position:absolute; right: 850px; animation-delay: 1s; font-family: 'Nanum Gothic Coding', monospace;">
+      IT혁신
+    </h1>
+    <h1 style="color: white; position: absolute; bottom: 100px; left: 157px; animation-delay: 2s; font-family: 'Nanum Gothic Coding', monospace;">
+      <span style="color: #3366FF;">로봇앤컴</span>
+    </h1>
+    <h1 style="color: white; position: absolute; bottom: 200px; right: 110px; font-size: 0.5em; font-family: 'Nanum Gothic Coding', monospace;">
+      우리는 융복합 IT 시스템 패키지 및<br>
+      B2B, B2G, B2C Hospital ICT 플랫폼 솔루션 전문 기업입니다.<br>
+      이제, 세계적으로 의료·진료 분야에 감동을 드리겠습니다.</h1>
   </section>
-  <!-- <section id="section1" style=" z-index: 2;background-color: rgba(0, 0, 0, 0.7);">
-    <h1 style="color: white; z-index: 3;">전 세계를 감동시킬</h1>
-  </section>
-  <section id="section2"></section> -->
+
+  
 
 
+  
 
   <div id="Modalbackground" style="
         height: 100vh;
@@ -262,8 +310,18 @@
   </div>
 
   <div id="3d-graph"></div>
+  
 
   <script>
+
+    document.getElementById("platform-link").addEventListener("click", function () {
+            // Redirect to another page when the "Platform" text is clicked
+            window.location.href = "platform.html";
+        });
+    document.getElementById("SI-link").addEventListener("click", function () {
+            // Redirect to another page when the "Platform" text is clicked
+            window.location.href = "SI.html";
+        });
 
 
     
@@ -333,33 +391,54 @@
     const nodeImages = {
       1: "logo.svg",
       2: {
-        플랫폼: "Platform.svg",
-        기술: "SI.svg",
+        Platform: "Platform.svg",
+        SI: "SI.svg",
         SNS: "SNS.svg",
-        수상: "수상.svg",
+        Awards: "수상.svg",
       }, 
       3: {
-        페일러톡: "페일러톡.svg",
-        딱따구리: "딱따구리.svg",
-        나아파: "NAAFAA.svg",
-        문자페이: "문자페이.svg",
-        놀가: "놀가.svg",
-        팀WORK: "팀WORK.svg",
-        "서버 솔루션": "Server.svg",
+        Failertalk: "페일러톡.svg",
+        Ttagttaguli: "딱따구리.svg",
+        naafaa: "NAAFAA.svg",
+        moonjapay: "문자페이.svg",
+        // 놀가: "놀가.svg",
+        // 팀WORK: "팀WORK.svg",
+        "server solution": "Server.svg",
         // "보안 솔루션": "Security.svg",
-        "네트워크 솔루션": "Network.svg",
+        "network solutions": "Network.svg",
         "Computer HW": "Hardware.svg", 
-        보이스인프라: "Voice infra.svg",
+        "Voice Infrastructure": "Voice infra.svg",
         // "Computer SW": "Software.svg",
-        인스타그램: "Instagram.svg",
-        홈페이지: "Homepage.svg",
-        "네이버 블로그": "Blog.svg",
-        카카오톡: "Kakaotalk.svg",
-        "중소벤처기업부 경영혁신 부문 장관상": "수상.svg",
-        "대한민국 엔지니어상": "수상.svg",
-        "한국 대표 브랜드 TOP 100 [IT 플랫폼] 부문 수상": "수상.svg",
+        Instagram: "Instagram.svg",
+        Homepage: "Homepage.svg",
+        "Naver Blog": "Blog.svg",
+        Kakaotalk: "Kakaotalk.svg",
+        "MSS Ministry's Business Innovation Award": "수상.svg",
+        "Korea Engineer Award": "수상.svg",
+        "Top 100 Korean Brand Award [IT Platform]": "수상.svg",
       },
     };
+    
+  //   for (const key in nodeImages) {
+  //       const imageSrc = nodeImages[key];
+
+  //       if (typeof imageSrc === "object") {
+  //         for (const nestedKey in imageSrc) {
+  //           const img = new Image();
+  //           img.src = imageSrc[nestedKey];
+  //         }
+  //       } else {
+  //         const img = new Image();
+  //         img.src = imageSrc;
+  //       }
+  //     }
+  //   };
+
+  //   preloadImages();
+  // });
+    
+
+    
 
     // const nodeGraphData = {
     //   nodes: [
@@ -418,6 +497,7 @@
       if (nodeImages[groupId]) {
         let imageSrc = nodeImages[groupId];
 
+      
         if (typeof imageSrc === "object" && imageSrc[nodeId]) {
           imageSrc = imageSrc[nodeId];
         }
@@ -498,10 +578,11 @@
 
       .onEngineTick(() => {
         Graph.graphData().nodes.forEach((n) => {
-          if (n.id === "로봇앤컴") {
+          if (n.id === "Robot N Com") {
             n.__threeObj.scale.set(4, 4, 4);
+            n.__threeObj.position.x = 22;
         
-          } else if (["플랫폼", "기술", "수상", "SNS"].includes(n.id)) {
+          } else if (["Platform", "SI", "Awards", "SNS"].includes(n.id)) {
             n.__threeObj.scale.set(2, 2, 2);
             
           }
@@ -571,10 +652,15 @@
       }
     });
 
+
+    // Graph.cameraPosition({
+    //   x: distance * Math.sin(Math.PI / 3), // Set your desired angle in radians
+    //   z: distance * Math.cos(Math.PI / 3), // Set your desired angle in radians
+    // });
     
 
     // camera orbit
-    let angle = 35;
+    let angle = 29;
     setInterval(() => {
       Graph.cameraPosition({
         x: distance * Math.sin(angle),
@@ -584,6 +670,7 @@
     }, 10);
 
     const textureLoader = new THREE.TextureLoader();
+    
     const backgroundTexture = textureLoader.load("back2.jpg");
     backgroundTexture.encoding = THREE.sRGBEncoding;
     Graph.renderer().setClearColor(new THREE.Color("black"));
@@ -608,6 +695,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
+      
       const introSection = document.getElementById("intro-section");
       let startTime;
 
@@ -622,8 +710,8 @@
         introSection.style.opacity = 1;
 
         // Schedule the fade-out after 1 minute
-        if (elapsed < 6000) {
-          introSection.style.opacity = 1 - elapsed / 4000;
+        if (elapsed < 10000) {
+          introSection.style.opacity = 1 - elapsed / 7000;
           requestAnimationFrame(animate);
         } else {
           introSection.style.display = "none";
@@ -632,6 +720,7 @@
 
       // Start the animation
       requestAnimationFrame(animate);
+      
     });
   </script>
 </body>
