@@ -201,16 +201,78 @@ window.addEventListener('modalClose', () => {
   isModalOpen = false;
 });
 
+// Add an event listener for window resize
+window.addEventListener('resize', () => {
+  const newWidth = window.innerWidth;
+  const newHeight = window.innerHeight;
+
+  // Update camera position based on window size
+  Graph.cameraPosition({
+    x: distance * Math.sin(angle),
+    z: distance * Math.cos(angle),
+  });
+
+  // Update renderer size
+  Graph.width(newWidth);
+  Graph.height(newHeight);
+});
+
 // Camera orbit
 setInterval(() => {
   if (!isModalOpen) {
+    const newWidth = window.innerWidth;
+    const newHeight = window.innerHeight;
+
+    // Update camera position based on window size
     Graph.cameraPosition({
       x: distance * Math.sin(angle),
       z: distance * Math.cos(angle),
     });
+
+    // Update renderer size
+    Graph.width(newWidth);
+    Graph.height(newHeight);
+
     angle += Math.PI / 6500;
   }
 }, 10);
+
+// Set initial camera position on page load
+Graph.cameraPosition({
+  x: distance * Math.sin(angle),
+  z: distance * Math.cos(angle),
+});
+
+// Add an event listener for the modal open and close events
+window.addEventListener('modalOpen', () => {
+  isModalOpen = true;
+});
+
+window.addEventListener('modalClose', () => {
+  isModalOpen = false;
+});
+
+// Set responsive camera position
+function setResponsiveCameraPosition() {
+  const newWidth = window.innerWidth;
+  const newHeight = window.innerHeight;
+
+  // Set camera position based on window size
+  Graph.cameraPosition({
+    x: distance * Math.sin(angle),
+    z: distance * Math.cos(angle),
+  });
+
+  // Set renderer size
+  Graph.width(newWidth);
+  Graph.height(newHeight);
+}
+
+// Add an event listener for orientation change on mobile devices
+window.addEventListener('orientationchange', setResponsiveCameraPosition);
+
+// Call the function to set initial camera position on page load
+setResponsiveCameraPosition();
 
 
 
@@ -327,56 +389,4 @@ window.showFailerModal = showFailerModal;
 window.showTtackModal = showTtackModal;
 window.showPayModal = showPayModal;
 
-// Function to handle resizing and centering nodes
-function handleResize() {
-  const screenWidth = window.innerWidth;
-  const screenHeight = window.innerHeight;
 
-  // Update camera aspect ratio
-  Graph.camera().aspect = screenWidth / screenHeight;
-  Graph.camera().updateProjectionMatrix();
-
-  // Update renderer size
-  Graph.renderer().setSize(screenWidth, screenHeight);
-
-  // Adjust node and camera positions for mobile view
-  if (screenWidth < 600) {
-    const scaleFactor = screenWidth / 600; // Adjust the scale factor as needed
-
-    // Scale down nodes
-    Graph.graphData().nodes.forEach((node) => {
-      if (node.__threeObj) {
-        node.__threeObj.scale.set(scaleFactor, scaleFactor, scaleFactor);
-      }
-    });
-
-    // Adjust camera position
-    Graph.cameraPosition({
-      x: distance * Math.sin(angle),
-      y: 0,
-      z: distance * Math.cos(angle),
-    });
-  } else {
-    // Reset to original scale and camera position
-    Graph.graphData().nodes.forEach((node) => {
-      if (node.__threeObj) {
-        node.__threeObj.scale.set(1, 1, 1);
-      }
-    });
-
-    Graph.cameraPosition({
-      x: distance * Math.sin(angle),
-      y: 0,
-      z: distance * Math.cos(angle),
-    });
-  }
-
-  // Call the function to center nodes
-  centerNodes();
-}
-
-// Add an event listener for window resize
-window.addEventListener('resize', handleResize);
-
-// Initial call to handle resizing
-handleResize();

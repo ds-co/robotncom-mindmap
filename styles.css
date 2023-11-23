@@ -9,6 +9,11 @@ body {
   height: 100vh;
 }
 
+@media (max-width: 600px) {
+  #3d-graph canvas {
+    transform: scale(0.8); /* Adjust the scale factor as needed */
+  }
+}
 
 
 .modal {
