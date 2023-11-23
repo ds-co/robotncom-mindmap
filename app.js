@@ -1,28 +1,16 @@
-const distance = 270;
+const distance = 300;
 let angle = 15;
 let isModalOpen = false;
 
-// Function to update node positions and sizes on window resize
-function handleWindowResize() {
-  const newWidth = window.innerWidth;
-  const newHeight = window.innerHeight;
+// Function to calculate distance between two nodes with units
+function calculateDistanceWithUnits(node1, node2) {
+  const dx = node1.x - node2.x;
+  const dy = node1.y - node2.y;
+  const dz = node1.z - node2.z;
 
-  Graph.width(newWidth);
-  Graph.height(newHeight);
-
-  Graph.graphData().nodes.forEach((node) => {
-    if (
-      ["RobotNcom", "Platform", "technology", "Awards", "SNS"].includes(node.id)
-    ) {
-      // You can adjust the scale factor based on your needs
-      const scaleFactor = 2;
-      node.__threeObj.scale.set(scaleFactor, scaleFactor, scaleFactor);
-    }
-  });
+  // Return the coordinates
+  return { x: dx, y: dy, z: dz };
 }
-
-// Add event listener for window resize
-window.addEventListener("resize", handleWindowResize);
 
 const nodeImages = {
   1: "image/logo.svg",
@@ -67,24 +55,56 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
   .onNodeClick((node, event) => {
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
-
+  
     // Calculate normalized device coordinates
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
+  
     // Update the picking ray with the camera and mouse position
     raycaster.setFromCamera(mouse, Graph.camera());
-
+  
     // Check for intersections with the node
     const intersects = raycaster.intersectObject(node.__threeObj, true);
-
+  
     console.log("Intersects:", intersects); // Add this line for debugging
-
+  
+    // Check if the clicked node is one of the target nodes
+    if (
+      ["Failertalk", "Ttagttaguli", "naafaa", "moonjapay", "server solution", "security solutions", "Computer HW", "Voice Infrastructure", "network solutions", "Computer SW", "MSS Ministry's Business Innovation Award", "Korea Engineer Award", "Top 100 Korean Brand Award [IT Platform]", "Instagram", "homepage", "naver blog", "kakaotalk"].includes(node.id)
+    ) {
+      const targetNodes = ["Failertalk", "Ttagttaguli", "naafaa", "moonjapay", "server solution", "security solutions", "Computer HW", "Voice Infrastructure", "network solutions", "Computer SW", "MSS Ministry's Business Innovation Award", "Korea Engineer Award", "Top 100 Korean Brand Award [IT Platform]", "Instagram", "homepage", "naver blog", "kakaotalk"];
+  
+      // Find the positions of the target nodes
+      const targetNodePositions = targetNodes.map((targetNode) => {
+        const targetNodeData = Graph.graphData().nodes.find(
+          (n) => n.id === targetNode
+        );
+        return {
+          id: targetNode,
+          position: {
+            x: targetNodeData.x,
+            y: targetNodeData.y,
+            z: targetNodeData.z,
+          },
+        };
+      });
+  
+      // Log X, Y coordinates
+      targetNodePositions.forEach((target) => {
+        const coordinates = calculateDistanceWithUnits(node, target.position);
+        console.log(
+          `Coordinates from ${node.id} to ${target.id}: X=${coordinates.x.toFixed(
+            2
+          )}, Y=${coordinates.y.toFixed(2)}`
+        );
+      });
+    }
+  
     if (intersects.length > 0) {
       // Clicked inside the node image
       clickedNodeId = node.id;
       console.log(`이미지 안쪽을 클릭했습니다. ID: ${clickedNodeId}`);
-
+  
       // Call the appropriate modal function based on the clicked node
       switch (node.id) {
         case "naafaa":
