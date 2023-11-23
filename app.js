@@ -162,8 +162,8 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
     const snsNode = graphData.nodes.find((n) => n.id === "SNS");
 
     if (centralNode && techNode && platformNode && awardNode && snsNode) {
-      const distanceX = 100; // Adjust this distance based on your preference
-      const distanceY = 25; // Adjust this distance based on your preference
+      const distanceX = 100;
+      const distanceY = 25;
 
       centralNode.__threeObj.scale.set(4, 4, 4);
       techNode.__threeObj.scale.set(2, 2, 2);
@@ -171,7 +171,6 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       awardNode.__threeObj.scale.set(2, 2, 2);
       snsNode.__threeObj.scale.set(2, 2, 2);
 
-      // Set positions relative to the central node
       techNode.x = centralNode.x - distanceX;
       techNode.y = centralNode.y + distanceY;
       techNode.z = centralNode.z;
@@ -188,11 +187,26 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       snsNode.y = centralNode.y - distanceY;
       snsNode.z = centralNode.z;
     }
+
+    // Update camera position based on window size and angle
+    if (!isModalOpen) {
+      const newWidth = window.innerWidth;
+      const newHeight = window.innerHeight;
+
+      Graph.cameraPosition({
+        x: distance * Math.sin(angle),
+        z: distance * Math.cos(angle),
+      });
+
+      Graph.width(newWidth);
+      Graph.height(newHeight);
+
+      angle += Math.PI / 6500;
+    }
   });
 
 Graph.linkOpacity(1.0);
 
-// Add an event listener for the modal open and close events
 window.addEventListener('modalOpen', () => {
   isModalOpen = true;
 });
@@ -206,13 +220,11 @@ window.addEventListener('resize', () => {
   const newWidth = window.innerWidth;
   const newHeight = window.innerHeight;
 
-  // Update camera position based on window size
   Graph.cameraPosition({
     x: distance * Math.sin(angle),
     z: distance * Math.cos(angle),
   });
 
-  // Update renderer size
   Graph.width(newWidth);
   Graph.height(newHeight);
 });
@@ -220,60 +232,13 @@ window.addEventListener('resize', () => {
 // Camera orbit
 setInterval(() => {
   if (!isModalOpen) {
-    const newWidth = window.innerWidth;
-    const newHeight = window.innerHeight;
-
-    // Update camera position based on window size
     Graph.cameraPosition({
       x: distance * Math.sin(angle),
       z: distance * Math.cos(angle),
     });
-
-    // Update renderer size
-    Graph.width(newWidth);
-    Graph.height(newHeight);
-
     angle += Math.PI / 6500;
   }
 }, 10);
-
-// Set initial camera position on page load
-Graph.cameraPosition({
-  x: distance * Math.sin(angle),
-  z: distance * Math.cos(angle),
-});
-
-// Add an event listener for the modal open and close events
-window.addEventListener('modalOpen', () => {
-  isModalOpen = true;
-});
-
-window.addEventListener('modalClose', () => {
-  isModalOpen = false;
-});
-
-// Set responsive camera position
-function setResponsiveCameraPosition() {
-  const newWidth = window.innerWidth;
-  const newHeight = window.innerHeight;
-
-  // Set camera position based on window size
-  Graph.cameraPosition({
-    x: distance * Math.sin(angle),
-    z: distance * Math.cos(angle),
-  });
-
-  // Set renderer size
-  Graph.width(newWidth);
-  Graph.height(newHeight);
-}
-
-// Add an event listener for orientation change on mobile devices
-window.addEventListener('orientationchange', setResponsiveCameraPosition);
-
-// Call the function to set initial camera position on page load
-setResponsiveCameraPosition();
-
 
 
 const textureLoader = new THREE.TextureLoader();
@@ -388,5 +353,4 @@ window.showNaafaModal = showNaafaModal;
 window.showFailerModal = showFailerModal;
 window.showTtackModal = showTtackModal;
 window.showPayModal = showPayModal;
-
 
