@@ -7,6 +7,8 @@
     {"id": "Ttagttaguli", "group": 3},
     {"id": "naafaa", "group": 3},
     {"id": "moonjapay", "group": 3},
+    {"id": "놀가", "group": 3},
+    {"id": "팀WORK", "group": 3},
 
     {"id": "SI", "group": 2},
     {"id": "server solution", "group": 3},
@@ -25,6 +27,8 @@
     {"id": "Homepage", "group": 3},
     {"id": "Naver Blog", "group": 3},
     {"id": "Kakaotalk", "group": 3}
+
+    
     
   ],
   "links": [
@@ -33,6 +37,8 @@
     {"source": "Ttagttaguli", "target": "Platform", "value": 2},
     {"source": "naafaa", "target": "Platform", "value": 2},
     {"source": "moonjapay", "target": "Platform", "value": 2},
+    {"source": "놀가", "target": "Platform", "value": 2},
+    {"source": "팀WORK", "target": "Platform", "value": 2},
 
     {"source": "SI", "target": "Robot N Com", "value": 1},
     {"source": "server solution", "target": "SI", "value": 2},

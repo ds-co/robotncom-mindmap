@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+
     <style>
       body {
         margin: 0;
@@ -12,13 +19,15 @@
         left: 0;
         width: 100%;
         height: 100%;
-        font-size: 3em;
+        /* background-color: rgba(83, 83, 83, 0.336); */
+        /* color: rgb(0, 0, 0); */
+        font-size: 2.5vw;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         opacity: 1;
-        transition: opacity 100s ease-in-out; /* 1초 동안 fade-out 트랜지션 설정 */
+        transition: opacity 1s ease-in-out; /* 1초 동안 fade-out 트랜지션 설정 */
       }
 
 
@@ -94,48 +103,106 @@
     }
 
 
+
     @media (max-width: 768px) {
       .image-container img {
         width: 65%;
         /* Hide the images on smaller screens */
       }
 
+      /* #graph-section {
+        width: 100%;
+      } */
+
       .modal {
         width: 100%;
-        /* Adjusting modal width to full width on smaller screens */
       }
 
       .custom-button {
         width: 100%;
         box-sizing: border-box;
         margin: 10px auto;
-        /* Center the button horizontally */
       }
     }
-      #intro-section h1 {
-              color: blue;
-              font-family : serif;
-      }
-      #intro-section p {
-              cursor: pointer;
-              color: white;
-              font-family : serif;
-      }
 
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        5% {
+            opacity: 1;
+        }
+    }
+
+    #intro-section h1 {
+        opacity: 0;
+        animation: fadeIn 40s ease-in-out forwards;
+        color: white; 
+        position: absolute; 
+        top: 15vh; 
+        left: 5vw; 
+        font-size: 0.5em; 
+        font-family: 'Nanum Gothic Coding', monospace; 
+        animation-delay: 3s;
+    }
+
+    #intro-section p:nth-child(1) {
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeIn 40s ease-in-out forwards;
+      color: #3366FF; position: absolute;
+      text-align: center;
+      font-family: 'Russo One', sans-serif;
+      font-size: 2em;
+    }
+
+    #intro-section p:nth-child(2){
+      color: white; 
+      position: absolute; 
+      left : 17vw; 
+      bottom : 20vh ; 
+      font-size: 1.5em; 
+      font-family: 'Nanum Gothic Coding', monospace; 
+      animation-delay: 2s;
+    }
+
+    #intro-section p:nth-child(3){
+      color: white; 
+      position: absolute; 
+      right : 28vw; 
+      top : 22vh ; 
+      font-size: 1.5em; 
+      font-family: 'Nanum Gothic Coding', monospace; 
+      animation-delay: 2s;
+    }
+    
+    
+    
   </style>
+  
   <script src="//unpkg.com/three"></script>
   <script src="//unpkg.com/3d-force-graph"></script>
 </head>
 
 <body>
   
-  <section id="intro-section" style="z-index: 2; background-color: rgb(0, 0, 0); ">
-    <h1>ROBOT N COM</h1>
-    <p id="platform-link" >Platform</p>
+
+  <section id="intro-section" style=" z-index: 2;background-color: black; ">
+    <p>ROBOT N COM</p>
+    <p id="platform-link">PLATFORM</p>
     <p id="SI-link">SI</p>
-    
+    <img src="image/NAAFAA.svg">
+    <h1>
+      우리는 융복합 IT 시스템 패키지 및<br>
+      B2B, B2G, B2C Hospital ICT 플랫폼 솔루션 전문 기업입니다.<br>
+      이제, 세계적으로 의료·진료 분야에 감동을 드리겠습니다.
+    </h1>
   </section>
 
+  
+
+
+  
 
   <div id="Modalbackground" style="
         height: 100vh;
@@ -150,8 +217,8 @@
       <span id="closeModal">&times;</span>
       <div style="flex: 1">
         <div>
-          <img src="p.png" alt="Your Image" style="margin-right: 10px" />
-          <img src="h.png" alt="Your Image" />
+          <img src="image/p.png" alt="Your Image" style="margin-right: 10px" />
+          <img src="image/h.png" alt="Your Image" />
           <p style="
                 float: right;
                 color: rgba(255, 255, 255, 0.822);
@@ -167,7 +234,7 @@
       </div>
       <div class="image-container">
         <div>
-          <img src="Naafaa2.png" alt="Naafa Image" />
+          <img src="image/Naafaa2.png" alt="Naafa Image" />
         </div>
       </div>
       <div style="width: 35%">
@@ -193,8 +260,6 @@
 
   <script>
 
-        
-
     document.getElementById("platform-link").addEventListener("click", function () {
             // Redirect to another page when the "Platform" text is clicked
             window.location.href = "platform.html";
@@ -203,6 +268,7 @@
             // Redirect to another page when the "Platform" text is clicked
             window.location.href = "SI.html";
         });
+
 
 
 
@@ -215,40 +281,42 @@
     const imageScene = new THREE.Scene();
 
     const nodeImages = {
-      1: "logo.svg",
+      1: "image/logo.svg",
       2: {
-        Platform: "Platform.svg",
-        SI: "SI.svg",
-        SNS: "SNS.svg",
-        Awards: "수상.svg",
+        Platform: "image/Platform.svg",
+        SI: "image/SI.svg",
+        SNS: "image/SNS.svg",
+        Awards: "image/수상.svg",
       }, 
       3: {
-        Failertalk: "페일러톡.svg",
-        Ttagttaguli: "딱따구리.svg",
-        naafaa: "NAAFAA.svg",
-        moonjapay: "문자페이.svg",
+        Failertalk: "image/페일러톡.svg",
+        Ttagttaguli: "image/딱따구리.svg",
+        naafaa: "image/NAAFAA.svg",
+        moonjapay: "image/문자페이.svg",
         // 놀가: "놀가.svg",
         // 팀WORK: "팀WORK.svg",
-        "server solution": "Server.svg",
+        "server solution": "image/Server.svg",
         // "보안 솔루션": "Security.svg",
-        "network solutions": "Network.svg",
-        "Computer HW": "Hardware.svg", 
-        "Voice Infrastructure": "Voice infra.svg",
+        "network solutions": "image/Network.svg",
+        "Computer HW": "image/Hardware.svg", 
+        "Voice Infrastructure": "image/Voice infra.svg",
         // "Computer SW": "Software.svg",
-        Instagram: "Instagram.svg",
-        Homepage: "Homepage.svg",
-        "Naver Blog": "Blog.svg",
-        Kakaotalk: "Kakaotalk.svg",
-        "MSS Ministry's Business Innovation Award": "수상.svg",
-        "Korea Engineer Award": "수상.svg",
-        "Top 100 Korean Brand Award [IT Platform]": "수상.svg",
+        Instagram: "image/Instagram.svg",
+        Homepage: "image/Homepage.svg",
+        "Naver Blog": "image/Blog.svg",
+        Kakaotalk: "image/Kakaotalk.svg",
+        "MSS Ministry's Business Innovation Award": "image/수상.svg",
+        "Korea Engineer Award": "image/수상.svg",
+        "Top 100 Korean Brand Award [IT Platform]": "image/수상.svg",
       },
     };
-    
+
+
     const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       .jsonUrl("../datasets/miserables.json")
       .nodeLabel("id")
       .nodeAutoColorBy("group")
+      
       
       
       .enableNavigationControls(false)
@@ -337,7 +405,7 @@
         
 
         const image = new THREE.Mesh(
-          new THREE.PlaneGeometry(17, 17),
+          new THREE.PlaneGeometry(17, 17),  
           imageMaterial
         );
 
@@ -415,7 +483,7 @@
       const nodeId = node.id;
 
       if (
-        nodeId === "나아파" ||
+        nodeId === "naafaa" ||
         [
           "페일러톡",
           "딱따구리",
@@ -434,26 +502,21 @@
         ].includes(nodeId)
       ) {
         showNaafaModal();
-      } else if (node.id === "인스타그램") {
+      } else if (node.id === "Instagram") {
         window.open("https://www.instagram.com/robot_n_com/", "_blank");
-      } else if (node.id === "홈페이지") {
+      } else if (node.id === "Homepage") {
         window.open("https://www.robotncom.com/", "_blank");
-      } else if (node.id === "네이버 블로그") {
+      } else if (node.id === "Naver Blog") {
         window.open("https://blog.naver.com/robotncom", "_blank");
-      } else if (node.id === "카카오톡") {
+      } else if (node.id === "Kakaotalk") {
         window.open("http://pf.kakao.com/_VMxcds", "_blank");
       }
     });
 
 
-    // Graph.cameraPosition({
-    //   x: distance * Math.sin(Math.PI / 3), // Set your desired angle in radians
-    //   z: distance * Math.cos(Math.PI / 3), // Set your desired angle in radians
-    // });
-    
 
     // camera orbit
-    let angle = 29;
+    let angle = 180;
     setInterval(() => {
       Graph.cameraPosition({
         x: distance * Math.sin(angle),
@@ -464,7 +527,7 @@
 
     const textureLoader = new THREE.TextureLoader();
     
-    const backgroundTexture = textureLoader.load("back2.jpg");
+    const backgroundTexture = textureLoader.load("image/back2.jpg");
     backgroundTexture.encoding = THREE.sRGBEncoding;
     Graph.renderer().setClearColor(new THREE.Color("black"));
     backgroundTexture.minFilter = THREE.NearestFilter;
@@ -503,8 +566,8 @@
         introSection.style.opacity = 1;
 
         // Schedule the fade-out after 1 minute
-        if (elapsed < 6000) {
-          introSection.style.opacity = 1 - elapsed / 4000;
+        if (elapsed < 9000) {
+          introSection.style.opacity = 1 - elapsed / 8000;
           requestAnimationFrame(animate);
         } else {
           introSection.style.display = "none";
@@ -513,6 +576,7 @@
 
       // Start the animation
       requestAnimationFrame(animate);
+      
     });
   </script>
 </body>

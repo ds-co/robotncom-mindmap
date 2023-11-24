@@ -202,19 +202,21 @@
         0% {
             opacity: 0;
         }
-        10% {
+        5% {
             opacity: 1;
         }
     }
 
     #intro-section h1 {
         opacity: 0;
-        animation: fadeIn 35s ease-in-out forwards;
+        animation: fadeIn 40s ease-in-out forwards;
         font-size: 7vw; /* Adjust the font size as needed */
     }
 
     #intro-section p{
       cursor: pointer;
+      opacity: 0;
+      animation: fadeIn 40s ease-in-out forwards;
     }
     
     
@@ -235,19 +237,19 @@
     </h1>
   </section> -->
   <section id="intro-section" style=" z-index: 2;background-color: black; ">
-    <p  style="color: #3366FF; position: absolute; left : 50px; top : 2vh ; font-size: 2.5vw; font-family: 'Russo One', sans-serif;" >ROBOT N COM</p>
-    <p id="platform-link" style="color: white; position: absolute; left : 25vw; top : 5.4vh ; font-size: 0.6em; font-family: 'Nanum Gothic Coding', monospace;">PLATFORM</p>
-    <p id="SI-link" style="color: white; position: absolute; left : 35vw; top : 5.4vh ; font-size: 0.6em; font-family: 'Nanum Gothic Coding', monospace;">SI</p>
-    <h1 style="color: white; position: absolute; top: 10vh; right: 170px; animation-delay: 0.2s; font-family: 'Nanum Gothic Coding', monospace;">
+    <p  style="color: #3366FF; position: absolute; left : 50px; top : 2vh ; font-size: 2.5vw; font-family: 'Russo One', sans-serif; " >ROBOT N COM</p>
+    <p id="platform-link" style="color: white; position: absolute; left : 25vw; top : 5.4vh ; font-size: 0.6em; font-family: 'Nanum Gothic Coding', monospace; animation-delay: 1s;">PLATFORM</p>
+    <p id="SI-link" style="color: white; position: absolute; left : 35vw; top : 5.4vh ; font-size: 0.6em; font-family: 'Nanum Gothic Coding', monospace; animation-delay: 2s;">SI</p>
+    <h1 style="color: white; position: absolute; top: 10vh; right: 170px; animation-delay: 3s; font-family: 'Nanum Gothic Coding', monospace;">
       세계적 감동
     </h1>
-    <h1 style="color: white; position:absolute; right:45vw; animation-delay: 1s; font-family: 'Nanum Gothic Coding', monospace;">
+    <h1 style="color: white; position:absolute; right:45vw; animation-delay: 4s; font-family: 'Nanum Gothic Coding', monospace;">
       IT혁신
     </h1>
-    <h1 style="color: white; position: absolute; bottom: 10vh; left: 157px; animation-delay: 2s; font-family: 'Nanum Gothic Coding', monospace;">
+    <h1 style="color: white; position: absolute; bottom: 10vh; left: 157px; animation-delay: 5s; font-family: 'Nanum Gothic Coding', monospace;">
       <span style="color: #3366FF;">로봇앤컴</span>
     </h1>
-    <h1 style="color: white; position: absolute; bottom: 20vh; right: 110px; font-size: 0.5em; font-family: 'Nanum Gothic Coding', monospace;">
+    <h1 style="color: white; position: absolute; bottom: 20vh; right: 110px; font-size: 0.5em; font-family: 'Nanum Gothic Coding', monospace; animation-delay: 3s;">
       우리는 융복합 IT 시스템 패키지 및<br>
       B2B, B2G, B2C Hospital ICT 플랫폼 솔루션 전문 기업입니다.<br>
       이제, 세계적으로 의료·진료 분야에 감동을 드리겠습니다.</h1>
@@ -401,8 +403,8 @@
         Ttagttaguli: "image/딱따구리.svg",
         naafaa: "image/NAAFAA.svg",
         moonjapay: "image/문자페이.svg",
-        // 놀가: "놀가.svg",
-        // 팀WORK: "팀WORK.svg",
+        놀가: "image/놀가.svg",
+        팀WORK: "image/팀WORK.svg",
         "server solution": "image/Server.svg",
         // "보안 솔루션": "Security.svg",
         "network solutions": "image/Network.svg",
@@ -660,7 +662,7 @@
     
 
     // camera orbit
-    let angle = 29;
+    let angle = 58;
     setInterval(() => {
       Graph.cameraPosition({
         x: distance * Math.sin(angle),
@@ -710,8 +712,8 @@
         introSection.style.opacity = 1;
 
         // Schedule the fade-out after 1 minute
-        if (elapsed < 8000) {
-          introSection.style.opacity = 1 - elapsed / 7000;
+        if (elapsed < 9000) {
+          introSection.style.opacity = 1 - elapsed / 8000;
           requestAnimationFrame(animate);
         } else {
           introSection.style.display = "none";
