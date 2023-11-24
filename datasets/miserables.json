@@ -16,17 +16,9 @@
     {"id": "network solutions", "group": 3},
     {"id": "Computer SW", "group": 3},
 
-    {"id": "Awards", "group": 2},
-    {"id": "MSS Ministry's Business Innovation Award", "group": 3},
-    {"id": "Korea Engineer Award", "group": 3},
-    {"id": "Top 100 Korean Brand Award [IT Platform]", "group": 3},
-
-    {"id": "SNS", "group": 2},
-    {"id": "Instagram", "group": 3},
-    {"id": "homepage", "group": 3},
-    {"id": "naver blog", "group": 3},
-    {"id": "kakaotalk", "group": 3}
-    
+    {"id": "Introduction", "group": 2},
+    {"id": "history", "group": 3},
+    {"id": "Our Competence", "group": 3}
   ],
   "links": [
     {"source": "Platform", "target": "RobotNcom", "value": 1},
@@ -43,16 +35,8 @@
     {"source": "network solutions", "target": "technology", "value": 2},
     {"source": "Computer SW", "target": "technology", "value": 2},
 
-    {"source": "Awards", "target": "RobotNcom", "value": 1},
-    {"source": "MSS Ministry's Business Innovation Award", "target": "Awards", "value": 2},
-    {"source": "Korea Engineer Award", "target": "Awards", "value": 2},
-    {"source": "Top 100 Korean Brand Award [IT Platform]", "target": "Awards", "value": 2},
-
-    {"source": "SNS", "target": "RobotNcom", "value": 1},
-    {"source": "Instagram", "target": "SNS", "value": 2, "link": "https://www.instagram.com/robot_n_com/"},
-    {"source": "homepage", "target": "SNS", "value": 2, "link": "https://www.robotncom.com/"},
-    {"source": "naver blog", "target": "SNS", "value": 2, "link": "https://blog.naver.com/robotncom/222527224688"},
-    {"source": "kakaotalk", "target": "SNS", "value": 2, "link": "https://www.robotncom.com/"}
-    
+    {"source": "Introduction", "target": "RobotNcom", "value": 1},
+    {"source": "history", "target": "Introduction", "value": 2},
+    {"source": "Our Competence", "target": "Introduction", "value": 2}    
   ]
 }

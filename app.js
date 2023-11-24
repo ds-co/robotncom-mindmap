@@ -12,16 +12,12 @@ function calculateDistanceWithUnits(node1, node2) {
   return { x: dx, y: dy, z: dz };
 }
 
-
-
-
 const nodeImages = {
   1: "image/logo.svg",
   2: {
     Platform: "image/Platform.svg",
     technology: "image/SI.svg",
-    SNS: "image/SNS.svg",
-    Awards: "image/Win.svg",
+    Introduction: "image/Intro.svg",
   },
   3: {
     Failertalk: "image/Failertalk.svg",
@@ -34,13 +30,8 @@ const nodeImages = {
     "Computer HW": "image/Hardware.svg",
     "Voice Infrastructure": "image/Voiceinfra.svg",
     "Computer SW": "image/Software.svg",
-    Instagram: "image/Insta.svg",
-    homepage: "image/Homepage.svg",
-    "naver blog": "image/Blog.svg",
-    kakaotalk: "image/Kakao.svg",
-    "MSS Ministry's Business Innovation Award": "image/Win3.svg",
-    "Korea Engineer Award": "image/Win2.svg",
-    "Top 100 Korean Brand Award [IT Platform]": "image/Win1.svg",
+    "history": "image/history.svg",
+    "Our Competence": "image/competence.svg",
   },
 };
 
@@ -73,9 +64,9 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
   
     // Check if the clicked node is one of the target nodes
     if (
-      ["Failertalk", "Ttagttaguli", "naafaa", "moonjapay", "server solution", "security solutions", "Computer HW", "Voice Infrastructure", "network solutions", "Computer SW", "MSS Ministry's Business Innovation Award", "Korea Engineer Award", "Top 100 Korean Brand Award [IT Platform]", "Instagram", "homepage", "naver blog", "kakaotalk"].includes(node.id)
+      ["Failertalk", "Ttagttaguli", "naafaa", "moonjapay", "server solution", "security solutions", "Computer HW", "Voice Infrastructure", "network solutions", "Computer SW", "history", "Our Competence"].includes(node.id)
     ) {
-      const targetNodes = ["Failertalk", "Ttagttaguli", "naafaa", "moonjapay", "server solution", "security solutions", "Computer HW", "Voice Infrastructure", "network solutions", "Computer SW", "MSS Ministry's Business Innovation Award", "Korea Engineer Award", "Top 100 Korean Brand Award [IT Platform]", "Instagram", "homepage", "naver blog", "kakaotalk"];
+      const targetNodes = ["Failertalk", "Ttagttaguli", "naafaa", "moonjapay", "server solution", "security solutions", "Computer HW", "Voice Infrastructure", "network solutions", "Computer SW", "history", "Our Competence"];
   
       // Find the positions of the target nodes
       const targetNodePositions = targetNodes.map((targetNode) => {
@@ -120,18 +111,6 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
           break;
         case "moonjapay":
           showPayModal();
-          break;
-        case "kakaotalk":
-          window.location.href = "http://pf.kakao.com/_VMxcds";
-          break;
-        case "Instagram":
-          window.location.href = "https://www.instagram.com/robot_n_com/";
-          break;
-        case "homepage":
-          window.location.href = "https://www.robotncom.com/";
-          break;
-        case "naver blog":
-          window.location.href = "https://blog.naver.com/robotncom";
           break;
         default:
           break;
@@ -199,35 +178,14 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
     const centralNode = graphData.nodes.find((n) => n.id === "RobotNcom");
     const techNode = graphData.nodes.find((n) => n.id === "technology");
     const platformNode = graphData.nodes.find((n) => n.id === "Platform");
-    const awardNode = graphData.nodes.find((n) => n.id === "Awards");
-    const snsNode = graphData.nodes.find((n) => n.id === "SNS");
+    const introNode = graphData.nodes.find((n) => n.id === "Introduction");
 
-    if (centralNode && techNode && platformNode && awardNode && snsNode) {
-      const distanceX = 65; // Adjust this distance based on your preference
-      const distanceY = 25; // Adjust this distance based on your preference
-
+    if (centralNode && techNode && platformNode && introNode) {
       centralNode.__threeObj.scale.set(4, 4, 4);
       techNode.__threeObj.scale.set(2, 2, 2);
       platformNode.__threeObj.scale.set(2, 2, 2);
-      awardNode.__threeObj.scale.set(2, 2, 2);
-      snsNode.__threeObj.scale.set(2, 2, 2);
+      introNode.__threeObj.scale.set(2, 2, 2);
 
-      // Set positions relative to the central node
-      techNode.x = centralNode.x - distanceX;
-      techNode.y = centralNode.y + distanceY;
-      techNode.z = centralNode.z;
-
-      platformNode.x = centralNode.x + distanceX;
-      platformNode.y = centralNode.y + distanceY;
-      platformNode.z = centralNode.z;
-
-      awardNode.x = centralNode.x - distanceX;
-      awardNode.y = centralNode.y - distanceY;
-      awardNode.z = centralNode.z;
-
-      snsNode.x = centralNode.x + distanceX;
-      snsNode.y = centralNode.y - distanceY;
-      snsNode.z = centralNode.z;
     }
   });
 
