@@ -40,7 +40,7 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
   .nodeLabel("id")
   .nodeAutoColorBy("group")
   .linkDirectionalParticleSpeed(0.02)  // 조절할 값입니다
-  .linkWidth(0.7)
+  .linkWidth(0.6)
   .linkOpacity(1.0)
   // 네비게이션 컨트롤 비활성화
   .enableNavigationControls(false)
@@ -59,14 +59,13 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
   
     // Check for intersections with the node
     const intersects = raycaster.intersectObject(node.__threeObj, true);
-  
-    console.log("Intersects:", intersects); // Add this line for debugging
+
   
     // Check if the clicked node is one of the target nodes
     if (
       ["Failertalk", "Ttagttaguli", "naafaa", "moonjapay", "server solution", "security solutions", "Computer HW", "Voice Infrastructure", "network solutions", "Computer SW", "history", "Our Competence"].includes(node.id)
     ) {
-      const targetNodes = ["Failertalk", "Ttagttaguli", "naafaa", "moonjapay", "server solution", "security solutions", "Computer HW", "Voice Infrastructure", "network solutions", "Computer SW", "history", "Our Competence"];
+      const targetNodes = ["RobotNcom"];
   
       // Find the positions of the target nodes
       const targetNodePositions = targetNodes.map((targetNode) => {
@@ -87,7 +86,7 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       targetNodePositions.forEach((target) => {
         const coordinates = calculateDistanceWithUnits(node, target.position);
         console.log(
-          `${node.id} 노드의 좌표에서 ${target.id}까지의 좌표 값: X=${coordinates.x.toFixed(
+          `${node.id} 노드의 좌표에서 ${target.id}노드 까지의 좌표 값: X=${coordinates.x.toFixed(
             2
           )}, Y=${coordinates.y.toFixed(2)}`
         );
