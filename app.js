@@ -203,8 +203,8 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
     const snsNode = graphData.nodes.find((n) => n.id === "SNS");
 
     if (centralNode && techNode && platformNode && awardNode && snsNode) {
-      const distanceX = 25; // Adjust this distance based on your preference
-      const distanceY = 65; // Adjust this distance based on your preference
+      const distanceX = 65; // Adjust this distance based on your preference
+      const distanceY = 25; // Adjust this distance based on your preference
 
       centralNode.__threeObj.scale.set(4, 4, 4);
       techNode.__threeObj.scale.set(2, 2, 2);
@@ -213,20 +213,20 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       snsNode.__threeObj.scale.set(2, 2, 2);
 
       // Set positions relative to the central node
-      techNode.x = centralNode.x - distanceY;
-      techNode.y = centralNode.y + distanceX;
+      techNode.x = centralNode.x - distanceX;
+      techNode.y = centralNode.y + distanceY;
       techNode.z = centralNode.z;
 
-      platformNode.x = centralNode.x + distanceY;
-      platformNode.y = centralNode.y + distanceX;
+      platformNode.x = centralNode.x + distanceX;
+      platformNode.y = centralNode.y + distanceY;
       platformNode.z = centralNode.z;
 
-      awardNode.x = centralNode.x - distanceY;
-      awardNode.y = centralNode.y - distanceX;
+      awardNode.x = centralNode.x - distanceX;
+      awardNode.y = centralNode.y - distanceY;
       awardNode.z = centralNode.z;
 
-      snsNode.x = centralNode.x + distanceY;
-      snsNode.y = centralNode.y - distanceX;
+      snsNode.x = centralNode.x + distanceX;
+      snsNode.y = centralNode.y - distanceY;
       snsNode.z = centralNode.z;
     }
   });
