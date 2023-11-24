@@ -29,59 +29,7 @@
         opacity: 1;
         transition: opacity 1s ease-in-out; /* 1초 동안 fade-out 트랜지션 설정 */
       }
-       /* #graph-section {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        backdrop-filter: blur(10px);
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(225, 225, 225, 0.5);
-        z-index: 1;
-        border: 0.5px solid #ffffff;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        overflow: auto;
-        opacity: 0; /* Set initial opacity to 0 
-        transition: opacity 3s ease-in-out; /* Add transition for opacity 
-      }
-      #section1 {
-        opacity: 1; /* 초기 투명도 설정 
-        transition: opacity 3s ease-in-out; /* 투명도에 트랜지션 추가 
-      }
-      .intro-text {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            z-index: 2; /* 글자가 어둡은 배경 위에 나타나도록 z-index 설정 
-            transition: opacity 0.5s ease-in-out; /* 투명도에 트랜지션 추가 
-        } */
 
-      /* .fadeIn {
-      opacity: 1;
-      transition: opacity 1s ease-in-out;
-    }
-
-    .fadeOut {
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    } */
-
-      /* section {
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3em;
-        } */
 
       #3d-graph {
         width: 100%;
@@ -154,26 +102,7 @@
       overflow: hidden;
     }
 
-    /* #graph-section {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      backdrop-filter: blur(10px);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(225, 225, 225, 0.5);
-      z-index: 1;
-      border: 0.5px solid #ffffff;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      overflow: auto;
-    }
-    #section-text {
-      opacity: 1;
-      transition: opacity 3s ease-in-out;
-    } */
+
 
     @media (max-width: 768px) {
       .image-container img {
@@ -187,14 +116,12 @@
 
       .modal {
         width: 100%;
-        /* Adjusting modal width to full width on smaller screens */
       }
 
       .custom-button {
         width: 100%;
         box-sizing: border-box;
         margin: 10px auto;
-        /* Center the button horizontally */
       }
     }
 
@@ -202,7 +129,7 @@
         0% {
             opacity: 0;
         }
-        5% {
+        3% {
             opacity: 1;
         }
     }
@@ -210,13 +137,69 @@
     #intro-section h1 {
         opacity: 0;
         animation: fadeIn 40s ease-in-out forwards;
-        font-size: 7vw; /* Adjust the font size as needed */
+        color: white; 
+        position: absolute; 
+        top: 15vh; 
+        left: 5vw; 
+        font-size: 0.5em; 
+        font-family: 'Nanum Gothic Coding', monospace; 
+        /* animation-delay: 3s; */
     }
 
-    #intro-section p{
+    #intro-section p:nth-child(1) {
       cursor: pointer;
       opacity: 0;
       animation: fadeIn 40s ease-in-out forwards;
+      color: #3366FF; 
+      position: absolute;
+      text-align: center;
+      font-family: 'Russo One', sans-serif;
+      font-size: 2em;
+    }
+
+    #intro-section p:nth-child(2){
+      color: white; 
+      position: absolute; 
+      opacity: 0;
+      left : 17vw; 
+      bottom : 20vh ; 
+      font-size: 1.5em; 
+      font-family: 'Nanum Gothic Coding', monospace; 
+      animation: fadeIn 40s ease-in-out forwards;
+      animation-delay: 2s;
+    }
+
+    #intro-section p:nth-child(3){
+      color: white; 
+      position: absolute; 
+      opacity: 0;
+      right : 28vw; 
+      top : 22vh ; 
+      font-size: 1.5em; 
+      font-family: 'Nanum Gothic Coding', monospace; 
+      animation: fadeIn 40s ease-in-out forwards;
+      animation-delay: 3s;
+    }
+
+    #fadeout img:nth-child(1) {
+      opacity: 0; /* Set initial opacity to 0 */
+      position: absolute; 
+      left : 40vw; 
+      bottom : 12vh ;
+      width: 4vw;
+      height: auto;
+      animation: fadeIn 40s ease-in-out forwards; /* Apply fadeIn animation */
+      animation-delay: 2s; /* Delay the animation by 2 seconds */
+    }
+    #fadeout img:nth-child(2) {
+      opacity: 0; /* Set initial opacity to 0 */
+      position: absolute; 
+      width: 4vw;
+      height: auto;
+      left : 43vw; 
+      bottom : 25vh ;
+      animation: fadeIn 40s ease-in-out forwards; /* Apply fadeIn animation */
+      animation-delay: 2s; /* Delay the animation by 2 seconds */
     }
     
     
@@ -229,30 +212,23 @@
 
 <body>
   
-  <!-- <section id="intro-section" style=" z-index: 2;background-color: rgb(0, 0, 0); text-align: center;">
-    <h1 style="color: white;">
-      전 세계를 감동시킬<br>
-      IT혁신<br>
-      우리는 <span style="color: blue;">로봇앤컴</span> 입니다.
-    </h1>
-  </section> -->
+
   <section id="intro-section" style=" z-index: 2;background-color: black; ">
-    <p  style="color: #3366FF; position: absolute; left : 50px; top : 2vh ; font-size: 2.5vw; font-family: 'Russo One', sans-serif; " >ROBOT N COM</p>
-    <p id="platform-link" style="color: white; position: absolute; left : 25vw; top : 5.4vh ; font-size: 0.6em; font-family: 'Nanum Gothic Coding', monospace; animation-delay: 1s;">PLATFORM</p>
-    <p id="SI-link" style="color: white; position: absolute; left : 35vw; top : 5.4vh ; font-size: 0.6em; font-family: 'Nanum Gothic Coding', monospace; animation-delay: 2s;">SI</p>
-    <h1 style="color: white; position: absolute; top: 10vh; right: 170px; animation-delay: 3s; font-family: 'Nanum Gothic Coding', monospace;">
-      세계적 감동
-    </h1>
-    <h1 style="color: white; position:absolute; right:45vw; animation-delay: 4s; font-family: 'Nanum Gothic Coding', monospace;">
-      IT혁신
-    </h1>
-    <h1 style="color: white; position: absolute; bottom: 10vh; left: 157px; animation-delay: 5s; font-family: 'Nanum Gothic Coding', monospace;">
-      <span style="color: #3366FF;">로봇앤컴</span>
-    </h1>
-    <h1 style="color: white; position: absolute; bottom: 20vh; right: 110px; font-size: 0.5em; font-family: 'Nanum Gothic Coding', monospace; animation-delay: 3s;">
+    <p>ROBOT N COM</p>
+    <p id="platform-link">PLATFORM</p>
+    <p id="SI-link">SI</p>
+    <div id="fadeout">
+      <img src="image/NAAFAA.svg">
+      <img src="image/딱따구리.svg">
+
+    </div>
+    
+    
+    <h1>
       우리는 융복합 IT 시스템 패키지 및<br>
       B2B, B2G, B2C Hospital ICT 플랫폼 솔루션 전문 기업입니다.<br>
-      이제, 세계적으로 의료·진료 분야에 감동을 드리겠습니다.</h1>
+      이제, 세계적으로 의료·진료 분야에 감동을 드리겠습니다.
+    </h1>
   </section>
 
   
@@ -316,71 +292,17 @@
 
   <script>
 
-    document.getElementById("platform-link").addEventListener("click", function () {
-            // Redirect to another page when the "Platform" text is clicked
-            window.location.href = "platform.html";
-        });
-    document.getElementById("SI-link").addEventListener("click", function () {
-            // Redirect to another page when the "Platform" text is clicked
-            window.location.href = "SI.html";
-        });
-
-
-    
-
-    // const sections = document.querySelectorAll('section');
-    //             let currentSection = 0;
-    //             let isScrolling = false;
-
-    //             function scrollToSection(index) {
-    //             isScrolling = true;
-    //             sections[index].scrollIntoView({ behavior: 'smooth' });
-    //             setTimeout(() => {
-    //                 isScrolling = false;
-    //             }, 1000);
-    //             }
-
-    //         window.addEventListener('wheel', (e) => {
-    //             if (!isScrolling) {
-    //                 if (e.deltaY > 0 && currentSection < sections.length - 1) {
-    //                 currentSection++;
-    //                 scrollToSection(currentSection);
-    //                 } else if (e.deltaY < 0 && currentSection > 0) {
-    //                 currentSection--;
-    //                 scrollToSection(currentSection);
-    //                 } else if (e.deltaY > 0 && currentSection === sections.length - 1) {
-    //                 e.preventDefault();
-    //                 }
-    //             }
-    //         });
-
-          
-
-    //         $(window).scroll(function() {
-
-    //           // 스크롤 위치를 확인하여 블러와 텍스트를 제거
-    //           var scrollPos = $(window).scrollTop();
-
-    //           if (scrollPos >= $('#section1').offset().top && scrollPos < $('#section2').offset().top) {
-    //               // Apply blur when scrolling through section 1, 2, and 3
-    //               allBlur();
-    //           }
-    //           else{
-    //               // Remove blur when scrolling through section 4
-    //               removeAllBlur();
-    //           }
-    //           });
+    // document.getElementById("platform-link").addEventListener("click", function () {
+    //         // Redirect to another page when the "Platform" text is clicked
+    //         window.location.href = "platform.html";
+    //     });
+    // document.getElementById("SI-link").addEventListener("click", function () {
+    //         // Redirect to another page when the "Platform" text is clicked
+    //         window.location.href = "SI.html";
+    //     });
 
 
 
-    // function hideModal() {
-    //   event.stopPropagation();
-    //   const modal = document.getElementById("Modalbackground");
-    //   const graphSection = document.getElementById("graph-section");
-
-    //   graphSection.classList.remove("fadeOut");
-    //   modal.style.display = "none";
-    // }
 
     document
       .getElementById("closeModal")
@@ -420,44 +342,13 @@
         "Top 100 Korean Brand Award [IT Platform]": "image/수상.svg",
       },
     };
-    
-  //   for (const key in nodeImages) {
-  //       const imageSrc = nodeImages[key];
 
-  //       if (typeof imageSrc === "object") {
-  //         for (const nestedKey in imageSrc) {
-  //           const img = new Image();
-  //           img.src = imageSrc[nestedKey];
-  //         }
-  //       } else {
-  //         const img = new Image();
-  //         img.src = imageSrc;
-  //       }
-  //     }
-  //   };
-
-  //   preloadImages();
-  // });
-    
-
-    
-
-    // const nodeGraphData = {
-    //   nodes: [
-    //     { id: 'Node1', x: 100, y: 250, z: 10, group: 1 },
-    //     { id: 'Node2', x: 50, y: 10, z: 60, group: 2 },
-    //     // Add other nodes as needed...
-    //   ],
-    //   links: [
-    //     { source: 'Node1', target: 'Node2' },
-    //     // Add other links as needed...
-    //   ],
-    // };
 
     const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       .jsonUrl("../datasets/miserables.json")
       .nodeLabel("id")
       .nodeAutoColorBy("group")
+      
       
       
       .enableNavigationControls(false)
@@ -546,7 +437,7 @@
         
 
         const image = new THREE.Mesh(
-          new THREE.PlaneGeometry(17, 17),
+          new THREE.PlaneGeometry(17, 17),  
           imageMaterial
         );
 
@@ -655,20 +546,15 @@
     });
 
 
-    // Graph.cameraPosition({
-    //   x: distance * Math.sin(Math.PI / 3), // Set your desired angle in radians
-    //   z: distance * Math.cos(Math.PI / 3), // Set your desired angle in radians
-    // });
-    
 
     // camera orbit
-    let angle = 58;
+    let angle = 182;
     setInterval(() => {
       Graph.cameraPosition({
         x: distance * Math.sin(angle),
         z: distance * Math.cos(angle),
       });
-      angle += Math.PI /6500;
+      angle += Math.PI /6000;
     }, 10);
 
     const textureLoader = new THREE.TextureLoader();
