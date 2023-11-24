@@ -49,7 +49,7 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
   .nodeLabel("id")
   .nodeAutoColorBy("group")
   .linkDirectionalParticleSpeed(0.02)  // 조절할 값입니다
-  .linkWidth(0.4)
+  .linkWidth(0.7)
   .linkOpacity(1.0)
   // 네비게이션 컨트롤 비활성화
   .enableNavigationControls(false)
