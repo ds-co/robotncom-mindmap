@@ -271,8 +271,8 @@
       <span id="closeModal">&times;</span>
       <div style="flex: 1">
         <div>
-          <img src="p.png" alt="Your Image" style="margin-right: 10px" />
-          <img src="h.png" alt="Your Image" />
+          <img src="image/p.png" alt="Your Image" style="margin-right: 10px" />
+          <img src="image/h.png" alt="Your Image" />
           <p style="
                 float: right;
                 color: rgba(255, 255, 255, 0.822);
@@ -288,7 +288,7 @@
       </div>
       <div class="image-container">
         <div>
-          <img src="Naafaa2.png" alt="Naafa Image" />
+          <img src="image/Naafaa2.png" alt="Naafa Image" />
         </div>
       </div>
       <div style="width: 35%">
@@ -389,33 +389,33 @@
     const imageScene = new THREE.Scene();
 
     const nodeImages = {
-      1: "logo.svg",
+      1: "image/logo.svg",
       2: {
-        Platform: "Platform.svg",
-        SI: "SI.svg",
-        SNS: "SNS.svg",
-        Awards: "수상.svg",
+        Platform: "image/Platform.svg",
+        SI: "image/SI.svg",
+        SNS: "image/SNS.svg",
+        Awards: "image/수상.svg",
       }, 
       3: {
-        Failertalk: "페일러톡.svg",
-        Ttagttaguli: "딱따구리.svg",
-        naafaa: "NAAFAA.svg",
-        moonjapay: "문자페이.svg",
+        Failertalk: "image/페일러톡.svg",
+        Ttagttaguli: "image/딱따구리.svg",
+        naafaa: "image/NAAFAA.svg",
+        moonjapay: "image/문자페이.svg",
         // 놀가: "놀가.svg",
         // 팀WORK: "팀WORK.svg",
-        "server solution": "Server.svg",
+        "server solution": "image/Server.svg",
         // "보안 솔루션": "Security.svg",
-        "network solutions": "Network.svg",
-        "Computer HW": "Hardware.svg", 
-        "Voice Infrastructure": "Voice infra.svg",
+        "network solutions": "image/Network.svg",
+        "Computer HW": "image/Hardware.svg", 
+        "Voice Infrastructure": "image/Voice infra.svg",
         // "Computer SW": "Software.svg",
-        Instagram: "Instagram.svg",
-        Homepage: "Homepage.svg",
-        "Naver Blog": "Blog.svg",
-        Kakaotalk: "Kakaotalk.svg",
-        "MSS Ministry's Business Innovation Award": "수상.svg",
-        "Korea Engineer Award": "수상.svg",
-        "Top 100 Korean Brand Award [IT Platform]": "수상.svg",
+        Instagram: "image/Instagram.svg",
+        Homepage: "image/Homepage.svg",
+        "Naver Blog": "image/Blog.svg",
+        Kakaotalk: "image/Kakaotalk.svg",
+        "MSS Ministry's Business Innovation Award": "image/수상.svg",
+        "Korea Engineer Award": "image/수상.svg",
+        "Top 100 Korean Brand Award [IT Platform]": "image/수상.svg",
       },
     };
     
@@ -671,7 +671,7 @@
 
     const textureLoader = new THREE.TextureLoader();
     
-    const backgroundTexture = textureLoader.load("back2.jpg");
+    const backgroundTexture = textureLoader.load("image/back2.jpg");
     backgroundTexture.encoding = THREE.sRGBEncoding;
     Graph.renderer().setClearColor(new THREE.Color("black"));
     backgroundTexture.minFilter = THREE.NearestFilter;
