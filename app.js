@@ -30,7 +30,7 @@ const nodeImages = {
     "Computer HW": "image/Hardware.svg",
     "Voice Infrastructure": "image/Voiceinfra.svg",
     "Computer SW": "image/Software.svg",
-    "history": "image/history.svg",
+    history: "image/history.svg",
     "Our Competence": "image/competence.svg",
   },
 };
@@ -39,7 +39,7 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
   .jsonUrl("../datasets/miserables.json")
   .nodeLabel("id")
   .nodeAutoColorBy("group")
-  .linkDirectionalParticleSpeed(0.02)  // 조절할 값입니다
+  .linkDirectionalParticleSpeed(0.02) // 조절할 값입니다
   .linkWidth(0.6)
   .linkOpacity(1.0)
   // 네비게이션 컨트롤 비활성화
@@ -49,24 +49,36 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
   .onNodeClick((node, event) => {
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
-  
+
     // Calculate normalized device coordinates
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-  
+
     // Update the picking ray with the camera and mouse position
     raycaster.setFromCamera(mouse, Graph.camera());
-  
+
     // Check for intersections with the node
     const intersects = raycaster.intersectObject(node.__threeObj, true);
 
-  
     // Check if the clicked node is one of the target nodes
     if (
-      ["Failertalk", "Ttagttaguli", "naafaa", "moonjapay", "server solution", "security solutions", "Computer HW", "Voice Infrastructure", "network solutions", "Computer SW", "history", "Our Competence"].includes(node.id)
+      [
+        "Failertalk",
+        "Ttagttaguli",
+        "naafaa",
+        "moonjapay",
+        "server solution",
+        "security solutions",
+        "Computer HW",
+        "Voice Infrastructure",
+        "network solutions",
+        "Computer SW",
+        "history",
+        "Our Competence",
+      ].includes(node.id)
     ) {
       const targetNodes = ["RobotNcom"];
-  
+
       // Find the positions of the target nodes
       const targetNodePositions = targetNodes.map((targetNode) => {
         const targetNodeData = Graph.graphData().nodes.find(
@@ -81,22 +93,24 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
           },
         };
       });
-  
+
       // Log X, Y coordinates
       targetNodePositions.forEach((target) => {
         const coordinates = calculateDistanceWithUnits(node, target.position);
         console.log(
-          `${node.id} 노드의 좌표에서 ${target.id}노드 까지의 좌표 값: X=${coordinates.x.toFixed(
+          `${node.id} 노드의 좌표에서 ${
+            target.id
+          }노드 까지의 좌표 값: X=${coordinates.x.toFixed(
             2
           )}, Y=${coordinates.y.toFixed(2)}`
         );
       });
     }
-  
+
     if (intersects.length > 0) {
       // Clicked inside the node image
       clickedNodeId = node.id;
-  
+
       // Call the appropriate modal function based on the clicked node
       switch (node.id) {
         case "naafaa":
@@ -171,7 +185,7 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       return group;
     }
   })
-  
+
   .onEngineTick(() => {
     const graphData = Graph.graphData();
     const centralNode = graphData.nodes.find((n) => n.id === "RobotNcom");
@@ -184,20 +198,17 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       techNode.__threeObj.scale.set(2, 2, 2);
       platformNode.__threeObj.scale.set(2, 2, 2);
       introNode.__threeObj.scale.set(2, 2, 2);
-
     }
   });
 
-
 // Add an event listener for the modal open and close events
-window.addEventListener('modalOpen', () => {
+window.addEventListener("modalOpen", () => {
   isModalOpen = true;
 });
 
-window.addEventListener('modalClose', () => {
+window.addEventListener("modalClose", () => {
   isModalOpen = false;
 });
-
 
 // Camera orbit
 setInterval(() => {
@@ -211,7 +222,7 @@ setInterval(() => {
 }, 10);
 
 // Use Three.js onWindowResize event to handle window resize
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   Graph.width(window.innerWidth);
   Graph.height(window.innerHeight);
 
@@ -231,7 +242,7 @@ function showNaafaModal() {
   modal.style.display = "flex";
   window.addEventListener("click", hideNaafaModal);
   // Dispatch modal open event
-  window.dispatchEvent(new Event('modalOpen'));
+  window.dispatchEvent(new Event("modalOpen"));
 }
 
 // Function to hide Naafa modal
@@ -240,7 +251,7 @@ function hideNaafaModal(event) {
   const modal = document.getElementById("NaafaModalBackground");
   modal.style.display = "none";
   // Dispatch modal close event
-  window.dispatchEvent(new Event('modalClose'));
+  window.dispatchEvent(new Event("modalClose"));
 }
 
 document
@@ -253,7 +264,7 @@ function showFailerModal() {
   modal.style.display = "flex";
   window.addEventListener("click", hideFailerModal);
   // Dispatch modal open event
-  window.dispatchEvent(new Event('modalOpen'));
+  window.dispatchEvent(new Event("modalOpen"));
 }
 
 // Function to hide Failer modal
@@ -262,7 +273,7 @@ function hideFailerModal(event) {
   const modal = document.getElementById("FailerModalBackground");
   modal.style.display = "none";
   // Dispatch modal close event
-  window.dispatchEvent(new Event('modalClose'));
+  window.dispatchEvent(new Event("modalClose"));
 }
 
 document
@@ -281,7 +292,7 @@ function showNolgaModal() {
   modal.style.display = "flex";
   window.addEventListener("click", hideNolgaModal);
   // Dispatch modal open event
-  window.dispatchEvent(new Event('modalOpen'));
+  window.dispatchEvent(new Event("modalOpen"));
 }
 
 function showTtackModal() {
@@ -289,7 +300,7 @@ function showTtackModal() {
   modal.style.display = "flex";
   window.addEventListener("click", hideTtackModal);
   // Dispatch modal open event
-  window.dispatchEvent(new Event('modalOpen'));
+  window.dispatchEvent(new Event("modalOpen"));
 }
 
 // Function to hide Ttack modal
@@ -298,7 +309,7 @@ function hideTtackModal(event) {
   const modal = document.getElementById("TtackModalBackground");
   modal.style.display = "none";
   // Dispatch modal close event
-  window.dispatchEvent(new Event('modalClose'));
+  window.dispatchEvent(new Event("modalClose"));
 }
 
 document
@@ -311,7 +322,7 @@ function showPayModal() {
   modal.style.display = "flex";
   window.addEventListener("click", hidePayModal);
   // Dispatch modal open event
-  window.dispatchEvent(new Event('modalOpen'));
+  window.dispatchEvent(new Event("modalOpen"));
 }
 
 // Function to hide Pay modal
@@ -320,14 +331,49 @@ function hidePayModal(event) {
   const modal = document.getElementById("PayModalBackground");
   modal.style.display = "none";
   // Dispatch modal close event
-  window.dispatchEvent(new Event('modalClose'));
+  window.dispatchEvent(new Event("modalClose"));
 }
 document
   .getElementById("closePayModal")
   .addEventListener("click", hidePayModal);
 
-
 window.showNaafaModal = showNaafaModal;
 window.showFailerModal = showFailerModal;
 window.showTtackModal = showTtackModal;
 window.showPayModal = showPayModal;
+
+document.getElementById("platform-link").addEventListener("click", function () {
+  // Redirect to another page when the "Platform" text is clicked
+  window.location.href = "platform.html";
+});
+document.getElementById("SI-link").addEventListener("click", function () {
+  // Redirect to another page when the "Platform" text is clicked
+  window.location.href = "SI.html";
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const introSection = document.getElementById("intro-section");
+  let startTime;
+
+  function animate(time) {
+    if (!startTime) {
+      startTime = time;
+    }
+
+    const elapsed = time - startTime;
+
+    // Set initial opacity to 1
+    introSection.style.opacity = 1;
+
+    // Schedule the fade-out after 1 minute
+    if (elapsed < 9000) {
+      introSection.style.opacity = 1 - elapsed / 8000;
+      requestAnimationFrame(animate);
+    } else {
+      introSection.style.display = "none";
+    }
+  }
+
+  // Start the animation
+  requestAnimationFrame(animate);
+});
