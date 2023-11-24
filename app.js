@@ -96,7 +96,7 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
       targetNodePositions.forEach((target) => {
         const coordinates = calculateDistanceWithUnits(node, target.position);
         console.log(
-          `Coordinates from ${node.id} to ${target.id}: X=${coordinates.x.toFixed(
+          `${node.id} 노드의 좌표에서 ${target.id}까지의 좌표 값: X=${coordinates.x.toFixed(
             2
           )}, Y=${coordinates.y.toFixed(2)}`
         );
@@ -106,7 +106,6 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
     if (intersects.length > 0) {
       // Clicked inside the node image
       clickedNodeId = node.id;
-      console.log(`이미지 안쪽을 클릭했습니다. ID: ${clickedNodeId}`);
   
       // Call the appropriate modal function based on the clicked node
       switch (node.id) {
