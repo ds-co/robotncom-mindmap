@@ -24,12 +24,11 @@ const nodeImages = {
     Ttagttaguli: "image/Ttakttaguri.svg",
     naafaa: "image/Naafaa.svg",
     moonjapay: "image/Moonjapay.svg",
-    "server solution": "image/Server.svg",
-    "security solutions": "image/Security.svg",
+    "server & security solutions": "image/serversecurity.svg",
     "network solutions": "image/Network.svg",
-    "Computer HW": "image/Hardware.svg",
     "Voice Infrastructure": "image/Voiceinfra.svg",
-    "Computer SW": "image/Software.svg",
+    "Computer SW+HW": "image/Software.svg",
+    ICT: "image/ict.svg",
     history: "image/history.svg",
     "Our Competence": "image/competence.svg",
   },
@@ -67,12 +66,11 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
         "Ttagttaguli",
         "naafaa",
         "moonjapay",
-        "server solution",
-        "security solutions",
-        "Computer HW",
+        "server & security solutions",
+        "Computer SW+HW",
         "Voice Infrastructure",
         "network solutions",
-        "Computer SW",
+        "ICT",
         "history",
         "Our Competence",
       ].includes(node.id)
@@ -125,6 +123,24 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
         case "moonjapay":
           showPayModal();
           break;
+        case "Platform":
+          showPlatfromModal();
+          break;
+        case "network solutions":
+          showNetworkModal();
+          break;
+        case "server & security solutions":
+          showServerModal();
+          break;
+        case "Computer SW+HW":
+          showSWHWModal();
+          break;
+        case "ICT":
+          showICTModal();
+          break;
+        case "Voice Infrastructure":
+            showVoiceModal();
+            break;
         default:
           break;
       }
@@ -337,10 +353,147 @@ document
   .getElementById("closePayModal")
   .addEventListener("click", hidePayModal);
 
+// Function to show Platfrom modal
+function showPlatfromModal() {
+  const modal = document.getElementById("PlatfromModalBackground");
+  modal.style.display = "flex";
+  window.addEventListener("click", hidePlatfromModal);
+  // Dispatch modal open event
+  window.dispatchEvent(new Event("modalOpen"));
+}
+
+// Function to hide Platfrom modal
+function hidePlatfromModal(event) {
+  event.stopPropagation();
+  const modal = document.getElementById("PlatfromModalBackground");
+  modal.style.display = "none";
+  // Dispatch modal close event
+  window.dispatchEvent(new Event("modalClose"));
+}
+document
+  .getElementById("closePlatfromModal")
+  .addEventListener("click", hidePlatfromModal);
+
+// Function to show Network modal
+function showNetworkModal() {
+  const modal = document.getElementById("NetworkModalBackground");
+  modal.style.display = "flex";
+  window.addEventListener("click", hideNetworkModal);
+  // Dispatch modal open event
+  window.dispatchEvent(new Event("modalOpen"));
+}
+
+// Function to hide Network modal
+function hideNetworkModal(event) {
+  event.stopPropagation();
+  const modal = document.getElementById("NetworkModalBackground");
+  modal.style.display = "none";
+  // Dispatch modal close event
+  window.dispatchEvent(new Event("modalClose"));
+}
+document
+  .getElementById("closeNetworkModal")
+  .addEventListener("click", hideNetworkModal);
+
+// Function to show Server modal
+function showServerModal() {
+  const modal = document.getElementById("ServerModalBackground");
+  modal.style.display = "flex";
+  window.addEventListener("click", hideServerModal);
+  // Dispatch modal open event
+  window.dispatchEvent(new Event("modalOpen"));
+}
+
+// Function to hide Server modal
+function hideServerModal(event) {
+  event.stopPropagation();
+  const modal = document.getElementById("ServerModalBackground");
+  modal.style.display = "none";
+  // Dispatch modal close event
+  window.dispatchEvent(new Event("modalClose"));
+}
+document
+  .getElementById("closeServerModal")
+  .addEventListener("click", hideServerModal);
+
+
+// Function to show SWHW modal
+function showSWHWModal() {
+  const modal = document.getElementById("SWHWModalBackground");
+  modal.style.display = "flex";
+  window.addEventListener("click", hideSWHWModal);
+  // Dispatch modal open event
+  window.dispatchEvent(new Event("modalOpen"));
+}
+
+// Function to hide SWHW modal
+function hideSWHWModal(event) {
+  event.stopPropagation();
+  const modal = document.getElementById("SWHWModalBackground");
+  modal.style.display = "none";
+  // Dispatch modal close event
+  window.dispatchEvent(new Event("modalClose"));
+}
+document
+  .getElementById("closeSWHWModal")
+  .addEventListener("click", hideSWHWModal);
+
+
+// Function to show SWHW modal
+function showICTModal() {
+  const modal = document.getElementById("ICTModalBackground");
+  modal.style.display = "flex";
+  window.addEventListener("click", hideICTModal);
+  // Dispatch modal open event
+  window.dispatchEvent(new Event("modalOpen"));
+}
+
+// Function to hide SWHW modal
+function hideICTModal(event) {
+  event.stopPropagation();
+  const modal = document.getElementById("ICTModalBackground");
+  modal.style.display = "none";
+  // Dispatch modal close event
+  window.dispatchEvent(new Event("modalClose"));
+}
+document
+  .getElementById("closeICTModal")
+  .addEventListener("click", hideICTModal);
+
+
+// Function to show voice modal
+function showVoiceModal() {
+  const modal = document.getElementById("VoiceModalBackground");
+  modal.style.display = "flex";
+  window.addEventListener("click", hideVoiceModal);
+  // Dispatch modal open event
+  window.dispatchEvent(new Event("modalOpen"));
+}
+
+// Function to hide voice modal
+function hideVoiceModal(event) {
+  event.stopPropagation();
+  const modal = document.getElementById("VoiceModalBackground");
+  modal.style.display = "none";
+  // Dispatch modal close event
+  window.dispatchEvent(new Event("modalClose"));
+}
+document
+  .getElementById("closeICTModal")
+  .addEventListener("click", hideVoiceModal);
+
+
 window.showNaafaModal = showNaafaModal;
 window.showFailerModal = showFailerModal;
 window.showTtackModal = showTtackModal;
 window.showPayModal = showPayModal;
+
+window.showPlatfromModal = showPlatfromModal;
+window.showNetworkModal = showNetworkModal;
+window.showServerModal = showServerModal;
+window.showSWHWModal = showSWHWModal;
+window.showICTModal = showICTModal;
+window.showVoiceModal = showVoiceModal;
 
 document.getElementById("platform-link").addEventListener("click", function () {
   // Redirect to another page when the "Platform" text is clicked
