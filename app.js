@@ -566,29 +566,21 @@ window.showIntroModal = showIntroModal;
 window.showHistoryModal = showHistoryModal;
 window.showIntroductionModalModal = showIntroductionModalModal;
 
-document.getElementById("platform-link").addEventListener("click", function () {
-  // Redirect to another page when the "Platform" text is clicked
-  window.location.href = "platform.html";
-});
-document.getElementById("SI-link").addEventListener("click", function () {
-  // Redirect to another page when the "Platform" text is clicked
-  window.location.href = "SI.html";
-});
-
 document.addEventListener("DOMContentLoaded", function () {
+
   const introSection = document.getElementById("intro-section");
   let startTime;
-
+  
   function animate(time) {
     if (!startTime) {
       startTime = time;
     }
-
+  
     const elapsed = time - startTime;
-
+    
     // Set initial opacity to 1
     introSection.style.opacity = 1;
-
+  
     // Schedule the fade-out after 1 minute
     if (elapsed < 9000) {
       introSection.style.opacity = 1 - elapsed / 8000;
@@ -597,7 +589,8 @@ document.addEventListener("DOMContentLoaded", function () {
       introSection.style.display = "none";
     }
   }
-
+  
   // Start the animation
   requestAnimationFrame(animate);
-});
+  
+  });
