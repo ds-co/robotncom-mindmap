@@ -39,7 +39,9 @@ body {
 #closeServerModal,
 #closeSWHWModal,
 #closeICTModal,
-#closeVoiceModal
+#closeVoiceModal,
+#closeIntroModal,
+#closeHistoryModal
 {
   position: absolute;
   top: 10px;

@@ -139,8 +139,14 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
           showICTModal();
           break;
         case "Voice Infrastructure":
-            showVoiceModal();
-            break;
+          showVoiceModal();
+          break;
+        case "RobotNcom":
+          showIntroModal();
+          break;
+        case "history":
+          showHistoryModal();
+          break;
         default:
           break;
       }
@@ -416,7 +422,6 @@ document
   .getElementById("closeServerModal")
   .addEventListener("click", hideServerModal);
 
-
 // Function to show SWHW modal
 function showSWHWModal() {
   const modal = document.getElementById("SWHWModalBackground");
@@ -437,7 +442,6 @@ function hideSWHWModal(event) {
 document
   .getElementById("closeSWHWModal")
   .addEventListener("click", hideSWHWModal);
-
 
 // Function to show SWHW modal
 function showICTModal() {
@@ -460,7 +464,6 @@ document
   .getElementById("closeICTModal")
   .addEventListener("click", hideICTModal);
 
-
 // Function to show voice modal
 function showVoiceModal() {
   const modal = document.getElementById("VoiceModalBackground");
@@ -482,6 +485,49 @@ document
   .getElementById("closeICTModal")
   .addEventListener("click", hideVoiceModal);
 
+// Function to show voice modal
+function showIntroModal() {
+  const modal = document.getElementById("IntroModalBackground");
+  modal.style.display = "flex";
+  window.addEventListener("click", hideIntroModal);
+  // Dispatch modal open event
+  window.dispatchEvent(new Event("modalOpen"));
+}
+
+// Function to hide voice modal
+function hideIntroModal(event) {
+  event.stopPropagation();
+  const modal = document.getElementById("IntroModalBackground");
+  modal.style.display = "none";
+  // Dispatch modal close event
+  window.dispatchEvent(new Event("modalClose"));
+}
+document
+  .getElementById("closeIntroModal")
+  .addEventListener("click", hideIntroModal);
+
+
+// Function to show voice modal
+function showHistoryModal() {
+  const modal = document.getElementById("HistoryModalBackground");
+  modal.style.display = "flex";
+  window.addEventListener("click", hideHistoryModal);
+  // Dispatch modal open event
+  window.dispatchEvent(new Event("modalOpen"));
+}
+
+// Function to hide voice modal
+function hideHistoryModal(event) {
+  event.stopPropagation();
+  const modal = document.getElementById("HistoryModalBackground");
+  modal.style.display = "none";
+  // Dispatch modal close event
+  window.dispatchEvent(new Event("modalClose"));
+}
+document
+  .getElementById("closeIntroModal")
+  .addEventListener("click", hideHistoryModal);
+
 
 window.showNaafaModal = showNaafaModal;
 window.showFailerModal = showFailerModal;
@@ -494,6 +540,8 @@ window.showServerModal = showServerModal;
 window.showSWHWModal = showSWHWModal;
 window.showICTModal = showICTModal;
 window.showVoiceModal = showVoiceModal;
+window.showIntroModal = showIntroModal;
+window.showHistoryModal = showHistoryModal;
 
 document.getElementById("platform-link").addEventListener("click", function () {
   // Redirect to another page when the "Platform" text is clicked
