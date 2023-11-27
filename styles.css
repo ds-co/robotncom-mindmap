@@ -41,7 +41,8 @@ body {
 #closeICTModal,
 #closeVoiceModal,
 #closeIntroModal,
-#closeHistoryModal
+#closeHistoryModal,
+#closeIntroductionModal
 {
   position: absolute;
   top: 10px;

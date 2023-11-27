@@ -147,6 +147,9 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
         case "history":
           showHistoryModal();
           break;
+        case "Our Competence":
+          showIntroductionModalModal();
+          break;
         default:
           break;
       }
@@ -506,7 +509,6 @@ document
   .getElementById("closeIntroModal")
   .addEventListener("click", hideIntroModal);
 
-
 // Function to show voice modal
 function showHistoryModal() {
   const modal = document.getElementById("HistoryModalBackground");
@@ -525,9 +527,29 @@ function hideHistoryModal(event) {
   window.dispatchEvent(new Event("modalClose"));
 }
 document
-  .getElementById("closeIntroModal")
+  .getElementById("closeHistoryModal")
   .addEventListener("click", hideHistoryModal);
 
+  // Function to show Introduction modal
+  function showIntroductionModalModal() {
+    const modal = document.getElementById("IntroductionModalBackground");
+    modal.style.display = "flex";
+    window.addEventListener("click", hideIntroductionModal);
+    // Dispatch modal open event
+    window.dispatchEvent(new Event("modalOpen"));
+  }
+  
+  // Function to hide Introduction modal
+  function hideIntroductionModal(event) {
+    event.stopPropagation();
+    const modal = document.getElementById("IntroductionModalBackground");
+    modal.style.display = "none";
+    // Dispatch modal close event
+    window.dispatchEvent(new Event("modalClose"));
+  }
+  document
+    .getElementById("closeIntroductionModal")
+    .addEventListener("click", hideIntroductionModal);
 
 window.showNaafaModal = showNaafaModal;
 window.showFailerModal = showFailerModal;
@@ -542,6 +564,7 @@ window.showICTModal = showICTModal;
 window.showVoiceModal = showVoiceModal;
 window.showIntroModal = showIntroModal;
 window.showHistoryModal = showHistoryModal;
+window.showIntroductionModalModal = showIntroductionModalModal;
 
 document.getElementById("platform-link").addEventListener("click", function () {
   // Redirect to another page when the "Platform" text is clicked
