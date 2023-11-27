@@ -2,6 +2,8 @@
   "nodes": [
     {"id": "Robot N Com", "group": 1},
 
+
+
     {"id": "Platform", "group": 2},
     {"id": "Failertalk", "group": 3},
     {"id": "Ttagttaguli", "group": 3},
@@ -15,18 +17,23 @@
     {"id": "Computer HW", "group": 3},
     {"id": "Voice Infrastructure", "group": 3},
     {"id": "network solutions", "group": 3},
+
+    
     
 
     {"id": "Awards", "group": 2},
     {"id": "MSS Ministry's Business Innovation Award", "group": 3},
     {"id": "Korea Engineer Award", "group": 3},
     {"id": "Top 100 Korean Brand Award [IT Platform]", "group": 3},
+    
 
     {"id": "SNS", "group": 2},
     {"id": "Instagram", "group": 3},
     {"id": "Homepage", "group": 3},
     {"id": "Naver Blog", "group": 3},
     {"id": "Kakaotalk", "group": 3}
+
+    
 
     
     
