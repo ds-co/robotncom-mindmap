@@ -110,15 +110,6 @@ body {
 }
 
 
-.nav__logo {
-  position: fixed;
-  top: 20px; /* Adjust the top distance as needed */
-  left: 20px; /* Adjust the left distance as needed */
-  width: 250px; /* Adjust the width as needed */
-  height: auto; /* Maintain aspect ratio */
-  z-index: 1000; /* Set z-index to make sure it appears above other elements */
-}
-
 :root {
   --color-bg: hsl(240 50% 97% / 100%);
   --color-text-dark: hsl(240 20% 40% / 100%);
@@ -181,26 +172,20 @@ body {
   --color-orange: hsl(40 31% 34% / 100%);
 }
 
-body {
-  background-color: var(--color-bg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  gap: var(--spacing-normal);
-  height: 100dvh;
-  color: var(--color-text-dark);
-}
 
+.nav_logo_group{
+  display: flex;
+  width: 100vw;
+}
 .nav {
-  margin-top: var(--spacing-l);
+  /* margin-top: var(--spacing-l); */
   display: grid;
   grid-template-columns: auto 1fr; /* Updated grid-template-columns */
   justify-content: start; /* Align items to the start */
   align-items: center;
   grid-gap: var(--spacing-xs) 0;
   position: relative;
-  max-width: var(--nav-max-width);
+  /* max-width: var(--nav-max-width); */
 }
 
 .nav__links {
