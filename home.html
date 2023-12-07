@@ -1,0 +1,566 @@
+<!-- 홈 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+
+
+    <script src="//unpkg.com/three"></script>
+    <script src="//unpkg.com/3d-force-graph"></script>
+    <script src="https://kit.fontawesome.com/3624917c4f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="nav">
+        <img src="https://cdn.imweb.me/thumbnail/20220810/4491282c270e2.png" alt="Company Logo" class="nav__logo">
+        <div class="nav__links">
+            <a href="#" class="nav__link" link-name="whoweare">Who We Are</a>
+            <a href="#" class="nav__link" link-name="nsolution">Network Solution</a>
+            <a href="#" class="nav__link" link-name="ssloution">SW Solution</a>
+            <a href="#" class="nav__link" link-name="contact">Contact Us</a>
+        </div>
+
+        <section class="panels">
+            <div class="panel" panel-name="whoweare">
+                <div class="panel__column">
+                    <a href="#" class="card card--green">
+                        <span class="card__icon card__icon--office"></span>
+                        <h4 class="card__title">기업소개</h4>
+                    </a>
+                    <a href="#" class="card card--blue">
+                        <span class="card__icon card__icon--history"></span>
+                        <h4 class="card__title">History</h4>
+                    </a>
+                </div>
+                <div class="panel__column">
+                    <a href="#" class="card card--orange">
+                        <span class="card__icon card__icon--certification"></span>
+                        <h4 class="card__title">기술인증</h4>
+                    </a>
+                    <a href="#" class="card card--pink">
+                        <span class="card__icon card__icon--partner"></span>
+                        <h4 class="card__title">주요고객사</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="panel" panel-name="nsolution">
+                <div class="panel__column">
+                    <a href="#" class="card card--orange">
+                        <span class="card__icon card__icon--hospital"></span>
+                        <h4 class="card__title">Hospital & Bio Health</h4>
+                    </a>
+                    <a href="#" class="card card--pink">
+                        <span class="card__icon card__icon--infra"></span>
+                        <h4 class="card__title">SystemInfra IT</h4>
+                    </a>
+                </div>
+                <div class="panel__column">
+                    <a href="#" class="card card--blue">
+                        <span class="card__icon card__icon--display"></span>
+                        <h4 class="card__title">Display</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="panel" panel-name="ssloution">
+                <div class="panel__column">
+                    <a href="#" class="card card--pink">
+                        <span class="card__icon card__icon--naafaa"></span>
+                        <h4 class="card__title">나아파</h4>
+                    </a>
+                    <a href="#" class="card card--blue">
+                        <span class="card__icon card__icon--moonja"></span>
+                        <h4 class="card__title">문자페이</h4>
+                    </a>
+                </div>
+                <div class="panel__column">
+                    <a href="#" class="card card--green">
+                        <span class="card__icon card__icon--ttack"></span>
+                        <h4 class="card__title">딱따구리</h4>
+                    </a>
+                    <a href="#" class="card card--orange">
+                        <span class="card__icon card__icon--failer"></span>
+                        <h4 class="card__title">페일러톡</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="panel" panel-name="contact">
+                <div class="panel__column">
+                    <a href="#" class="card card--blue">
+                        <span class="card__icon card__icon--call"></span>
+                        <h4 class="card__title">문의하기</h4>
+                    </a>
+                </div>
+                <div class="panel__column">
+                    <a href="#" class="card card--orange">
+                        <span class="card__icon card__icon--come"></span>
+                        <h4 class="card__title">찾아오시는 길</h4>
+                    </a>
+                </div>
+            </div>
+            
+        </section>
+    </nav>
+
+    <div class="controls">
+        <div class="control">
+            <label for="themeSwitch" class="control__label">Dark Theme</label>
+            <input type="checkbox" id="themeSwitch" class="toggle">
+        </div>
+    </div>
+    <div id="NaafaModalBackground" style="
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+">
+        <div id="naafaModal" class="modal">
+            <span id="closeNaafaModal">&times;</span>
+            <div style="flex: 1">
+                <div>
+                    <img src="image/p.png" alt="Your Image" style="margin-right: 10px" />
+                    <img src="image/h.png" alt="Your Image" />
+                    <p style="
+          float: right;
+          color: rgba(255, 255, 255, 0.822);
+          margin-right: 10px;
+        ">
+                        Platfrom 01
+                    </p>
+                </div>
+
+                <h1>나아파 Naafaa</h1>
+                <p>나아파는 가나다라마바사아자차카타파하</p>
+            </div>
+            <div class="image-container">
+                <div>
+                    <img src="image/Naafaa2.svg" alt="Naafa Image" style="width: 44%;" />
+                </div>
+            </div>
+            <div style="width: 35%">
+                <button class="custom-button" onclick="showNaafaModal()">
+                    의료통합 Saas 플랫폼
+                </button>
+                <button class="custom-button" onclick="showNaafaModal()">
+                    디지털 헬스케어
+                </button>
+                <button class="custom-button" onclick="showNaafaModal()">
+                    의료 혁신
+                </button>
+                <button class="custom-button" onclick="showNaafaModal()">
+                    CRM+EMR+APP+HR
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="FailerModalBackground" style="
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+">
+        <div id="failerModal" class="modal">
+            <span id="closeFailerModal">&times;</span>
+            <div style="flex: 1">
+                <div>
+                    <img src="image/p.png" alt="Your Image" style="margin-right: 10px" />
+                    <img src="image/F.png" alt="Your Image" />
+                    <p style="
+          float: right;
+          color: rgba(255, 255, 255, 0.822);
+          margin-right: 10px;
+        ">
+                        Platfrom 02
+                    </p>
+                </div>
+
+                <h1>페일러톡 FailerTalk</h1>
+                <p>페일러톡은 가나다라마바사아자차카타파하</p>
+            </div>
+            <div class="image-container">
+                <div>
+                    <img src="image/Failer2.svg" alt="Naafa Image" style="width: 39%;" />
+                </div>
+            </div>
+            <div style="width: 35%">
+                <button class="custom-button" onclick="showFailerModal()">
+                    나의 실수·실패 공유
+                </button>
+                <button class="custom-button" onclick="showFailerModal()">
+                    소통 커뮤니티
+                </button>
+                <button class="custom-button" onclick="showFailerModal()">
+                    어쩌고 저쩌고
+                </button>
+                <button class="custom-button" onclick="showFailerModal()">
+                    어쩌고 저쩌고
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="TtackModalBackground" style="
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+">
+        <div id="ttackModal" class="modal">
+            <span id="closeTtackModal">&times;</span>
+            <div style="flex: 1">
+                <div>
+                    <img src="image/p.png" alt="Your Image" style="margin-right: 10px" />
+                    <img src="image/T.png" alt="Your Image" />
+                    <p style="
+          float: right;
+          color: rgba(255, 255, 255, 0.822);
+          margin-right: 10px;
+        ">
+                        Platfrom 03
+                    </p>
+                </div>
+
+                <h1>딱따구리 TtackTaguri</h1>
+                <p>딱따구리는 가나다라마바사아자차카타파하</p>
+            </div>
+            <div class="image-container">
+                <div>
+                    <img src="image/Ttackttaguri2.svg" alt="TtackTaguri Image" style="width: 40%;" />
+                </div>
+            </div>
+            <div style="width: 35%">
+                <button class="custom-button" onclick="showTtackModal()">
+                    딱따구리 기능 1
+                </button>
+                <button class="custom-button" onclick="showTtackModal()">
+                    딱따구리 기능 2
+                </button>
+                <button class="custom-button" onclick="showTtackModal()">
+                    딱따구리 기능 3
+                </button>
+                <button class="custom-button" onclick="showTtackModal()">
+                    딱따구리 기능 4
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="PayModalBackground" style="
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+">
+        <div id="payModal" class="modal">
+            <span id="closePayModal">&times;</span>
+            <div style="flex: 1">
+                <div>
+                    <img src="image/p.png" alt="Your Image" style="margin-right: 10px" />
+                    <img src="image/m.png" alt="Your Image" />
+                    <p style="
+          float: right;
+          color: rgba(255, 255, 255, 0.822);
+          margin-right: 10px;
+        ">
+                        Platfrom 04
+                    </p>
+                </div>
+
+                <h1>문자페이 Moonjapay</h1>
+                <p>문자페이는 가나다라마바사아자차카타파하</p>
+            </div>
+            <div class="image-container">
+                <div>
+                    <img src="image/Moonjapay2.svg" alt="Moonjapay Image" style="width: 45%;" />
+                </div>
+            </div>
+            <div style="width: 35%">
+                <button class="custom-button" onclick="showPayModal()">
+                    문자페이 기능 1
+                </button>
+                <button class="custom-button" onclick="showPayModal()">
+                    문자페이 기능 2
+                </button>
+                <button class="custom-button" onclick="showPayModal()">
+                    문자페이 기능 3
+                </button>
+                <button class="custom-button" onclick="showPayModal()">
+                    문자페이 기능 4
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="PlatfromModalBackground" style="
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+">
+        <div id="PlatfromModal" class="modal">
+            <span id="closePlatfromModal">&times;</span>
+            <div style="flex: 1">
+                <h1 style="text-align: center;">플랫폼 개발</h1>
+                <div style="float: right; margin-right: 15px;">
+                    <p>· 플랫폼 개발 및 IoT 솔루션</p>
+                    <p>· 플랫폼 기획/개발, UI · UX</p>
+                    <p>· 융복합 IoT System 및 Service</p>
+                    <p>· AI, Machine Learning, Deep Learning, Big Data 등</p>
+                </div>
+                <img src="image/platfromMain.svg" alt="platfromMain Image" style="margin-top: 40px; width: 35%;" />
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+
+    <div id="NetworkModalBackground" style="
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+">
+        <div id="NetworkModal" class="modal">
+            <span id="closeNetworkModal">&times;</span>
+            <div style="flex: 1">
+                <h1 style="text-align: center;">IT 네트워크 솔루션</h1>
+                <div style="float: right; margin-right: 15px;">
+                    <p>· 네트워크 설계·구축, 컨설팅</p>
+                    <p>· 통합 SSID AP 구축</p>
+                    <p>· LAN UTP CAT.6,7, 5E 구축</p>
+                    <p>· 정보통신/통신설비/통신선로</p>
+                </div>
+                <img src="image/networkMain.svg" alt="platfromMain Image" style="margin-top: 40px; width: 35%;" />
+            </div>
+            <div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="ServerModalBackground" style="
+height: 100vh;
+width: 100vw;
+position: fixed;
+display: none;
+justify-content: center;
+align-items: center;
+z-index: 100;
+">
+        <div id="ServerModal" class="modal">
+            <span id="closeServerModal">&times;</span>
+            <div style="flex: 1">
+                <h1 style="text-align: center;">서버 및 보안 솔루션</h1>
+                <div style="float: right; margin-right: 15px;">
+                    <p>· NAS·DAS Server</p>
+                    <p>· DATA Server</p>
+                    <p>· Cloud Server</p>
+                    <p>· DATA 보안 솔루션</p>
+                    <p>· 병원/기업 ERP Server</p>
+                </div>
+                <img src="image/serversecurityMain.svg" alt="platfromMain Image"
+                    style="margin-top: 40px; width: 35%;" />
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+
+    <div id="SWHWModalBackground" style="
+height: 100vh;
+width: 100vw;
+position: fixed;
+display: none;
+justify-content: center;
+align-items: center;
+z-index: 100;
+">
+        <div id="SWHWModal" class="modal">
+            <span id="closeSWHWModal">&times;</span>
+            <div style="flex: 1">
+                <h1 style="text-align: center;">커스텀 컴퓨터 HW+SW</h1>
+                <div style="float: right; margin-right: 15px;">
+                    <p>· 컴퓨터·모니터· 노트북 주변기기</p>
+                    <p>· 컴퓨터·모니터· 노트북 Rental</p>
+                    <p>· 잉크젯· 디지털복합기 Rental </p>
+                    <p>· 소프트웨어 컨설팅 및 구축 </p>
+                    <p>· 공간 맞춤형 컴퓨터 솔루션</p>
+                </div>
+                <img src="image/swhwMain.svg" alt="swhwMain Image" style="margin-top: 40px; width: 35%;" />
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ICTModalBackground" style="
+height: 100vh;
+width: 100vw;
+position: fixed;
+display: none;
+justify-content: center;
+align-items: center;
+z-index: 100;
+">
+        <div id="ICTModal" class="modal">
+            <span id="closeICTModal">&times;</span>
+            <div style="flex: 1">
+                <h1 style="text-align: center;">정보 통신</h1>
+                <div style="float: right; margin-right: 15px;">
+                    <p>· 통신</p>
+                    <p>· 전산</p>
+                    <p>· 네트워크 </p>
+                    <p>· Data Sharing </p>
+                </div>
+                <img src="image/ictMain.svg" alt="ictMain Image" style="margin-top: 40px; width: 35%;" />
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="VoiceModalBackground" style="
+height: 100vh;
+width: 100vw;
+position: fixed;
+display: none;
+justify-content: center;
+align-items: center;
+z-index: 100;
+">
+        <div id="VoiceModal" class="modal">
+            <span id="closeVoiceModal">&times;</span>
+            <div style="flex: 1">
+                <h1 style="text-align: center;">보이스 인프라 구축</h1>
+                <div style="float: right; margin-right: 15px;">
+                    <p>· ARS 통화연결음 솔루션</p>
+                    <p>· IP Centrex Phone</p>
+                    <p>· CRM· CTI 연동</p>
+                    <p>· Call Center 솔루션</p>
+                    <p>· Voice Recording</p>
+                </div>
+                <img src="image/voiceMain.svg" alt="voiceMain Image" style="margin-top: 40px; width: 35%;" />
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="IntroModalBackground" style="height: 100vh;
+width: 100vw;
+position: fixed;
+display: none;
+justify-content: center;
+align-items: center;
+z-index: 100;
+">
+        <div id="IntroModal" class="modal">
+            <span id="closeIntroModal">&times;</span>
+            <div style="flex: 1">
+                <h1 style="text-align: center;">IT 네트워크·플랫폼 솔루션 전문 기업<br>로봇앤컴주식회사</h1>
+                <div style="float: right; margin-right: 15px;">
+                    <div style="text-align: center;">
+                        <p>2018년 1월 설립되어, IT HW/SW 사업을 전문적으로 진행하고 있으며</p>
+                        <p>ISO 메인비즈 외 20여 개의 기술 인증과 기술 특허 30여 개, 상표권 70여건</p>
+                        <p>을 확보하고 있습니다.</p>
+                        <p>22년 기준 179억의 누적 매출을 보유하고 있으며 현재 개인 및 기업을</p>
+                        <p>포함하여 총 12만 회의 거래를 진행하고 있습니다.</p>
+                    </div>
+                    <img src="image/introMini.svg" alt="introMini Image"
+                        style="background-color: white; border-radius: 20px; margin-left: 50px; margin-top: 15px;" />
+                </div>
+                <img src="image/IntroMain.svg" alt="IntroMain Image"
+                    style="margin-top: 40px; width: 35%; margin-left: 65px;" />
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="HistoryModalBackground" style="
+height: 100vh;
+width: 100vw;
+position: fixed;
+display: none;
+justify-content: center;
+align-items: center;
+z-index: 100;
+">
+        <div id="HistoryModal" class="modal">
+            <span id="closeHistoryModal">&times;</span>
+            <div style="flex: 1">
+                <h1 style="text-align: center;">연혁</h1>
+
+                <img src="image/historyMain.svg" alt="historyMain Image"
+                    style="margin: auto; display: block; width: 80%;" />
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+
+    <div id="IntroductionModalBackground" style="
+height: 100vh;
+width: 100vw;
+position: fixed;
+display: none;
+justify-content: center;
+align-items: center;
+z-index: 100;
+">
+        <div id="IntroductionModal" class="modal">
+            <span id="closeIntroductionModal">&times;</span>
+            <div style="flex: 1">
+                <h1 style="text-align: center;">강점 및 경쟁력</h1>
+                <div style="float: right; margin-right: 15px;">
+                </div>
+                <img src="image/company_Introduction.svg" alt="voiceMain Image" style="margin-top: 40px; width: 95%;" />
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+    <div id="3d-graph"></div>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+@keyframes hideElements {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes showH1 {
+    0% {
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes showHomeContent {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(image/backimg.jpg);
+    font-family: 'pretendard';
+  }
+  
+  div.circle {
+    width: 500px;
+    height: 500px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    position: relative;
+    animation: draw 2s ease-in-out forwards, fill 1s ease-in-out 2s forwards,
+      showImage 1s ease-in-out 3s forwards,
+      hideElements 1s ease-in-out 5s forwards;
+  }
+  
+  @keyframes draw {
+    0% {
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+    }
+    25% {
+      border-top-color: #d0b9fcbe;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+    }
+    50% {
+      border-top-color: #d0b9fcbe;
+      border-right-color: #cdd0ffaa;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+    }
+    75% {
+      border-top-color: #d0b9fcbe;
+      border-right-color: #cdd0ffaa;
+      border-bottom-color: #65d3ffaa;
+      border-left-color: transparent;
+    }
+    100% {
+      border-top-color: #d0b9fcbe;
+      border-right-color: #cdd0ffaa;
+      border-bottom-color: #65d3ffaa;
+      border-left-color: #65d3ffaa;
+    }
+  }
+  
+  @keyframes fill {
+    0% {
+      background: transparent;
+    }
+    100% {
+      background: linear-gradient(to right, #d0b9fcbe, #cdd0ffaa, #657cffaa);
+      border: none;
+    }
+  }
+  
+  @keyframes showImage {
+    0% {
+      background-image: linear-gradient(
+        to right,
+        #d0b9fcbe,
+        #cdd0ffaa,
+        #657cffaa
+      );
+    }
+    10% {
+      background-image: linear-gradient(
+        to right,
+        #d0b9fcbe,
+        #cdd0ffaa,
+        #657cffaa
+      );
+    }
+    15% {
+      background-image: linear-gradient(to right, #d0b9fcbe, #cdd0ffaa, #657cffaa),
+        url("image/logo.png");
+      background-size: auto, 50%; /* Adjust the size here */
+      background-position: 0 0, center;
+      background-repeat: no-repeat, no-repeat;
+    }
+    85% {
+      background-image: linear-gradient(to right, #d0b9fcbe, #cdd0ffaa, #657cffaa),
+        url("image/logo.png");
+      background-size: auto, 50%; /* Adjust the size here */
+      background-position: 0 0, center;
+      background-repeat: no-repeat, no-repeat;
+    }
+    90% {
+      background-image: linear-gradient(
+        to right,
+        #d0b9fcbe,
+        #cdd0ffaa,
+        #657cffaa
+      );
+    }
+    100% {
+      background-image: linear-gradient(
+        to right,
+        #d0b9fcbe,
+        #cdd0ffaa,
+        #657cffaa
+      );
+      position: relative; /* Ensure relative positioning for absolute centering */
+    }
+  }
+  
+  @keyframes showH1 {
+    0% {
+      opacity: 0; /* Initially hide the h1 */
+    }
+    100% {
+      opacity: 1; /* Make the h1 visible at 100% keyframe */
+    }
+  }
+  
+  h1 {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: showH1 1s ease-in-out 3.5s forwards, hideElements 1s ease-in-out 5s forwards;
+  }

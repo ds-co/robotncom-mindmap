@@ -1,5 +1,58 @@
+/* THEME SWITCH */
+const themeSwitch = document.getElementById('themeSwitch');
+themeSwitch.addEventListener('change', onThemeChange);
+
+function onThemeChange(event) {
+  event.currentTarget.checked
+    ? document.documentElement.setAttribute('dark-theme', '')
+    : document.documentElement.removeAttribute('dark-theme');
+}
+
+/* DROPDOWN NAV */
+class DropdownNav {
+  activeLink = null;
+  visiblePanelAttribute = 'is-visible';
+  linkIsOpenAttribute = 'is-open';
+
+  constructor(navEl) {
+    this.navEl = navEl;
+    this.links = this.navEl.querySelectorAll('.nav__link');
+    this.panels = this.navEl.querySelectorAll('.panel');
+
+    this.links.forEach((link) => {
+      link.addEventListener('click', this._onLinkClick);
+    });
+  }
+
+  _onLinkClick = (event) => {
+    const clickedLink = event.target.getAttribute('link-name');
+    if (clickedLink !== this.activeLink) {
+      this.activeLink = clickedLink;
+    } else {
+      this.activeLink = null;
+    }
+
+    this._updateUI();
+  }
+
+  _updateUI = () => {
+    this.links.forEach((link) => {
+      link.getAttribute('link-name') === this.activeLink
+        ? link.setAttribute(this.linkIsOpenAttribute, '')
+      : link.removeAttribute(this.linkIsOpenAttribute);
+    });
+
+    this.panels.forEach((panel) => {
+      panel.getAttribute('panel-name') === this.activeLink
+        ? panel.setAttribute(this.visiblePanelAttribute, '')
+      : panel.removeAttribute(this.visiblePanelAttribute);
+    })
+  }
+}
+
+new DropdownNav(document.querySelector('.nav'));
+
 const distance = 270;
-let angle = 15;
 let isModalOpen = false;
 
 // Function to calculate distance between two nodes with units
@@ -566,31 +619,68 @@ window.showIntroModal = showIntroModal;
 window.showHistoryModal = showHistoryModal;
 window.showIntroductionModalModal = showIntroductionModalModal;
 
-document.addEventListener("DOMContentLoaded", function () {
-
-  const introSection = document.getElementById("intro-section");
-  let startTime;
-  
-  function animate(time) {
-    if (!startTime) {
-      startTime = time;
-    }
-  
-    const elapsed = time - startTime;
-    
-    // Set initial opacity to 1
-    introSection.style.opacity = 1;
-  
-    // Schedule the fade-out after 1 minute
-    if (elapsed < 9000) {
-      introSection.style.opacity = 1 - elapsed / 8000;
-      requestAnimationFrame(animate);
-    } else {
-      introSection.style.display = "none";
-    }
-  }
-  
-  // Start the animation
-  requestAnimationFrame(animate);
-  
+let angle = 182;
+setInterval(() => {
+  Graph.cameraPosition({
+    x: distance * Math.sin(angle),
+    z: distance * Math.cos(angle),
   });
+  angle += Math.PI / 6000;
+}, 10);
+
+let prevX = 0,
+  prevY = 0;
+const $target = document.querySelector("#direction");
+
+let mouseDownTimeout;
+let mouseDown = false;
+
+window.addEventListener("mousedown", (e) => {
+  if (e.button === 0 || e.button === 2) {
+    // 왼쪽 또는 오른쪽 마우스 버튼이 눌렸을 때
+    mouseDown = true;
+
+    // 1000 밀리초(1초) 후에 함수 실행을 위한 타임아웃 설정
+    mouseDownTimeout = setTimeout(() => {
+      // 1초 후에 실행할 코드
+      console.log(
+        `${e.button === 0 ? "왼쪽" : "오른쪽"} 마우스 버튼이 눌렸습니다.`
+      );
+      // 여기서 함수를 호출하거나 다른 작업을 수행할 수 있습니다.
+      // 예를 들어, getMouseDirection(e)와 같은 함수를 호출할 수 있습니다.
+      getMouseDirection(e);
+    }, 1000);
+  }
+});
+
+window.addEventListener("mouseup", () => {
+  // 마우스 버튼이 떼어지면 타임아웃을 지웁니다.
+  clearTimeout(mouseDownTimeout);
+  mouseDown = false;
+});
+
+window.addEventListener("mousemove", (e) => {
+  // 왼쪽 또는 오른쪽 마우스 버튼이 눌린 상태인지 확인합니다.
+  if (mouseDown) {
+    getMouseDirection(e);
+  }
+});
+
+function getMouseDirection(e) {
+  const xDir = prevX <= e.pageX ? "right" : "left";
+  prevX = e.pageX;
+  console.log(`${xDir} 마우스 방향`);
+  if (xDir === "left") {
+    Graph.cameraPosition({
+      x: distance * Math.sin(angle),
+      z: distance * Math.cos(angle),
+    });
+    angle += Math.PI / 100;
+  } else if (xDir === "right") {
+    Graph.cameraPosition({
+      x: distance * Math.sin(angle),
+      z: distance * Math.cos(angle),
+    });
+    angle -= Math.PI / 100;
+  }
+}
