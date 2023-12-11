@@ -23,105 +23,50 @@
 </head>
 
 <body>
-    <nav class="nav">
-        <div class="nav_logo_group">
-            <img src="https://cdn.imweb.me/thumbnail/20220810/4491282c270e2.png" alt="Company Logo" class="nav__logo" width="20%">
-
-            <div class="nav__links">
-                <a href="#" class="nav__link" link-name="whoweare">Who We Are</a>
-                <a href="#" class="nav__link" link-name="nsolution">Network Solution</a>
-                <a href="#" class="nav__link" link-name="ssloution">SW Solution</a>
-                <a href="#" class="nav__link" link-name="contact">Contact Us</a>
-            </div>
+    <header>
+        <div>
+            <img src="image/menulogo.png" alt="office Logo" width="150px">
         </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">WHO WE ARE</a>
+                    <ul class="submenu">
+                        <li><a href="#">기업소개</a></li>
+                        <li><a href="#">History</a></li>
+                        <li><a href="#">기술인증</a></li>
+                        <li><a href="#">주요고객사</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">NETWORK SOLUTION</a>
+                    <ul class="submenu">
+                        <li><a href="#">Hospital & Bio Health</a></li>
+                        <li><a href="#">SystemInfra IT</a></li>
+                        <li><a href="#">Display</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">SW SOLUTION</a>
+                    <ul class="submenu">
+                        <li><a href="#">나아파</a></li>
+                        <li><a href="#">문자페이</a></li>
+                        <li><a href="#">딱따구리</a></li>
+                        <li><a href="#">페일러톡</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"> CONTACT US</a>
+                    <ul class="submenu">
+                        <li><a href="#">문의하기</a></li>
+                        <li><a href="#">찾아오시는 길</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+       
+    </header>
 
-        <section class="panels">
-            <div class="panel" panel-name="whoweare">
-                <div class="panel__column">
-                    <a href="#" class="card card--green">
-                        <span class="card__icon card__icon--office"></span>
-                        <h4 class="card__title">기업소개</h4>
-                    </a>
-                    <a href="#" class="card card--blue">
-                        <span class="card__icon card__icon--history"></span>
-                        <h4 class="card__title">History</h4>
-                    </a>
-                </div>
-                <div class="panel__column">
-                    <a href="#" class="card card--orange">
-                        <span class="card__icon card__icon--certification"></span>
-                        <h4 class="card__title">기술인증</h4>
-                    </a>
-                    <a href="#" class="card card--pink">
-                        <span class="card__icon card__icon--partner"></span>
-                        <h4 class="card__title">주요고객사</h4>
-                    </a>
-                </div>
-            </div>
-            <div class="panel" panel-name="nsolution">
-                <div class="panel__column">
-                    <a href="#" class="card card--orange">
-                        <span class="card__icon card__icon--hospital"></span>
-                        <h4 class="card__title">Hospital & Bio Health</h4>
-                    </a>
-                    <a href="#" class="card card--pink">
-                        <span class="card__icon card__icon--infra"></span>
-                        <h4 class="card__title">SystemInfra IT</h4>
-                    </a>
-                </div>
-                <div class="panel__column">
-                    <a href="#" class="card card--blue">
-                        <span class="card__icon card__icon--display"></span>
-                        <h4 class="card__title">Display</h4>
-                    </a>
-                </div>
-            </div>
-            <div class="panel" panel-name="ssloution">
-                <div class="panel__column">
-                    <a href="#" class="card card--pink">
-                        <span class="card__icon card__icon--naafaa"></span>
-                        <h4 class="card__title">나아파</h4>
-                    </a>
-                    <a href="#" class="card card--blue">
-                        <span class="card__icon card__icon--moonja"></span>
-                        <h4 class="card__title">문자페이</h4>
-                    </a>
-                </div>
-                <div class="panel__column">
-                    <a href="#" class="card card--green">
-                        <span class="card__icon card__icon--ttack"></span>
-                        <h4 class="card__title">딱따구리</h4>
-                    </a>
-                    <a href="#" class="card card--orange">
-                        <span class="card__icon card__icon--failer"></span>
-                        <h4 class="card__title">페일러톡</h4>
-                    </a>
-                </div>
-            </div>
-            <div class="panel" panel-name="contact">
-                <div class="panel__column">
-                    <a href="#" class="card card--blue">
-                        <span class="card__icon card__icon--call"></span>
-                        <h4 class="card__title">문의하기</h4>
-                    </a>
-                </div>
-                <div class="panel__column">
-                    <a href="#" class="card card--orange">
-                        <span class="card__icon card__icon--come"></span>
-                        <h4 class="card__title">찾아오시는 길</h4>
-                    </a>
-                </div>
-            </div>
-            
-        </section>
-    </nav>
-
-    <div class="controls">
-        <div class="control">
-            <label for="themeSwitch" class="control__label">Dark Theme</label>
-            <input type="checkbox" id="themeSwitch" class="toggle">
-        </div>
-    </div>
     <div id="NaafaModalBackground" style="
   height: 100vh;
   width: 100vw;
@@ -563,6 +508,7 @@ z-index: 100;
     </div>
     <div id="3d-graph"></div>
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
     <script src="app.js"></script>
 </body>
 

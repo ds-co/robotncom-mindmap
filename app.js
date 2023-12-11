@@ -1,59 +1,9 @@
-/* THEME SWITCH */
-const themeSwitch = document.getElementById('themeSwitch');
-themeSwitch.addEventListener('change', onThemeChange);
 
-function onThemeChange(event) {
-  event.currentTarget.checked
-    ? document.documentElement.setAttribute('dark-theme', '')
-    : document.documentElement.removeAttribute('dark-theme');
-}
 
-/* DROPDOWN NAV */
-class DropdownNav {
-  activeLink = null;
-  visiblePanelAttribute = 'is-visible';
-  linkIsOpenAttribute = 'is-open';
-
-  constructor(navEl) {
-    this.navEl = navEl;
-    this.links = this.navEl.querySelectorAll('.nav__link');
-    this.panels = this.navEl.querySelectorAll('.panel');
-
-    this.links.forEach((link) => {
-      link.addEventListener('click', this._onLinkClick);
-    });
-  }
-
-  _onLinkClick = (event) => {
-    const clickedLink = event.target.getAttribute('link-name');
-    if (clickedLink !== this.activeLink) {
-      this.activeLink = clickedLink;
-    } else {
-      this.activeLink = null;
-    }
-
-    this._updateUI();
-  }
-
-  _updateUI = () => {
-    this.links.forEach((link) => {
-      link.getAttribute('link-name') === this.activeLink
-        ? link.setAttribute(this.linkIsOpenAttribute, '')
-      : link.removeAttribute(this.linkIsOpenAttribute);
-    });
-
-    this.panels.forEach((panel) => {
-      panel.getAttribute('panel-name') === this.activeLink
-        ? panel.setAttribute(this.visiblePanelAttribute, '')
-      : panel.removeAttribute(this.visiblePanelAttribute);
-    })
-  }
-}
-
-new DropdownNav(document.querySelector('.nav'));
-
-const distance = 270;
+const distance = 250;
 let isModalOpen = false;
+
+
 
 // Function to calculate distance between two nodes with units
 function calculateDistanceWithUnits(node1, node2) {
@@ -309,6 +259,7 @@ window.addEventListener("resize", () => {
 });
 
 const textureLoader = new THREE.TextureLoader();
+
 const backgroundTexture = textureLoader.load("image/backimg.jpg");
 
 Graph.renderer().setClearColor(new THREE.Color("rgba(0, 0, 0, 1)")); // Set alpha value (0.8 for 80% opacity)
