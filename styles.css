@@ -354,14 +354,15 @@ overflow: hidden;
   top: 35px;
   right: 50px; 
   z-index: 1;
-  -webkit-user-select: none;
-  user-select: none;
+  /* -webkit-user-select: none;
+  user-select: none; */
 }
 
 #menuToggle a
 {
 text-decoration: none;
 color: #232323;
+font-family: 'IBM Plex Sans KR', sans-serif;
 
 transition: color 0.3s ease;
 }
@@ -441,53 +442,106 @@ transform: rotate(0deg) scale(0.2, 0.2);
 
 #menu {
   position: fixed;
-  width: 300px;
-  height: 790px;
+  width: 19vw;
+  height: 100vh;
   top: 0;
   right: 0;
-  padding: 50px;
-  padding-top: 125px;
+  /* padding: 50px; */
+  /* padding-top: 125px; */
   background: #ffffff;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   transform-origin: 100% 0;
   transform: translate(100%, 0);
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-
-}
-#menu li:first-child
-{
-/* padding: 20px 40px; */
-/* right: 15vw; */
-/* top: 100%; */
-margin-top: -21vw;
-margin-left: -25vh;
-font-size: 22px;
 }
 
-#menu img {
+#menu a:nth-child(1) li {   /*social*/
+  position : absolute ;
+  margin-top: -19vw;
+  right: 25vh;
+  font-size: 22px;
+}
+
+#menu a:nth-child(2) li {  /*공지사항*/
   position: absolute;
-  /* bottom: 0; */
-  right: 16.5vw;
+  margin-top: -11vw;
+  left: -1.6vh;
+  font-size: 22px;
+}
+
+#menu a:nth-child(3) li {  /*로봇앤컴 주식회사*/
+  position: absolute;
+  margin-top: 11vw;
+  left: -1.6vh;
+  font-size: 22px;
+  color: #5a5a5a;
+  text-align: left;
+}
+
+#menu a:nth-child(4) li {  /*주소*/
+  position: absolute;
+  margin-top: 16vw;
+  left: -1.6vh;
+  font-size: 15px;
+  color: #5a5a5a;
+  text-align: left;
+}
+
+#menu img { /*인스타 아이콘*/
+  position: absolute;
+  right: 15vw;
   top: 17vh;
   width: 15%;
 }
-
-/* #menu li:last-child
-{ */
-/* padding: 20px 40px; */
-/* right: 15vw; */
-/* top: 100%; */
-/* margin-top: -20vw;
-margin-left: -25vh;
-font-size: 22px;
-} */
 
 
 #menuToggle input:checked ~ ul {
   transform: translate(0, 0);
 }
+/* 여기까지 social */
+
+#menuBoxes {
+  /* display: flex; */
+  position: absolute;
+  /* width: 100vw;  */
+  /* justify-content: space-between; */
+  /* margin-top: 10px;  */
+}
+
+.menuBox:nth-child(1) {
+  width: 12vw;
+  height: 4vh;
+  padding: 50px;
+  margin-top: -2vh;
+  margin-left: 0.2vw;
+  background-color: #ffffff; 
+  border: 1px solid #ccc; 
+  border-radius: 1vw;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  
+}
+
+.menuBox:nth-child(2) {
+  width: 12vw;
+  height: 4vh;
+  padding: 50px;
+  margin-top: 2vh;
+  margin-left: 0.2vw;
+  background-color: #ffffff; 
+  border: 1px solid #ccc; 
+  border-radius: 1vw;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
 
 
-
-/* 여기까지 토글 */
+.separator {
+  position: absolute;
+  bottom: -2vw;
+  left: 0;
+  width: 100%;
+  height: 2px; 
+  background-color: #ccc; 
+}
