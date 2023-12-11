@@ -6,8 +6,6 @@ body {
   /* Set the default cursor style */
 }
 
-
-
 .modal {
   height: 650px;
   width: 1200px;
@@ -143,6 +141,7 @@ nav a {
 header:hover {
   background: #ffffff;
   padding-bottom: 150px;
+  
 }
 header:hover li a{
   color: black;
@@ -160,13 +159,14 @@ nav ul li {
 }
 
 nav ul li ul.submenu {
+  text-align: center;
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
   margin-top: 10px;
   white-space: nowrap;
-}
+ }
 
 nav ul:hover .submenu {
   display: block;
@@ -174,4 +174,12 @@ nav ul:hover .submenu {
 
 nav ul li ul.submenu li {
   margin-bottom: 8px;
+}
+.logo {
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease; /* Add transition for a smoother effect */
+}
+
+header:hover .logo {
+  filter: none; /* Remove the filter on hover */
 }
