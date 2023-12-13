@@ -185,22 +185,7 @@ nav ul:hover .submenu {
   display: block;
 }
 
-nav ul li ul.submenu::before {
-  content: '';
-  display: block;
-  width: 1px; /* Adjust the thickness of the line as needed */
-  height: 100%; /* Make the line the full height of the submenu */
-  background-color: gray; /* Adjust the color of the line */
-  position: absolute;
-  top: 0;
-  left: -10px; /* Adjust the distance between the line and submenu */
-}
 
-nav ul li ul.submenu li {
-  margin-bottom: 8px;
-  position: relative;
-  padding-left: 20px; /* Adjust the padding to create space for the line */
-}
 
 .logo {
   filter: brightness(0) invert(1);
