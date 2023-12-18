@@ -431,9 +431,7 @@ transform: rotate(0deg) scale(0.2, 0.2);
 
 
 
-
-
- @media (min-width: 1443px) and (max-width: 1690px) {
+  @media (min-width: 1449px) and (max-width: 1626px) { /*원래는 1443*/
   #menu {
     width: 20vw;
     transform: translate(0, 0);
@@ -444,7 +442,6 @@ transform: rotate(0deg) scale(0.2, 0.2);
   }
 
   #menu img {
-    /* display: none;  */
     position: absolute;
     right: 15.5vw;
     top: 17vh;
@@ -453,15 +450,12 @@ transform: rotate(0deg) scale(0.2, 0.2);
 
   .menuBox:nth-child(1),
   .menuBox:nth-child(2) {
-    width: 12vw;
+    width: 14vw;
     height: 5vh;
     padding: 25px;
     margin-top: 1vh;
     border-radius: 1vw;
   }
-
-
-
   
   #menu a:nth-child(3) li,
   #menu a:nth-child(4) li {
@@ -483,24 +477,23 @@ transform: rotate(0deg) scale(0.2, 0.2);
   }
 
   .separator {
-    /* position: absolute; */
     bottom: -2vw;
-    left: -1.9vw;
-    width: 125%;
+    left: -0.5vw;
+    width: 19vw;
     height: 0.25vh; 
   }
 } 
-@media (max-width: 1442px) {
+ @media (min-width: 1000px) and (max-width: 1439px)  {
   #menu a:nth-child(1) li {
     position : absolute ;
-    margin-top: -20vw;
-    right: 27vh;
+    margin-top: -18vw;
+    right: 25vh;
     font-size: 1.2em;
   }
   #menu a:nth-child(2) li {
     position: absolute;
-    margin-top: -10vw;
-    left: 1vh;
+    margin-top: -9vw;
+    left: -2vh;
     font-size: 1.2em;
   }
   #menu a:nth-child(3) li,
@@ -517,9 +510,9 @@ transform: rotate(0deg) scale(0.2, 0.2);
     margin-top: 1vh;
     border-radius: 1vw;
   }
-}
+} 
 
-@media (min-width: 800px) and (max-width: 1442px) {
+ @media (min-width: 500px) and (max-width: 1200px) {
   #menu a:nth-child(1) li {
     position : absolute ;
     margin-top: -17vw;
@@ -527,7 +520,6 @@ transform: rotate(0deg) scale(0.2, 0.2);
     font-size: 1.2em;
   }
   #menu img {
-    /* display: none;  */
     position: absolute;
     right: 14.6vw;
     top: 20vh;
@@ -553,4 +545,4 @@ transform: rotate(0deg) scale(0.2, 0.2);
     margin-top: 1vh;
     border-radius: 1vw;
   }
-}
+}  
