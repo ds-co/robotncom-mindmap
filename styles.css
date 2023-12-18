@@ -51,11 +51,11 @@ margin: 0 40px;
 }
 
 nav a {
-display: block;
-color: rgb(255, 255, 255);
+/* display: block; */
+color: rgb(255, 255, 255); 
 text-align: center;
-padding: 1px 16px;
-text-decoration: none;
+/* padding: 1px 16px;*/
+text-decoration: none; 
 font-size: 1.2em;
 
 }
@@ -344,9 +344,7 @@ transform: rotate(0deg) scale(0.2, 0.2);
 }
 
 #menu a:nth-child(1) li {   /*social*/
-  position : absolute ;
-  margin-top: -19vw;
-  right: 25vh;
+  height: 574px;
   font-size: 1.2em;
 }
 
@@ -431,7 +429,7 @@ transform: rotate(0deg) scale(0.2, 0.2);
 
 
 
-  @media (min-width: 1449px) and (max-width: 1626px) { /*원래는 1443*/
+@media (min-width: 1449px) and (max-width: 1626px) { 
   #menu {
     width: 20vw;
     transform: translate(0, 0);
@@ -443,8 +441,6 @@ transform: rotate(0deg) scale(0.2, 0.2);
 
   #menu img {
     position: absolute;
-    right: 15.5vw;
-    top: 17vh;
     width: 15%;
   }
 
@@ -453,7 +449,6 @@ transform: rotate(0deg) scale(0.2, 0.2);
     width: 14vw;
     height: 5vh;
     padding: 25px;
-    margin-top: 1vh;
     border-radius: 1vw;
   }
   
@@ -466,13 +461,11 @@ transform: rotate(0deg) scale(0.2, 0.2);
   #menu a:nth-child(1) li {
     position : absolute ;
     margin-top: -18vw;
-    right: 29vh;
     font-size: 1.2em;
   }
   #menu a:nth-child(2) li {
     position: absolute;
     margin-top: -9vw;
-    left: 1vh;
     font-size: 1.2em;
   }
 
@@ -482,18 +475,14 @@ transform: rotate(0deg) scale(0.2, 0.2);
     width: 19vw;
     height: 0.25vh; 
   }
-} 
- @media (min-width: 1000px) and (max-width: 1439px)  {
+}
+@media (min-width: 1000px) and (max-width: 1439px)  {
   #menu a:nth-child(1) li {
     position : absolute ;
-    margin-top: -18vw;
-    right: 25vh;
     font-size: 1.2em;
   }
   #menu a:nth-child(2) li {
     position: absolute;
-    margin-top: -9vw;
-    left: -2vh;
     font-size: 1.2em;
   }
   #menu a:nth-child(3) li,
@@ -506,17 +495,16 @@ transform: rotate(0deg) scale(0.2, 0.2);
   .menuBox:nth-child(2) {
     width: 12vw;
     height: 5vh;
-    padding: 25px;
-    margin-top: 1vh;
+
     border-radius: 1vw;
   }
-} 
+}
 
- @media (min-width: 500px) and (max-width: 1200px) {
+@media (min-width: 600px) and (max-width: 1600px) { */
   #menu a:nth-child(1) li {
     position : absolute ;
     margin-top: -17vw;
-    right: 23vh;
+    right: 27vh;
     font-size: 1.2em;
   }
   #menu img {
@@ -527,8 +515,7 @@ transform: rotate(0deg) scale(0.2, 0.2);
   }
   #menu a:nth-child(2) li {
     position: absolute;
-    margin-top: -9vw;
-    left: -3vh;
+    margin-top: -190px;
     font-size: 1.2em;
   }
   #menu a:nth-child(3) li,
@@ -537,7 +524,7 @@ transform: rotate(0deg) scale(0.2, 0.2);
     padding: 1vw;
     top: 45vh;
   }
-  .menuBox:nth-child(1),
+.menuBox:nth-child(1),
   .menuBox:nth-child(2) {
     width: 12vw;
     height: 5vh;
