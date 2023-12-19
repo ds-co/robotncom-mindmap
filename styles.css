@@ -51,13 +51,12 @@ margin: 0 40px;
 }
 
 nav a {
-/* display: block; */
-color: rgb(255, 255, 255); 
-text-align: center;
-/* padding: 1px 16px;*/
-text-decoration: none; 
-font-size: 1.2em;
-
+  /* display: block; */
+  color: rgb(255, 255, 255); 
+  text-align: center;
+  /* padding: 1px 16px;*/
+  text-decoration: none; 
+  font-size: 1.2em;
 }
 
 .menulogo {
@@ -65,9 +64,11 @@ font-size: 1.2em;
   width: 250px;
   margin-right: -190px; 
 } 
+
 /* .menu {
   width: 50px;
 } */
+
 .hamburger {
   /* top : -10vh; */
   height: 3vh;
@@ -142,10 +143,10 @@ font-size: 1.2em;
 }
 
 #graph-container {
-position: relative;
-width: 100vw;
-height: 100vh;
-overflow: hidden;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 @media (max-width: 768px) {
   .image-container img {
@@ -178,17 +179,17 @@ overflow: hidden;
 }
 
 #intro-section h1 {
-    opacity: 0;
-    animation: fadeIn 40s ease-in-out forwards;
-    color: white; 
-    position: absolute; 
-    bottom: 15vh; 
-    right: 5vw; 
-    font-size: 0.5em; 
-    font-weight: Semibold;
-    font-family: 'IBM Plex Sans KR', sans-serif;
-    /* font-family: 'Nanum Gothic Coding', monospace;  */
-    /* animation-delay: 3s; */
+  opacity: 0;
+  animation: fadeIn 40s ease-in-out forwards;
+  color: white; 
+  position: absolute; 
+  bottom: 15vh; 
+  right: 5vw; 
+  font-size: 0.5em; 
+  font-weight: Semibold;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  /* font-family: 'Nanum Gothic Coding', monospace;  */
+  /* animation-delay: 3s; */
 }
 
 #intro-section p:nth-child(1) {
@@ -249,34 +250,34 @@ overflow: hidden;
 
 #menuToggle a
 {
-text-decoration: none;
-color: #232323;
-font-family: 'IBM Plex Sans KR', sans-serif;
+  text-decoration: none;
+  color: #232323;
+  font-family: 'IBM Plex Sans KR', sans-serif;
 
-transition: color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 #menuToggle a:hover
 {
-color: tomato;
+  color: tomato;
 }
 
 
 #menuToggle input
 {
-display: block;
-width: 40px;
-height: 32px;
-position: absolute;
-top: -7px;
-left: -5px;
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
 
-cursor: pointer;
+  cursor: pointer;
 
-opacity: 0; 
-z-index: 2; 
+  opacity: 0; 
+  z-index: 2; 
 
--webkit-touch-callout: none;
+  -webkit-touch-callout: none;
 }
 
 
@@ -331,7 +332,7 @@ transform: rotate(0deg) scale(0.2, 0.2);
 
 #menu {
   position: fixed;
-  width: 19vw;
+  width: 400px;
   height: 100vh;
   top: 0;
   right: 0;
@@ -344,20 +345,22 @@ transform: rotate(0deg) scale(0.2, 0.2);
 }
 
 #menu a:nth-child(1) li {   /*social*/
-  height: 574px;
+  position: absolute;
+  top: 110px;
+  right: 270px;
   font-size: 1.2em;
 }
 
 #menu a:nth-child(2) li {  /*공지사항*/
   position: absolute;
-  margin-top: -11vw;
-  left: -1.6vh;
+  top: 260px;
+  left: -16px;
   font-size: 1.2em;
 }
 
 #menu a:nth-child(3) li {  /*로봇앤컴 주식회사*/
   position: absolute;
-  margin-top: 11vw;
+  margin-top: 190px;
   left: -1.6vh;
   font-size: 1.2em;
   color: #5a5a5a;
@@ -366,17 +369,35 @@ transform: rotate(0deg) scale(0.2, 0.2);
 
 #menu a:nth-child(4) li {  /*주소*/
   position: absolute;
-  margin-top: 16vw;
+  margin-top: 270px;
   left: -1.6vh;
   font-size: 0.8em;
   color: #5a5a5a;
   text-align: left;
 }
 
-#menu img { /*인스타 아이콘*/
+.icon { /*인스타 아이콘*/
   position: absolute;
-  right: 15vw;
-  top: 17vh;
+  right: 310px;
+  top: 170px;
+  width: 15%;
+}
+.icon2 { /*인스타 아이콘*/
+  position: absolute;
+  right: 220px;
+  top: 170px;
+  width: 15%;
+}
+.icon3 { /*인스타 아이콘*/
+  position: absolute;
+  right: 130px;
+  top: 170px;
+  width: 15%;
+}
+.icon4 { /*인스타 아이콘*/
+  position: absolute;
+  right: 40px;
+  top: 170px;
   width: 15%;
 }
 
@@ -391,10 +412,10 @@ transform: rotate(0deg) scale(0.2, 0.2);
 }
 
 .menuBox:nth-child(1) {
-  width: 12vw;
-  height: 4vh;
-  padding: 50px;
-  margin-top: -2vh;
+  width: 17vw;
+  height: 14vh;
+  /* padding: 50px;
+  margin-top: -2vh; */
   margin-left: 0.2vw;
   background-color: #ffffff; 
   border: 1px solid #ccc; 
@@ -405,10 +426,11 @@ transform: rotate(0deg) scale(0.2, 0.2);
 }
 
 .menuBox:nth-child(2) {
-  width: 12vw;
-  height: 4vh;
-  padding: 50px;
-  margin-top: 2vh;
+  width: 17vw;
+  height: 14vh;
+  margin-top: 12px;
+  /* padding: 50px;
+  margin-top: 2vh; */
   margin-left: 0.2vw;
   background-color: #ffffff; 
   border: 1px solid #ccc; 
@@ -420,116 +442,9 @@ transform: rotate(0deg) scale(0.2, 0.2);
 
 .separator {
   position: absolute;
-  bottom: -2vw;
+  bottom: -35px;
   left: 0;
   width: 100%;
   height: 2px; 
   background-color: #ccc; 
 }
-
-
-
-@media (min-width: 1449px) and (max-width: 1626px) { 
-  #menu {
-    width: 20vw;
-    transform: translate(0, 0);
-  }
-
-  #menu a li {
-    margin: 15px;
-  }
-
-  #menu img {
-    position: absolute;
-    width: 15%;
-  }
-
-  .menuBox:nth-child(1),
-  .menuBox:nth-child(2) {
-    width: 14vw;
-    height: 5vh;
-    padding: 25px;
-    border-radius: 1vw;
-  }
-  
-  #menu a:nth-child(3) li,
-  #menu a:nth-child(4) li {
-    font-size: 0.9em;
-    padding: 1vw;
-    top: 45vh;
-  }
-  #menu a:nth-child(1) li {
-    position : absolute ;
-    margin-top: -18vw;
-    font-size: 1.2em;
-  }
-  #menu a:nth-child(2) li {
-    position: absolute;
-    margin-top: -9vw;
-    font-size: 1.2em;
-  }
-
-  .separator {
-    bottom: -2vw;
-    left: -0.5vw;
-    width: 19vw;
-    height: 0.25vh; 
-  }
-}
-@media (min-width: 1000px) and (max-width: 1439px)  {
-  #menu a:nth-child(1) li {
-    position : absolute ;
-    font-size: 1.2em;
-  }
-  #menu a:nth-child(2) li {
-    position: absolute;
-    font-size: 1.2em;
-  }
-  #menu a:nth-child(3) li,
-  #menu a:nth-child(4) li {
-    font-size: 0.7em;
-    padding: 1vw;
-    top: 45vh;
-  }
-  .menuBox:nth-child(1),
-  .menuBox:nth-child(2) {
-    width: 12vw;
-    height: 5vh;
-
-    border-radius: 1vw;
-  }
-}
-
-@media (min-width: 600px) and (max-width: 1600px) { */
-  #menu a:nth-child(1) li {
-    position : absolute ;
-    margin-top: -17vw;
-    right: 27vh;
-    font-size: 1.2em;
-  }
-  #menu img {
-    position: absolute;
-    right: 14.6vw;
-    top: 20vh;
-    width: 15%;
-  }
-  #menu a:nth-child(2) li {
-    position: absolute;
-    margin-top: -190px;
-    font-size: 1.2em;
-  }
-  #menu a:nth-child(3) li,
-  #menu a:nth-child(4) li {
-    font-size: 0.7em;
-    padding: 1vw;
-    top: 45vh;
-  }
-.menuBox:nth-child(1),
-  .menuBox:nth-child(2) {
-    width: 12vw;
-    height: 5vh;
-    padding: 25px;
-    margin-top: 1vh;
-    border-radius: 1vw;
-  }
-}  
