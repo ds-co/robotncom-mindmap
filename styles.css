@@ -193,7 +193,7 @@ nav ul:hover .submenu {
 header:hover .logo {
   filter: none;
 }
-@media only screen and (max-width: 865px) {
+@media only screen and (max-width: 871px) {
   header {
     flex-direction: column;
     align-items: flex-start;

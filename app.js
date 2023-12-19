@@ -3,8 +3,6 @@
 const distance = 250;
 let isModalOpen = false;
 
-
-
 // Function to calculate distance between two nodes with units
 function calculateDistanceWithUnits(node1, node2) {
   const dx = node1.x - node2.x;
@@ -20,7 +18,6 @@ const nodeImages = {
   2: {
     Platform: "image/Platform.svg",
     technology: "image/SI.svg",
-    Introduction: "image/Intro.svg",
   },
   3: {
     Failertalk: "image/Failertalk.svg",
@@ -32,8 +29,6 @@ const nodeImages = {
     "Voice Infrastructure": "image/Voiceinfra.svg",
     "Computer SW+HW": "image/Software.svg",
     ICT: "image/ict.svg",
-    history: "image/history.svg",
-    "Our Competence": "image/competence.svg",
   },
 };
 
@@ -74,8 +69,6 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
         "Voice Infrastructure",
         "network solutions",
         "ICT",
-        "history",
-        "Our Competence",
       ].includes(node.id)
     ) {
       const targetNodes = ["RobotNcom"];
@@ -144,15 +137,8 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
         case "Voice Infrastructure":
           showVoiceModal();
           break;
-        case "RobotNcom":
-          showIntroModal();
-          break;
-        case "history":
-          showHistoryModal();
-          break;
-        case "Our Competence":
-          showIntroductionModalModal();
-          break;
+        
+        
         default:
           break;
       }
@@ -219,13 +205,11 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
     const centralNode = graphData.nodes.find((n) => n.id === "RobotNcom");
     const techNode = graphData.nodes.find((n) => n.id === "technology");
     const platformNode = graphData.nodes.find((n) => n.id === "Platform");
-    const introNode = graphData.nodes.find((n) => n.id === "Introduction");
 
-    if (centralNode && techNode && platformNode && introNode) {
+    if (centralNode && techNode && platformNode) {
       centralNode.__threeObj.scale.set(4, 4, 4);
       techNode.__threeObj.scale.set(2, 2, 2);
       platformNode.__threeObj.scale.set(2, 2, 2);
-      introNode.__threeObj.scale.set(2, 2, 2);
     }
   });
 
@@ -492,69 +476,6 @@ document
   .getElementById("closeICTModal")
   .addEventListener("click", hideVoiceModal);
 
-// Function to show voice modal
-function showIntroModal() {
-  const modal = document.getElementById("IntroModalBackground");
-  modal.style.display = "flex";
-  window.addEventListener("click", hideIntroModal);
-  // Dispatch modal open event
-  window.dispatchEvent(new Event("modalOpen"));
-}
-
-// Function to hide voice modal
-function hideIntroModal(event) {
-  event.stopPropagation();
-  const modal = document.getElementById("IntroModalBackground");
-  modal.style.display = "none";
-  // Dispatch modal close event
-  window.dispatchEvent(new Event("modalClose"));
-}
-document
-  .getElementById("closeIntroModal")
-  .addEventListener("click", hideIntroModal);
-
-// Function to show voice modal
-function showHistoryModal() {
-  const modal = document.getElementById("HistoryModalBackground");
-  modal.style.display = "flex";
-  window.addEventListener("click", hideHistoryModal);
-  // Dispatch modal open event
-  window.dispatchEvent(new Event("modalOpen"));
-}
-
-// Function to hide voice modal
-function hideHistoryModal(event) {
-  event.stopPropagation();
-  const modal = document.getElementById("HistoryModalBackground");
-  modal.style.display = "none";
-  // Dispatch modal close event
-  window.dispatchEvent(new Event("modalClose"));
-}
-document
-  .getElementById("closeHistoryModal")
-  .addEventListener("click", hideHistoryModal);
-
-  // Function to show Introduction modal
-  function showIntroductionModalModal() {
-    const modal = document.getElementById("IntroductionModalBackground");
-    modal.style.display = "flex";
-    window.addEventListener("click", hideIntroductionModal);
-    // Dispatch modal open event
-    window.dispatchEvent(new Event("modalOpen"));
-  }
-  
-  // Function to hide Introduction modal
-  function hideIntroductionModal(event) {
-    event.stopPropagation();
-    const modal = document.getElementById("IntroductionModalBackground");
-    modal.style.display = "none";
-    // Dispatch modal close event
-    window.dispatchEvent(new Event("modalClose"));
-  }
-  document
-    .getElementById("closeIntroductionModal")
-    .addEventListener("click", hideIntroductionModal);
-
 window.showNaafaModal = showNaafaModal;
 window.showFailerModal = showFailerModal;
 window.showTtackModal = showTtackModal;
@@ -566,9 +487,6 @@ window.showServerModal = showServerModal;
 window.showSWHWModal = showSWHWModal;
 window.showICTModal = showICTModal;
 window.showVoiceModal = showVoiceModal;
-window.showIntroModal = showIntroModal;
-window.showHistoryModal = showHistoryModal;
-window.showIntroductionModalModal = showIntroductionModalModal;
 
 let angle = 182;
 setInterval(() => {
