@@ -412,11 +412,11 @@ transform: rotate(0deg) scale(0.2, 0.2);
 }
 
 .menuBox:nth-child(1) {
-  width: 17vw;
+  width: 325px;
   height: 14vh;
   /* padding: 50px;
   margin-top: -2vh; */
-  margin-left: 0.2vw;
+  /* margin-left: 0.2vw; */
   background-color: #ffffff; 
   border: 1px solid #ccc; 
   border-radius: 1vw;
@@ -426,7 +426,7 @@ transform: rotate(0deg) scale(0.2, 0.2);
 }
 
 .menuBox:nth-child(2) {
-  width: 17vw;
+  width: 325px;
   height: 14vh;
   margin-top: 12px;
   /* padding: 50px;
