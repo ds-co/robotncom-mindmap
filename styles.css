@@ -259,7 +259,7 @@ nav a {
 
 #menuToggle a:hover
 {
-  color: tomato;
+  color: rgb(43, 42, 128);
 }
 
 
@@ -332,6 +332,7 @@ transform: rotate(0deg) scale(0.2, 0.2);
 
 #menu {
   position: fixed;
+  flex-direction: column;
   width: 400px;
   height: 100vh;
   top: 0;
@@ -342,63 +343,47 @@ transform: rotate(0deg) scale(0.2, 0.2);
   transform-origin: 100% 0;
   transform: translate(100%, 0);
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+  
 }
 
 #menu a:nth-child(1) li {   /*social*/
-  position: absolute;
-  top: 110px;
-  right: 270px;
+  margin-top: 1px;
   font-size: 1.2em;
+  margin-bottom: 10px;
 }
 
 #menu a:nth-child(2) li {  /*공지사항*/
-  position: absolute;
-  top: 260px;
-  left: -16px;
+  /* margin-top: 30px; */
+  /* margin-top: 70px; */
   font-size: 1.2em;
 }
 
 #menu a:nth-child(3) li {  /*로봇앤컴 주식회사*/
-  position: absolute;
-  margin-top: 190px;
-  left: -1.6vh;
+  /* margin-bottom: 20px; */
   font-size: 1.2em;
   color: #5a5a5a;
-  text-align: left;
+  margin-bottom: 10px;
 }
 
 #menu a:nth-child(4) li {  /*주소*/
-  position: absolute;
-  margin-top: 270px;
-  left: -1.6vh;
   font-size: 0.8em;
   color: #5a5a5a;
-  text-align: left;
+  text-align: right;
 }
 
 .icon { /*인스타 아이콘*/
-  position: absolute;
-  right: 310px;
-  top: 170px;
-  width: 15%;
+  width: 70px;
+  margin-bottom: 20px;
 }
 .icon2 { /*인스타 아이콘*/
-  position: absolute;
-  right: 220px;
-  top: 170px;
-  width: 15%;
+  width: 70px;
 }
 .icon3 { /*인스타 아이콘*/
-  position: absolute;
-  right: 130px;
-  top: 170px;
-  width: 15%;
+  width: 70px;
 }
 .icon4 { /*인스타 아이콘*/
-  position: absolute;
-  right: 40px;
-  top: 170px;
-  width: 15%;
+  width: 70px;
+  /* margin-bottom: -50px; */
 }
 
 
@@ -407,13 +392,13 @@ transform: rotate(0deg) scale(0.2, 0.2);
 }
 /* 여기까지 social */
 
-#menuBoxes {
+/* #menuBoxes {
   position: absolute;
-}
+} */
 
 .menuBox:nth-child(1) {
   width: 325px;
-  height: 14vh;
+  height: 134px;
   /* padding: 50px;
   margin-top: -2vh; */
   /* margin-left: 0.2vw; */
@@ -422,13 +407,14 @@ transform: rotate(0deg) scale(0.2, 0.2);
   border-radius: 1vw;
   font-family: 'IBM Plex Sans KR', sans-serif;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  /* margin-bottom: 50px; */
   
 }
 
 .menuBox:nth-child(2) {
   width: 325px;
-  height: 14vh;
-  margin-top: 12px;
+  height: 134px;
+  margin-top: 22px;
   /* padding: 50px;
   margin-top: 2vh; */
   margin-left: 0.2vw;
@@ -437,14 +423,23 @@ transform: rotate(0deg) scale(0.2, 0.2);
   border-radius: 1vw;
   font-family: 'IBM Plex Sans KR', sans-serif;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
 }
 
 
 .separator {
-  position: absolute;
-  bottom: -35px;
-  left: 0;
-  width: 100%;
+  /* position: absolute; */
+  bottom: 75px;
+  /* left: 0;*/
+  width: 100%; 
   height: 2px; 
   background-color: #ccc; 
+  margin-bottom: 30px;
 }
+
+/* @media (max-width: 1641px) {
+  body {
+      resize: none;
+  }
+} */
+
