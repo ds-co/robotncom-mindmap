@@ -1,164 +1,229 @@
 @keyframes hideElements {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
+  0% {
+    opacity: 1;
   }
-  
-  @keyframes showH1 {
-    0% {
-      opacity: 0;
-    }
-    20% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes showHomeContent {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  
-  body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    background-image: url(image/backimg.jpg);
-    font-family: 'pretendard';
-  }
-  
-  div.circle {
-    width: 500px;
-    height: 500px;
-    border: 2px solid transparent;
-    border-radius: 50%;
-    position: relative;
-    animation: draw 2s ease-in-out forwards, fill 1s ease-in-out 2s forwards,
-      showImage 1s ease-in-out 3s forwards,
-      hideElements 1s ease-in-out 5s forwards;
-  }
-  
-  @keyframes draw {
-    0% {
-      border-top-color: transparent;
-      border-right-color: transparent;
-      border-bottom-color: transparent;
-      border-left-color: transparent;
-    }
-    25% {
-      border-top-color: #d0b9fcbe;
-      border-right-color: transparent;
-      border-bottom-color: transparent;
-      border-left-color: transparent;
-    }
-    50% {
-      border-top-color: #d0b9fcbe;
-      border-right-color: #cdd0ffaa;
-      border-bottom-color: transparent;
-      border-left-color: transparent;
-    }
-    75% {
-      border-top-color: #d0b9fcbe;
-      border-right-color: #cdd0ffaa;
-      border-bottom-color: #65d3ffaa;
-      border-left-color: transparent;
-    }
-    100% {
-      border-top-color: #d0b9fcbe;
-      border-right-color: #cdd0ffaa;
-      border-bottom-color: #65d3ffaa;
-      border-left-color: #65d3ffaa;
-    }
-  }
-  
-  @keyframes fill {
-    0% {
-      background: transparent;
-    }
-    100% {
-      background: linear-gradient(to right, #d0b9fcbe, #cdd0ffaa, #657cffaa);
-      border: none;
-    }
-  }
-  
-  @keyframes showImage {
-    0% {
-      background-image: linear-gradient(
-        to right,
-        #d0b9fcbe,
-        #cdd0ffaa,
-        #657cffaa
-      );
-    }
-    10% {
-      background-image: linear-gradient(
-        to right,
-        #d0b9fcbe,
-        #cdd0ffaa,
-        #657cffaa
-      );
-    }
-    15% {
-      background-image: linear-gradient(to right, #d0b9fcbe, #cdd0ffaa, #657cffaa),
-        url("image/logo.png");
-      background-size: auto, 50%; /* Adjust the size here */
-      background-position: 0 0, center;
-      background-repeat: no-repeat, no-repeat;
-    }
-    85% {
-      background-image: linear-gradient(to right, #d0b9fcbe, #cdd0ffaa, #657cffaa),
-        url("image/logo.png");
-      background-size: auto, 50%; /* Adjust the size here */
-      background-position: 0 0, center;
-      background-repeat: no-repeat, no-repeat;
-    }
-    90% {
-      background-image: linear-gradient(
-        to right,
-        #d0b9fcbe,
-        #cdd0ffaa,
-        #657cffaa
-      );
-    }
-    100% {
-      background-image: linear-gradient(
-        to right,
-        #d0b9fcbe,
-        #cdd0ffaa,
-        #657cffaa
-      );
-      position: relative; /* Ensure relative positioning for absolute centering */
-    }
-  }
-  
-  @keyframes showH1 {
-    0% {
-      opacity: 0; /* Initially hide the h1 */
-    }
-    100% {
-      opacity: 1; /* Make the h1 visible at 100% keyframe */
-    }
-  }
-  
-  h1 {
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  100% {
     opacity: 0;
-    animation: showH1 1s ease-in-out 3.5s forwards, hideElements 1s ease-in-out 5s forwards;
   }
+}
+
+@keyframes showH1 {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes showHomeContent {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url(image/backimg.jpg);
+  font-family: 'pretendard';
+}
+
+div.circle {
+  width: 500px;
+  height: 500px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* animation: draw 2s ease-in-out forwards, fill 1s ease-in-out 2s forwards,
+  showImage 1s ease-in-out ,
+  hideElements 1s ease-in-out  ; */
+  animation: draw 2s ease-in-out forwards, fill 1s ease-in-out 2s forwards,
+  showImage 1s ease-in-out 3s forwards,
+  hideElements 1s ease-in-out 5s forwards;
+}
+h1 {
+  color: white;
+  font-weight: bold;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  text-align: center;
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  opacity: 0;
+  animation: showH1 1s ease-in-out 3.5s forwards, hideElements 1s ease-in-out 5s forwards;
+  padding: 20px;
+  font-size: 28px;
+  /* animation: showH1 1s ease-in-out; */
+}
+/* PC 4k (해상도 1921px ~ 2560px)*/ 
+@media all and (min-width:2561px) and (max-width:3840px) { 
+div.circle {
+  width: 1200px;
+  height: 1200px;
+}
+h1{
+  font-size: 72px;
+}
+} 
+/* PC QHD (해상도 1921px ~ 2560px)*/ 
+@media all and (min-width:1921px) and (max-width:2560px) { 
+div.circle {
+  width: 800px;
+  height: 800px;
+}
+h1{
+  font-size: 44px;
+}
+} 
+/* PC , 테블릿 가로 (해상도 768px ~ 1023px)*/ 
+@media all and (min-width:768px) and (max-width:1366px) { 
+div.circle {
+  width: 500px;
+  height: 500px;
+}
+h1{
+  font-size: 32px;
+}
+} 
+
+
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/ 
+@media all and (min-width:480px) and (max-width:767px) {
+div.circle {
+  width: 300px;
+  height: 300px;
+}
+h1{
+  font-size: 26px;
+}
+} 
+
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/ 
+@media all and (max-width:479px) {
+div.circle {
+  width: 300px;
+  height: 300px;
+}
+h1{
+  font-size: 20px;
+  padding: 8px;
+}
+}
+@keyframes draw {
+  0% {
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+  25% {
+    border-top-color: #d0b9fcbe;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+  50% {
+    border-top-color: #d0b9fcbe;
+    border-right-color: #cdd0ffaa;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+  75% {
+    border-top-color: #d0b9fcbe;
+    border-right-color: #cdd0ffaa;
+    border-bottom-color: #65d3ffaa;
+    border-left-color: transparent;
+  }
+  100% {
+    border-top-color: #d0b9fcbe;
+    border-right-color: #cdd0ffaa;
+    border-bottom-color: #65d3ffaa;
+    border-left-color: #65d3ffaa;
+  }
+}
+
+@keyframes fill {
+  0% {
+    background: transparent;
+  }
+  100% {
+    background: linear-gradient(to right, #d0b9fcbe, #cdd0ffaa, #657cffaa);
+    border: none;
+  }
+}
+
+@keyframes showImage {
+  0% {
+    background-image: linear-gradient(
+      to right,
+      #d0b9fcbe,
+      #cdd0ffaa,
+      #657cffaa
+    );
+  }
+  10% {
+    background-image: linear-gradient(
+      to right,
+      #d0b9fcbe,
+      #cdd0ffaa,
+      #657cffaa
+    );
+  }
+  15% {
+    background-image: linear-gradient(to right, #d0b9fcbe, #cdd0ffaa, #657cffaa),
+      url("image/logo.png");
+    background-size: auto, 50%; /* Adjust the size here */
+    background-position: 0 0, center;
+    background-repeat: no-repeat, no-repeat;
+  }
+  85% {
+    background-image: linear-gradient(to right, #d0b9fcbe, #cdd0ffaa, #657cffaa),
+      url("image/logo.png");
+    background-size: auto, 50%; /* Adjust the size here */
+    background-position: 0 0, center;
+    background-repeat: no-repeat, no-repeat;
+  }
+  90% {
+    background-image: linear-gradient(
+      to right,
+      #d0b9fcbe,
+      #cdd0ffaa,
+      #657cffaa
+    );
+  }
+  100% {
+    background-image: linear-gradient(
+      to right,
+      #d0b9fcbe,
+      #cdd0ffaa,
+      #657cffaa
+    );
+    position: relative; /* Ensure relative positioning for absolute centering */
+  }
+}
+
+@keyframes showH1 {
+  0% {
+    opacity: 0; /* Initially hide the h1 */
+  }
+  100% {
+    opacity: 1; /* Make the h1 visible at 100% keyframe */
+  }
+}
+
