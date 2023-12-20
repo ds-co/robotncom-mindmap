@@ -338,8 +338,8 @@ transform: rotate(0deg) scale(0.2, 0.2);
   top: 0;
   right: 0;
   background: #ffffff;
-  list-style-type: none;
-  -webkit-font-smoothing: antialiased;
+  /* list-style-type: none; */
+  /* -webkit-font-smoothing: antialiased; */
   transform-origin: 100% 0;
   transform: translate(100%, 0);
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
@@ -356,6 +356,7 @@ transform: rotate(0deg) scale(0.2, 0.2);
   /* margin-top: 30px; */
   /* margin-top: 70px; */
   font-size: 1.2em;
+  /* text-align: center; */
 }
 
 #menu a:nth-child(3) li {  /*로봇앤컴 주식회사*/
@@ -372,17 +373,17 @@ transform: rotate(0deg) scale(0.2, 0.2);
 }
 
 .icon { /*인스타 아이콘*/
-  width: 70px;
+  width: 4vw;
   margin-bottom: 20px;
 }
 .icon2 { /*인스타 아이콘*/
-  width: 70px;
+  width: 4vw;
 }
 .icon3 { /*인스타 아이콘*/
-  width: 70px;
+  width: 4vw;
 }
 .icon4 { /*인스타 아이콘*/
-  width: 70px;
+  width: 4vw;
   /* margin-bottom: -50px; */
 }
 
@@ -390,18 +391,13 @@ transform: rotate(0deg) scale(0.2, 0.2);
 #menuToggle input:checked ~ ul {
   transform: translate(0, 0);
 }
-/* 여기까지 social */
-
-/* #menuBoxes {
-  position: absolute;
-} */
-
+.menuBoxes{
+  display: flex;
+  justify-content: center;
+}
 .menuBox:nth-child(1) {
-  width: 325px;
-  height: 134px;
-  /* padding: 50px;
-  margin-top: -2vh; */
-  /* margin-left: 0.2vw; */
+  width: 19vw;
+  height: 15vh;
   background-color: #ffffff; 
   border: 1px solid #ccc; 
   border-radius: 1vw;
@@ -412,12 +408,10 @@ transform: rotate(0deg) scale(0.2, 0.2);
 }
 
 .menuBox:nth-child(2) {
-  width: 325px;
-  height: 134px;
+  width: 19vw;
+  height: 15vh;
   margin-top: 22px;
-  /* padding: 50px;
-  margin-top: 2vh; */
-  margin-left: 0.2vw;
+  /* margin-left: 0.5vw; */
   background-color: #ffffff; 
   border: 1px solid #ccc; 
   border-radius: 1vw;
@@ -436,10 +430,3 @@ transform: rotate(0deg) scale(0.2, 0.2);
   background-color: #ccc; 
   margin-bottom: 30px;
 }
-
-/* @media (max-width: 1641px) {
-  body {
-      resize: none;
-  }
-} */
-
