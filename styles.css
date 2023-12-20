@@ -356,6 +356,8 @@ transform: rotate(0deg) scale(0.2, 0.2);
   /* margin-top: 30px; */
   /* margin-top: 70px; */
   font-size: 1.2em;
+  
+  
   /* text-align: center; */
 }
 
@@ -364,12 +366,14 @@ transform: rotate(0deg) scale(0.2, 0.2);
   /* font-size: 1.2em; */
   color: #5a5a5a;
   /* margin-bottom: 1px; */
+  font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
 #menu a:nth-child(4) li {  /*주소*/
   /* font-size: 0.8em; */
   color: #5a5a5a;
   text-align: right;
+  font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
 .icon { /*인스타 아이콘*/
