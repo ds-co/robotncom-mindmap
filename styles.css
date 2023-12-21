@@ -435,3 +435,119 @@ transform: rotate(0deg) scale(0.2, 0.2);
 }
 
 /* --------------------------------여기까지 햄버거메뉴 ----------------------------------------------------*/
+header {
+  position: fixed;
+  color: #fff;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: transparent;
+  transition: background 0.3s ease;
+  z-index: 1000;
+  position: relative; 
+}
+/* nav {
+  flex-grow: 1;
+} */
+
+/* nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+nav li {
+  position: relative;
+}*/
+.submenu li{
+  margin-bottom: 10px;
+} 
+nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+header:hover {
+  background: #ffffff;
+}
+
+header:hover li a {
+  color: black;
+  }
+.headerMenu a:hover {
+  border-bottom: 2px solid skyblue; /* 밑줄 스타일 및 색상 설정 */
+}
+/* nav ul li {
+  position: relative;
+} */
+
+nav ul li ul.submenu {
+  text-align: center;
+  display: none;
+  top: 100%;
+  left: 0;
+  margin-top: 10px;
+  white-space: nowrap;
+  flex-direction: column;
+}
+
+nav ul:hover .submenu {
+  display: flex;
+
+}
+
+.headerMenu{
+  margin-left: 60px;
+}
+
+/* .logo {
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease;
+}
+
+header:hover .logo {
+  filter: none;
+} */
+@media only screen and (max-width: 871px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav li {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  header::after {
+    top: 100%;
+  }
+
+  nav ul li ul.submenu {
+    position: static;
+    text-align: left;
+    white-space: normal;
+    display: none;
+  }
+
+  nav ul:hover .submenu {
+    display: none;
+  }
+
+  header:hover {
+    padding-bottom: 15px; /* Adjust the padding as needed */
+  }
+}
