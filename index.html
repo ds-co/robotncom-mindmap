@@ -26,13 +26,13 @@
         document.querySelector("h1").style.display = "none";
 
         // home.html을 미리 로드하여 body에 직접 추가합니다.
-        // const iframe = document.createElement("iframe");
-        // iframe.src = "home.html";
-        // iframe.frameBorder = "0";
-        // iframe.width = "100%";
-        // iframe.height = "100%";
-        // document.body.innerHTML = ""; // 기존 body 내용을 지워줍니다.
-        // document.body.appendChild(iframe);
+        const iframe = document.createElement("iframe");
+        iframe.src = "home.html";
+        iframe.frameBorder = "0";
+        iframe.width = "100%";
+        iframe.height = "100%";
+        document.body.innerHTML = ""; // 기존 body 내용을 지워줍니다.
+        document.body.appendChild(iframe);
 
         // home-content를 나타나게 하는 애니메이션을 추가합니다.
         homeContent.style.animation = "showHomeContent 1s ease-in-out forwards";
