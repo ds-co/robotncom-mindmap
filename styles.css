@@ -102,7 +102,7 @@ body {
   }
 }
 
-header {
+/* header {
   position: fixed;
   color: #fff;
   padding: 15px;
@@ -112,27 +112,9 @@ header {
   background: transparent;
   transition: background 0.3s ease;
   z-index: 1000;
-  position: relative; /* Add position relative to make the absolute positioning work */
+  position: relative; 
 }
 
-/* header::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 1px; /* Adjust the thickness of the line as needed 
-  background-color: gray; /* Adjust the color of the line 
-  top: 5%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  transform: scaleX(0); /* Initially, set the width of the line to 0 
-  transform-origin: bottom right;
-  transition: transform 0.3s ease;
-} */
-
-/* header:hover::after {
-  transform: scaleX(1); /* Expand the line to full width on hover 
-} */
 
 nav {
   flex-grow: 1;
@@ -166,7 +148,7 @@ header:hover li a {
   color: black;
   }
 .headerMenu a:hover {
-  border-bottom: 2px solid skyblue; /* 밑줄 스타일 및 색상 설정 */
+  border-bottom: 2px solid skyblue;  
 }
 nav ul li {
   position: relative;
@@ -198,46 +180,281 @@ nav ul:hover .submenu {
 
 header:hover .logo {
   filter: none;
+} */
+
+
+nav {
+  position: fixed;
+  width: 100%;
+  /* top: 0; */
+  z-index: 1000;
+  text-align: center;
+  /* padding: 10px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 22px;
 }
-@media only screen and (max-width: 871px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 
-  nav {
-    width: 100%;
-  }
 
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-  }
+nav ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%; 
 
-  nav li {
-    margin-right: 0;
-    margin-bottom: 15px;
-  }
-
-  header::after {
-    top: 100%;
-  }
-
-  nav ul li ul.submenu {
-    position: static;
-    text-align: left;
-    white-space: normal;
-    display: none;
-  }
-
-  nav ul:hover .submenu {
-    display: none;
-  }
-
-  header:hover {
-    padding-bottom: 15px; /* Adjust the padding as needed */
-  }
 }
+
+nav li {
+margin: 0 40px;
+}
+
+nav a {
+  /* display: block; */
+  color: rgb(255, 255, 255); 
+  text-align: center;
+  /* padding: 1px 16px;*/
+  text-decoration: none; 
+  font-size: 1.2em;
+}
+
+nav:hover{
+  background: #ffffff;
+}
+
+nav:hover li a{
+  color: black;
+}
+
+
+.logo {
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease; 
+  margin-right: auto;
+} 
+
+nav:hover .logo{
+  filter: none;
+}
+nav ul:hover .submenu {
+  display: flex;
+
+}
+
+ul li a:hover {
+  border-bottom: 2px solid skyblue;
+}
+
+.logo:hover {
+  border-bottom: none; /* This will prevent the border on the logo */
+}
+
+nav ul li ul.submenu {
+  text-align: center;
+  display: none;
+  top: 100%;
+  left: 0;
+  margin-top: 10px;
+  white-space: nowrap;
+  flex-direction: column;
+}
+
+#menuToggle {
+  display: block;
+  position: fixed;
+  top: 35px;
+  right: 50px; 
+  z-index: 1;
+  /* -webkit-user-select: none;
+  user-select: none; */
+}
+
+#menuToggle a
+{
+  text-decoration: none;
+  color: black;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  transition: color 0.3s ease;
+}
+
+#menuToggle a:hover
+{
+  color: rgb(43, 42, 128);
+}
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+
+  cursor: pointer;
+
+  opacity: 0; 
+  z-index: 2; 
+
+  -webkit-touch-callout: none;
+}
+
+
+#menuToggle span {
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  background: #cdcdcd;
+  border-radius: 3px;
+  z-index: 1;
+  transform-origin: 100% 0; 
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+              background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+              opacity 0.55s ease;
+}
+#menuToggle span:first-child
+{
+transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+transform-origin: 0% 100%;
+}
+
+
+#menuToggle input:checked ~ span
+{
+opacity: 1;
+transform: rotate(45deg) translate(-2px, -1px);
+background: #232323;
+}
+
+
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+opacity: 0;
+transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+#menuToggle input:checked ~ span:nth-last-child(2) {
+  transform: rotate(-45deg) translate(10px, 12px);
+
+  position: relative;
+  top: 0; 
+  right: 5px; 
+}
+
+#menu {
+  position: fixed;
+  flex-direction: column;
+  width: 400px;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  background: #ffffff;
+  /* list-style-type: none; */
+  /* -webkit-font-smoothing: antialiased; */
+  transform-origin: 100% 0;
+  transform: translate(100%, 0);
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+  
+}
+
+#menu a:nth-child(1) li {   /*social*/
+  margin-top: 1px;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+#menu a:nth-child(2) li {  /*공지사항*/
+  /* margin-top: 30px; */
+  /* margin-top: 70px; */
+  font-size: 1.2em;
+  
+  
+  /* text-align: center; */
+}
+
+#menu a:nth-child(3) li {  /*로봇앤컴 주식회사*/
+  /* margin-bottom: 20px; */
+  /* font-size: 1.2em; */
+  color: #5a5a5a;
+  /* margin-bottom: 1px; */
+  font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+#menu a:nth-child(4) li {  /*주소*/
+  /* font-size: 0.8em; */
+  color: #5a5a5a;
+  text-align: right;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.icon { /*인스타 아이콘*/
+  width: 4vw;
+  margin-bottom: 20px;
+}
+.icon2 { /*인스타 아이콘*/
+  width: 4vw;
+}
+.icon3 { /*인스타 아이콘*/
+  width: 4vw;
+}
+.icon4 { /*인스타 아이콘*/
+  width: 4vw;
+  /* margin-bottom: -50px; */
+}
+
+
+#menuToggle input:checked ~ ul {
+  transform: translate(0, 0);
+}
+.menuBoxes{
+  display: flex;
+  justify-content: center;
+}
+.menuBox:nth-child(1) {
+  width: 19vw;
+  height: 15vh;
+  background-color: #ffffff; 
+  border: 1px solid #ccc; 
+  border-radius: 1vw;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  /* margin-bottom: 50px; */
+  
+}
+
+.menuBox:nth-child(2) {
+  width: 19vw;
+  height: 15vh;
+  margin-top: 22px;
+  /* margin-left: 0.5vw; */
+  background-color: #ffffff; 
+  border: 1px solid #ccc; 
+  border-radius: 1vw;
+  font-family: 'IBM Plex Sans KR', sans-serif;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+
+.separator {
+  /* position: absolute; */
+  bottom: 75px;
+  /* left: 0;*/
+  width: 100%; 
+  height: 2px; 
+  background-color: #ccc; 
+  margin-bottom: 30px;
+}
+
 
 
 /* PC 4k (해상도 1921px ~ 2560px)*/ 
@@ -271,7 +488,6 @@ header:hover .logo {
   }
 } 
 
-
 /* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/ 
 @media all and (min-width:480px) and (max-width:767px) {
   div.circle {
@@ -291,5 +507,24 @@ header:hover .logo {
   }
   h1{
     font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav li {
+    margin: 10px 0;
+  }
+
+  nav ul:hover .submenu {
+    display: none; /* Hide submenu on hover */
   }
 }
