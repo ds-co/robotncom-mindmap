@@ -83,104 +83,6 @@ body {
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  .image-container img {
-    width: 65%;
-    /* Hide the images on smaller screens */
-  }
-
-  .modal {
-    width: 100%;
-    /* Adjusting modal width to full width on smaller screens */
-  }
-
-  .custom-button {
-    width: 100%;
-    box-sizing: border-box;
-    margin: 10px auto;
-    /* Center the button horizontally */
-  }
-}
-
-/* header {
-  position: fixed;
-  color: #fff;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  background: transparent;
-  transition: background 0.3s ease;
-  z-index: 1000;
-  position: relative; 
-}
-
-
-nav {
-  flex-grow: 1;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-  justify-content: center;
-}
-
-nav li {
-  position: relative;
-}
-.submenu li{
-  margin-bottom: 10px;
-}
-nav a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: bold;
-}
-
-header:hover {
-  background: #ffffff;
-}
-
-header:hover li a {
-  color: black;
-  }
-.headerMenu a:hover {
-  border-bottom: 2px solid skyblue;  
-}
-nav ul li {
-  position: relative;
-}
-
-nav ul li ul.submenu {
-  text-align: center;
-  display: none;
-  top: 100%;
-  left: 0;
-  margin-top: 10px;
-  white-space: nowrap;
-  flex-direction: column;
-}
-
-nav ul:hover .submenu {
-  display: flex;
-
-}
-
-.headerMenu{
-  margin-left: 60px;
-}
-
-.logo {
-  filter: brightness(0) invert(1);
-  transition: filter 0.3s ease;
-}
-
-header:hover .logo {
-  filter: none;
-} */
 
 
 nav {
@@ -455,8 +357,6 @@ transform: rotate(0deg) scale(0.2, 0.2);
   margin-bottom: 30px;
 }
 
-
-
 /* PC 4k (해상도 1921px ~ 2560px)*/ 
 @media all and (min-width:2561px) and (max-width:3840px) { 
   div.circle {
@@ -526,5 +426,25 @@ transform: rotate(0deg) scale(0.2, 0.2);
 
   nav ul:hover .submenu {
     display: none; /* Hide submenu on hover */
+  }
+}
+
+@media (max-width: 768px) {
+  
+  .image-container img {
+    width: 65%;
+    /* Hide the images on smaller screens */
+  }
+
+  .modal {
+    width: 100%;
+    /* Adjusting modal width to full width on smaller screens */
+  }
+
+  .custom-button {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 10px auto;
+    /* Center the button horizontally */
   }
 }
