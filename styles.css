@@ -2,17 +2,13 @@ body {
   margin: 0;
   overflow: hidden;
   font-family: "pretendard";
-
-  /* Set the default cursor style */
 }
-
 .modal {
   height: 650px;
   width: 1200px;
   padding: 20px;
   border-radius: 10px;
   backdrop-filter: blur(10px);
-  /* Added blur effect to the background */
   box-shadow: 0 0 10px rgba(225, 225, 225, 0.5);
   z-index: 1;
   border: 0.5px solid #ffffff;
@@ -21,11 +17,9 @@ body {
   flex-direction: column;
   overflow: auto;
 }
-
 .modal h2 {
   font-weight: bold;
 }
-
 #closeNaafaModal,
 #closeFailerModal,
 #closeTtackModal,
@@ -42,37 +36,30 @@ body {
   position: absolute;
   top: 10px;
   right: 10px;
-  /* Updated to move the close button to the right */
   font-size: 20px;
   cursor: pointer;
   background-color: #d9d9d950;
   border-radius: 50%;
   width: 30px;
-  /* Set width and height to create a circular shape */
   height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0;
   color: #fff;
-  /* Set the color of the 'x' */
   border: none;
   outline: none;
   text-align: center;
 }
-
 .image-container {
   display: flex;
   justify-content: flex-end;
-  /* Align images to the right */
 }
-
 .image-container img {
   position: absolute;
   bottom: 0;
   right: 0;
 }
-
 .custom-button {
   padding: 6px 10px;
   margin: 10px;
@@ -82,23 +69,16 @@ body {
   color: #ffffff;
   cursor: pointer;
 }
-
-
-
 nav {
   position: fixed;
   width: 100%;
-  /* top: 0; */
   z-index: 1000;
   text-align: center;
-  /* padding: 10px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 18px 22px;
 }
-
-
 nav ul {
 list-style-type: none;
 margin: 0;
@@ -107,53 +87,39 @@ display: flex;
 justify-content: center;
 align-items: center;
 width: 100%; 
-
 }
-
 nav li {
 margin: 0 40px;
 }
-
 nav a {
-  /* display: block; */
   color: rgb(255, 255, 255); 
   text-align: center;
-  /* padding: 1px 16px;*/
   text-decoration: none; 
   font-size: 1.2em;
 }
-
 nav:hover{
   background: #ffffff;
 }
-
 nav:hover li a{
   color: black;
 }
-
-
 .logo {
   filter: brightness(0) invert(1);
   transition: filter 0.3s ease; 
   margin-right: auto;
 } 
-
 nav:hover .logo{
   filter: none;
 }
 nav ul:hover .submenu {
   display: flex;
-
 }
-
 ul li a:hover {
   border-bottom: 2px solid skyblue;
 }
-
 .logo:hover {
-  border-bottom: none; /* This will prevent the border on the logo */
+  border-bottom: none; 
 }
-
 nav ul li ul.submenu {
   text-align: center;
   display: none;
@@ -163,17 +129,13 @@ nav ul li ul.submenu {
   white-space: nowrap;
   flex-direction: column;
 }
-
 #menuToggle {
   display: block;
   position: fixed;
   top: 35px;
   right: 50px; 
   z-index: 1;
-  /* -webkit-user-select: none;
-  user-select: none; */
 }
-
 #menuToggle a
 {
   text-decoration: none;
@@ -181,12 +143,10 @@ nav ul li ul.submenu {
   font-family: 'IBM Plex Sans KR', sans-serif;
   transition: color 0.3s ease;
 }
-
 #menuToggle a:hover
 {
   color: rgb(43, 42, 128);
 }
-
 #menuToggle input
 {
   display: block;
@@ -195,16 +155,11 @@ nav ul li ul.submenu {
   position: absolute;
   top: -7px;
   left: -5px;
-
   cursor: pointer;
-
   opacity: 0; 
   z-index: 2; 
-
   -webkit-touch-callout: none;
 }
-
-
 #menuToggle span {
   display: block;
   width: 33px;
@@ -223,35 +178,27 @@ nav ul li ul.submenu {
 {
 transform-origin: 0% 0%;
 }
-
 #menuToggle span:nth-last-child(2)
 {
 transform-origin: 0% 100%;
 }
-
-
 #menuToggle input:checked ~ span
 {
 opacity: 1;
 transform: rotate(45deg) translate(-2px, -1px);
 background: #232323;
 }
-
-
 #menuToggle input:checked ~ span:nth-last-child(3)
 {
 opacity: 0;
 transform: rotate(0deg) scale(0.2, 0.2);
 }
-
 #menuToggle input:checked ~ span:nth-last-child(2) {
   transform: rotate(-45deg) translate(10px, 12px);
-
   position: relative;
   top: 0; 
   right: 5px; 
 }
-
 #menu {
   position: fixed;
   flex-direction: column;
@@ -260,44 +207,28 @@ transform: rotate(0deg) scale(0.2, 0.2);
   top: 0;
   right: 0;
   background: #ffffff;
-  /* list-style-type: none; */
-  /* -webkit-font-smoothing: antialiased; */
   transform-origin: 100% 0;
   transform: translate(100%, 0);
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-  
 }
-
-#menu a:nth-child(1) li {   /*social*/
+#menu a:nth-child(1) li {   
+  /*social*/
   margin-top: 1px;
   font-size: 1.2em;
   margin-bottom: 10px;
 }
-
 #menu a:nth-child(2) li {  /*공지사항*/
-  /* margin-top: 30px; */
-  /* margin-top: 70px; */
   font-size: 1.2em;
-  
-  
-  /* text-align: center; */
 }
-
 #menu a:nth-child(3) li {  /*로봇앤컴 주식회사*/
-  /* margin-bottom: 20px; */
-  /* font-size: 1.2em; */
   color: #5a5a5a;
-  /* margin-bottom: 1px; */
   font-family: 'IBM Plex Sans KR', sans-serif;
 }
-
 #menu a:nth-child(4) li {  /*주소*/
-  /* font-size: 0.8em; */
   color: #5a5a5a;
   text-align: right;
   font-family: 'IBM Plex Sans KR', sans-serif;
 }
-
 .icon { /*인스타 아이콘*/
   width: 4vw;
   margin-bottom: 20px;
@@ -310,10 +241,7 @@ transform: rotate(0deg) scale(0.2, 0.2);
 }
 .icon4 { /*인스타 아이콘*/
   width: 4vw;
-  /* margin-bottom: -50px; */
 }
-
-
 #menuToggle input:checked ~ ul {
   transform: translate(0, 0);
 }
@@ -329,15 +257,11 @@ transform: rotate(0deg) scale(0.2, 0.2);
   border-radius: 1vw;
   font-family: 'IBM Plex Sans KR', sans-serif;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  /* margin-bottom: 50px; */
-  
 }
-
 .menuBox:nth-child(2) {
   width: 19vw;
   height: 15vh;
   margin-top: 22px;
-  /* margin-left: 0.5vw; */
   background-color: #ffffff; 
   border: 1px solid #ccc; 
   border-radius: 1vw;
@@ -345,18 +269,13 @@ transform: rotate(0deg) scale(0.2, 0.2);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
 }
-
-
 .separator {
-  /* position: absolute; */
   bottom: 75px;
-  /* left: 0;*/
   width: 100%; 
   height: 2px; 
   background-color: #ccc; 
   margin-bottom: 30px;
 }
-
 /* PC 4k (해상도 1921px ~ 2560px)*/ 
 @media all and (min-width:2561px) and (max-width:3840px) { 
   div.circle {
@@ -387,7 +306,6 @@ transform: rotate(0deg) scale(0.2, 0.2);
     font-size: 16px;
   }
 } 
-
 /* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/ 
 @media all and (min-width:480px) and (max-width:767px) {
   div.circle {
@@ -398,7 +316,6 @@ transform: rotate(0deg) scale(0.2, 0.2);
     font-size: 14px;
   }
 } 
-
 /* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/ 
 @media all and (max-width:479px) {
   div.circle {
@@ -409,42 +326,31 @@ transform: rotate(0deg) scale(0.2, 0.2);
     font-size: 14px;
   }
 }
-
 @media only screen and (max-width: 768px) {
   nav {
     flex-direction: column;
     padding: 10px;
   }
-
   nav ul {
     flex-direction: column;
   }
-
   nav li {
     margin: 10px 0;
   }
-
   nav ul:hover .submenu {
-    display: none; /* Hide submenu on hover */
+    display: none;
   }
 }
-
 @media (max-width: 768px) {
-  
   .image-container img {
     width: 65%;
-    /* Hide the images on smaller screens */
   }
-
   .modal {
     width: 100%;
-    /* Adjusting modal width to full width on smaller screens */
   }
-
   .custom-button {
     width: 100%;
     box-sizing: border-box;
     margin: 10px auto;
-    /* Center the button horizontally */
   }
 }
