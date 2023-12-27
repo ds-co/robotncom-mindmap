@@ -25,12 +25,10 @@ body {
 nav {
   position: fixed;
   width: 100%;
-  /* top: 0; */
   z-index: 1000;
   text-align: center;
-  /* padding: 10px; */
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   padding: 18px 22px;
 }
@@ -47,21 +45,32 @@ width: 100%;
 }
 
 nav li {
-margin: 0 40px;
+margin: 15px 40px;
 }
 
 nav a {
-  /* display: block; */
   color: rgb(255, 255, 255); 
   text-align: center;
-  /* padding: 1px 16px;*/
   text-decoration: none; 
   font-size: 1.2em;
 }
-
+/* nav li:hover {
+  background: white;
+} */
+/* nav :hover li a{
+  color: black;
+} */
+/* .headerMenu:hover {
+  background: white;
+}
+.submenu :hover li a{
+  color: black;
+} */
 .menulogo {
-  top : 15vh;
-  width: 250px;
+  position: fixed;
+  top : 3vh;
+  left: 2.7vw;
+  width: 170px;
   margin-right: -190px; 
 } 
 
@@ -287,7 +296,7 @@ nav a {
   height: 4px;
   margin-bottom: 5px;
   position: relative;
-  background: #cdcdcd;
+  background: #ffffff;
   border-radius: 3px;
   z-index: 1;
   transform-origin: 100% 0; 
@@ -349,15 +358,13 @@ transform: rotate(0deg) scale(0.2, 0.2);
 #menu a:nth-child(1) li {   /*social*/
   margin-top: 1px;
   font-size: 1.2em;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 }
 
 #menu a:nth-child(2) li {  /*공지사항*/
   /* margin-top: 30px; */
   /* margin-top: 70px; */
   font-size: 1.2em;
-  
-  
   /* text-align: center; */
 }
 
@@ -377,7 +384,7 @@ transform: rotate(0deg) scale(0.2, 0.2);
 
 .icon { /*인스타 아이콘*/
   width: 4vw;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 .icon2 { /*인스타 아이콘*/
   width: 4vw;
@@ -431,22 +438,22 @@ transform: rotate(0deg) scale(0.2, 0.2);
   width: 100%; 
   height: 2px; 
   background-color: #ccc; 
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 /* --------------------------------여기까지 햄버거메뉴 ----------------------------------------------------*/
-header {
-  position: fixed;
-  color: #fff;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  background: transparent;
-  transition: background 0.3s ease;
-  z-index: 1000;
-  position: relative; 
-}
+/* header {
+  /* position: fixed; */
+  /* color: #fff; */
+  /* padding: 15px; */
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* width: 100%; */
+  /* background: transparent; */
+  /* transition: background 0.3s ease; */
+  /* z-index: 1000; */
+  /* position: relative;  
+} */
 /* nav {
   flex-grow: 1;
 } */
@@ -463,46 +470,53 @@ nav li {
   position: relative;
 }*/
 .submenu li{
-  margin-bottom: 10px;
+  margin-bottom: 0;
 } 
-nav a {
+/* nav a {
   text-decoration: none;
   color: #fff;
   font-weight: bold;
-}
+} */
 
-header:hover {
+/* header:hover {
   background: #ffffff;
-}
+} */
 
-header:hover li a {
+/* header:hover li a {
   color: black;
-  }
+  } */
 .headerMenu a:hover {
   border-bottom: 2px solid skyblue; /* 밑줄 스타일 및 색상 설정 */
+  /* background-color: white; */
 }
+/* .aaa :hover{
+  background-color: white;
+} */
+/* .headerMenu a {
+  background-color: white;
+} */
 /* nav ul li {
   position: relative;
 } */
 
 nav ul li ul.submenu {
-  text-align: center;
+  /* text-align: center; */
   display: none;
-  top: 100%;
+  /* top: 100%;
   left: 0;
+  white-space: nowrap; */
   margin-top: 10px;
-  white-space: nowrap;
   flex-direction: column;
 }
 
 nav ul:hover .submenu {
   display: flex;
-
+  /* position: relative; */
 }
 
-.headerMenu{
+/* .headerMenu{
   margin-left: 60px;
-}
+} */
 
 /* .logo {
   filter: brightness(0) invert(1);
@@ -512,6 +526,11 @@ nav ul:hover .submenu {
 header:hover .logo {
   filter: none;
 } */
+
+/* 내ㅏㄱ 추가한 거 */
+
+
+
 @media only screen and (max-width: 871px) {
   header {
     flex-direction: column;
