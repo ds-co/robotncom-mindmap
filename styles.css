@@ -39,7 +39,7 @@ nav ul {
 }
 
 nav li {
-  margin: 28px 40px;
+  margin: 8px 40px;
 }
 
 nav a {
@@ -88,6 +88,8 @@ nav ul:hover .submenu {
   left: 2.7vw;
   width: 170px;
   margin-right: -190px;
+  /* filter: brightness(0) invert(1);
+  transition: filter 0.3s ease; */
 }
 
 
