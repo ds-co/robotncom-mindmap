@@ -38,9 +38,10 @@ nav ul {
   justify-content: center;
 }
 
-nav li {
-  margin: 8px 40px;
-}
+
+/* nav > ul > li {
+  margin: 28px 45px;
+} */
 
 nav a {
   color: rgb(255, 255, 255);
@@ -56,7 +57,46 @@ nav a {
 
 .headerMenu a:hover {
   border-bottom: 2px solid skyblue;
+  /* padding-top: 25vw; */
+  
 }
+nav > ul::after {             /*헤더 클릭 시 구분선*/
+  content: ''; 
+  position: absolute; 
+  bottom: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 1px; 
+  background-color: #ccc; 
+  opacity: 0;
+}
+
+nav > ul:hover::after {    /*헤더 클릭 시 구분선*/
+  content: ''; 
+  opacity: 1;
+  top: 4vw;
+  width: 100%; 
+  height: 1px; 
+  background-color: #ccc; 
+}
+.submenu a {         /*소메뉴 사이 간격*/
+  padding: 10px 0; 
+  display: block; 
+}
+.submenu li {
+  border-right: 1px solid #ccc;
+  padding-right: 10px;
+  margin-right: 0; 
+}
+
+/* .submenu li:last-child {
+  border-right: none;
+} */
+
+
+
+
+
 
 nav ul:hover li a {
   color: black;
@@ -64,12 +104,13 @@ nav ul:hover li a {
 
 nav ul:hover {
   background: white;
+  
 }
 
 
 nav ul li ul.submenu {
   display: none;
-  margin-top: 10px;
+  margin-top: 39px;
   flex-direction: column;
 }
 
@@ -507,4 +548,24 @@ nav ul:hover .submenu {
     padding-bottom: 15px;
     /* Adjust the padding as needed */
   }
+
+  nav > ul:hover::after {    
+    display: none; 
+  }
 }
+
+
+/* .headerMenu::after {
+  content: '';
+  position: absolute; 
+  bottom: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 1px; 
+  background-color: #ff0000; 
+}
+
+.headerMenu:hover::after {
+  opacity: 1; 
+} */
+
