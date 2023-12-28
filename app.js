@@ -1,16 +1,3 @@
-//헤더
-document.addEventListener("DOMContentLoaded", function() {
-  var firstMenu = document.querySelectorAll('nav > ul > li')[0]; // Assuming you want to select the first top-level menu item
-  var header = document.querySelector('header');
-
-  firstMenu.addEventListener('mouseenter', function() {
-    header.style.height = '300px';
-  });
-
-  firstMenu.addEventListener('mouseleave', function() {
-    header.style.height = '50px';
-  });
-});
 
 
 const distance = 250;

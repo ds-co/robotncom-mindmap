@@ -1,141 +1,8 @@
 body {
   margin: 0;
   overflow: hidden;
+  font-family: "pretendard";
 }
-
-
-
-#intro-section {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  font-size: 2.5vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  opacity: 1;
-  transition: opacity 1.2s ease-in-out;
-}
-
-nav {
-  position: fixed;
-  width: 100%;
-  z-index: 1000;
-  text-align: center;
-}
-
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-}
-
-
-nav a {
-  color: rgb(255, 255, 255);
-
-  text-decoration: none;
-  font-size: 1.2em;
-  
-}
-
-.headerMenu a:hover {
-  border-bottom: 2px solid skyblue;
-  /* padding-top: 25vw; */
-  
-}
-nav > ul::after {             
-  content: ''; 
-  position: absolute; 
-  bottom: 0; 
-  left: 0; 
-  width: 100%; 
-  height: 1px; 
-  background-color: #ccc; 
-  opacity: 0;
-}
-
-nav > ul:hover::after {   
-  content: ''; 
-  opacity: 1;
-  top: 4vw;
-  width: 100%; 
-  height: 1px; 
-  background-color: #ccc; 
-}
-
-.submenu a {         
-  padding: 10px 0; 
-  display: block;
-  font-size: 15px;
-}
-
-nav ul:hover li a {
-  color: black;
-}
-
-nav > ul:hover {
-  background: white;
-}
-
-
-nav ul li ul.submenu {
-  display: none;
-  padding-top: 39px;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 100%;
-  position: relative;
-  box-sizing: border-box;
-}
-
-.submenu::after {
-  content: "";
-  height: 100%;
-  width: 1px;
-  display: block;
-  background: #dcdcdc;
-  position: absolute;
-  right: -40px;
-  top: 0;
-}
-
-nav ul .headerMenu:last-child .submenu::after {
-  display: none;
-}
-
-nav ul:hover .submenu {
-  display: flex;
-}
-
-/* 여기까지 nav */
-.menulogo {
-  position: fixed;
-  top: 3vh;
-  left: 2.7vw;
-  width: 170px;
-  margin-right: -190px;
-}
-
-
-.hamburger {
-  height: 3vh;
-  width: auto;
-  margin-top: -10vh;
-  margin-left: -25vh;
-}
-
-
-#3d-graph {
-  width: 100%;
-  height: 100vh;
-}
-
 .modal {
   height: 650px;
   width: 1200px;
@@ -184,19 +51,15 @@ nav ul:hover .submenu {
   outline: none;
   text-align: center;
 }
-
 .image-container {
   display: flex;
   justify-content: flex-end;
 }
-
 .image-container img {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 45%;
 }
-
 .custom-button {
   padding: 6px 10px;
   margin: 10px;
@@ -206,122 +69,86 @@ nav ul:hover .submenu {
   color: #ffffff;
   cursor: pointer;
 }
-
-#graph-container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-@media (max-width: 768px) {
-  .image-container img {
-    width: 65%;
-  }
-
-
-  .modal {
-    width: 100%;
-  }
-
-  .custom-button {
-    width: 100%;
-    box-sizing: border-box;
-    margin: 10px auto;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  3% {
-    opacity: 1;
-  }
-}
-
-#intro-section h1 {
-  opacity: 0;
-  animation: fadeIn 40s ease-in-out forwards;
-  color: white;
-  position: absolute;
-  bottom: 15vh;
-  right: 5vw;
-  font-size: 0.5em;
-  font-weight: Semibold;
-  font-family: 'IBM Plex Sans KR', sans-serif;
-}
-
-#intro-section p:nth-child(1) {
-  cursor: pointer;
-  opacity: 0;
-  animation: fadeIn 40s ease-in-out forwards;
-  color: #3366FF;
-  position: absolute;
+nav {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
   text-align: center;
-  font-family: 'Russo One', sans-serif;
-  font-size: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 22px;
+}
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+/* nav li {
+  margin: 0 40px;
+} */
+nav a {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+nav:hover {
+  background: white;
 }
 
-#intro-section p:nth-child(2) {
-  color: white;
-  position: absolute;
-  opacity: 0;
-  left: 17vw;
-  bottom: 11.8vh;
-  font-size: 1.5em;
-  font-family: 'Nanum Gothic Coding', monospace;
-  animation: fadeIn 40s ease-in-out forwards;
-  animation-delay: 2s;
+nav a {
+  text-decoration: none;
+}
+nav:hover li a{
+  color: black;
 }
 
-#intro-section p:nth-child(3) {
-  color: white;
-  position: absolute;
-  opacity: 0;
-  left: 28vw;
-  top: 17vh;
-  font-size: 1.5em;
-  font-family: 'Nanum Gothic Coding', monospace;
-  animation: fadeIn 40s ease-in-out forwards;
-  animation-delay: 3s;
+.logo {
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease;
+  margin-right: auto;
 }
-
-#text img {
-  position: absolute;
-  opacity: 0;
-  right: 18vw;
-  top: 15vh;
-  animation: fadeIn 40s ease-in-out forwards;
-  animation-delay: 1s;
+nav:hover .logo {
+  filter: none;
 }
-
-
-/* --------------------------------여기부터 햄버거메뉴 ----------------------------------------------------*/
+nav ul:hover .submenu {
+  display: flex;
+}
+ul li a:hover {
+  border-bottom: 2px solid skyblue;
+}
+.logo:hover {
+  border-bottom: none;
+}
+nav ul li ul.submenu {
+  text-align: center;
+  display: none;
+  top: 100%;
+  left: 0;
+  margin-top: 10px;
+  white-space: nowrap;
+  flex-direction: column;
+}
 #menuToggle {
   display: block;
   position: fixed;
   top: 35px;
   right: 50px;
   z-index: 1;
-
 }
-
 #menuToggle a {
   text-decoration: none;
-  color: #232323;
-  font-family: 'IBM Plex Sans KR', sans-serif;
-
+  color: black;
+  font-family: "IBM Plex Sans KR", sans-serif;
   transition: color 0.3s ease;
-
 }
-
 #menuToggle a:hover {
   color: rgb(43, 42, 128);
 }
-
-
 #menuToggle input {
   display: block;
   width: 40px;
@@ -329,63 +156,45 @@ nav ul:hover .submenu {
   position: absolute;
   top: -7px;
   left: -5px;
-
   cursor: pointer;
-
   opacity: 0;
   z-index: 2;
-
   -webkit-touch-callout: none;
-
 }
-
-
 #menuToggle span {
   display: block;
   width: 33px;
   height: 4px;
   margin-bottom: 5px;
   position: relative;
-  background: grey;
+  background: #cdcdcd;
   border-radius: 3px;
   z-index: 1;
   transform-origin: 100% 0;
-  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
-    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
-    opacity 0.55s ease;
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
 }
-
 #menuToggle span:first-child {
   transform-origin: 0% 0%;
 }
-
 #menuToggle span:nth-last-child(2) {
   transform-origin: 0% 100%;
 }
-
-
-#menuToggle input:checked~span {
+#menuToggle input:checked ~ span {
   opacity: 1;
   transform: rotate(45deg) translate(-2px, -1px);
   background: #232323;
 }
-
-
-#menuToggle input:checked~span:nth-last-child(3) {
+#menuToggle input:checked ~ span:nth-last-child(3) {
   opacity: 0;
   transform: rotate(0deg) scale(0.2, 0.2);
 }
-
-#menuToggle input:checked~span:nth-last-child(2) {
+#menuToggle input:checked ~ span:nth-last-child(2) {
   transform: rotate(-45deg) translate(10px, 12px);
-
   position: relative;
   top: 0;
   right: 5px;
 }
-
-
-
 #menu {
   position: fixed;
   flex-direction: column;
@@ -396,74 +205,62 @@ nav ul:hover .submenu {
   background: #ffffff;
   transform-origin: 100% 0;
   transform: translate(100%, 0);
-  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-  align-items: center;
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
-
 #menu a:nth-child(1) li {
   /*social*/
   margin-top: 1px;
   font-size: 1.2em;
-  margin-bottom: 2px;
+  margin-bottom: 10px;
 }
-
 #menu a:nth-child(2) li {
   /*공지사항*/
   font-size: 1.2em;
 }
-
 #menu a:nth-child(3) li {
   /*로봇앤컴 주식회사*/
-  font-family: 'IBM Plex Sans KR', sans-serif;
+  color: #5a5a5a;
+  font-family: "IBM Plex Sans KR", sans-serif;
 }
-
 #menu a:nth-child(4) li {
   /*주소*/
+  color: #5a5a5a;
   text-align: right;
-  font-family: 'IBM Plex Sans KR', sans-serif;
+  font-family: "IBM Plex Sans KR", sans-serif;
 }
-
 .icon {
   /*인스타 아이콘*/
   width: 4vw;
-  margin-bottom: 0;
+  margin-bottom: 20px;
 }
-
 .icon2 {
   /*인스타 아이콘*/
   width: 4vw;
 }
-
 .icon3 {
   /*인스타 아이콘*/
   width: 4vw;
 }
-
 .icon4 {
   /*인스타 아이콘*/
   width: 4vw;
 }
-
-
-#menuToggle input:checked~ul {
+#menuToggle input:checked ~ ul {
   transform: translate(0, 0);
 }
-
 .menuBoxes {
   display: flex;
+  justify-content: center;
 }
-
 .menuBox:nth-child(1) {
   width: 19vw;
   height: 15vh;
   background-color: #ffffff;
   border: 1px solid #ccc;
   border-radius: 1vw;
-  font-family: 'IBM Plex Sans KR', sans-serif;
+  font-family: "IBM Plex Sans KR", sans-serif;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-
 }
-
 .menuBox:nth-child(2) {
   width: 19vw;
   height: 15vh;
@@ -471,67 +268,92 @@ nav ul:hover .submenu {
   background-color: #ffffff;
   border: 1px solid #ccc;
   border-radius: 1vw;
-  font-family: 'IBM Plex Sans KR', sans-serif;
+  font-family: "IBM Plex Sans KR", sans-serif;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
 }
-
-
 .separator {
   bottom: 75px;
-  /* left: 0;*/
   width: 100%;
   height: 2px;
   background-color: #ccc;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
-
-/* --------------------------------여기까지 햄버거메뉴 ----------------------------------------------------*/
-
-
-
-
-
-@media only screen and (max-width: 871px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
+/* PC 4k (해상도 1921px ~ 2560px)*/
+@media all and (min-width: 2561px) and (max-width: 3840px) {
+  div.circle {
+    width: 1000px;
+    height: 1000px;
   }
-
+  h1 {
+    font-size: 42px;
+  }
+}
+/* PC QHD (해상도 1921px ~ 2560px)*/
+@media all and (min-width: 1921px) and (max-width: 2560px) {
+  div.circle {
+    width: 600px;
+    height: 600px;
+  }
+  h1 {
+    font-size: 36px;
+  }
+}
+/* PC , 테블릿 가로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1366px) {
+  div.circle {
+    width: 500px;
+    height: 500px;
+  }
+  h1 {
+    font-size: 16px;
+  }
+}
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
+  div.circle {
+    width: 300px;
+    height: 300px;
+  }
+  h1 {
+    font-size: 14px;
+  }
+}
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media all and (max-width: 479px) {
+  div.circle {
+    width: 300px;
+    height: 300px;
+  }
+  h1 {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 768px) {
   nav {
-    width: 100%;
+    flex-direction: column;
+    padding: 10px;
   }
-
   nav ul {
     flex-direction: column;
-    align-items: center;
   }
-
   nav li {
-    margin-right: 0;
-    margin-bottom: 15px;
+    margin: 10px 0;
   }
-
-  header::after {
-    top: 100%;
-  }
-
-  nav ul li ul.submenu {
-    position: static;
-    text-align: left;
-    white-space: normal;
-    display: none;
-  }
-
   nav ul:hover .submenu {
     display: none;
   }
-
-  header:hover {
-    padding-bottom: 15px;
+}
+@media (max-width: 768px) {
+  .image-container img {
+    width: 65%;
   }
-
-  nav > ul:hover::after {    
-    display: none; 
+  .modal {
+    width: 100%;
+  }
+  .custom-button {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 10px auto;
   }
 }
