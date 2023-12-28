@@ -17,15 +17,18 @@
     <script src="//unpkg.com/three"></script>
     <script src="//unpkg.com/3d-force-graph"></script>
     <script src="https://kit.fontawesome.com/3624917c4f.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
     <nav>
         <a href="#">
-            <img src="image/menulogo.png" alt="office Logo" width="150px" class="logo">
+          <img src="image/menulogo.png" class="menulogo">
         </a>
-        <ul>
-            <li><a href="#">WHO WE ARE</a>
+        
+          <ul>
+            <li class="headerMenu" style="margin: 28px 40px;">
+                <a href="#">WHO WE ARE</a>
                 <ul class="submenu">
                     <li><a href="#">기업소개</a></li>
                     <li><a href="#">History</a></li>
@@ -33,14 +36,16 @@
                     <li><a href="#">주요고객사</a></li>
                 </ul>
             </li>
-            <li><a href="#">NETWORK SOLUTION</a>
+            <li class="headerMenu" style="margin: 28px 40px;">
+                <a href="#">NETWORK SOLUTION</a>
                 <ul class="submenu">
                     <li><a href="#">Hospital & Bio Health</a></li>
                     <li><a href="#">SystemInfra IT</a></li>
                     <li><a href="#">Display</a></li>
                 </ul>
             </li>
-            <li><a href="#">SW SOLUTION</a>
+            <li class="headerMenu" style="margin: 28px 40px;">
+                <a href="#">SW SOLUTION</a>
                 <ul class="submenu">
                     <li><a href="#">나아파</a></li>
                     <li><a href="#">문자페이</a></li>
@@ -48,76 +53,88 @@
                     <li><a href="#">페일러톡</a></li>
                 </ul>
             </li>
-            <li><a href="#"> CONTACT US</a>
+            <li class="headerMenu" style="margin: 28px 40px;">
+                <a href="#"> CONTACT US</a>
                 <ul class="submenu">
                     <li><a href="#">문의하기</a></li>
                     <li><a href="#">찾아오시는 길</a></li>
                 </ul>
             </li>
-        </ul>
+          </ul>
+    
+    
+        <!--                                여기부터 햄버거 메뉴                         -->
         <div id="menuToggle">
-            <input type="checkbox" />
-            <span></span>
-            <span></span>
-            <span></span>
-            <ul id="menu">
-                <a>
-                    <li>Social</li>
+          <input type="checkbox" />
+    
+          <span></span>
+          <span></span>
+          <span></span>
+    
+    
+          <ul id="menu">
+              <a>
+                <li style="font-weight: lighter;">Social</li>
+              </a>
+              <div style="display: flex; justify-content: space-evenly; width: 100%;">
+                <a href="https://www.instagram.com/robot_n_com/">
+                  <img src="image/instagram_icon.png" class="icon">
                 </a>
-                <div style="display: flex; justify-content: space-evenly; width: 100%;">
-                    <a href="https://www.instagram.com/robot_n_com/">
-                        <img src="image/instagram_icon.png" class="icon">
-                    </a>
-                    <a href="https://www.instagram.com/robot_n_com/">
-                        <img src="image/kako.png" class="icon2">
-                    </a>
-                    <a href="https://www.instagram.com/robot_n_com/">
-                        <img src="image/twitter.png" class="icon3">
-                    </a>
-                    <a href="https://www.instagram.com/robot_n_com/">
-                        <img src="image/blog.png" class="icon4">
-                    </a>
-                </div>
-                <a>
-                    <li style="padding-bottom: 10px; color: black;">공지사항 및 뉴스</li>
+                <a href="https://www.instagram.com/robot_n_com/">
+                  <img src="image/kako.png" class="icon2">
                 </a>
-                <div id="menuBoxes">
-                    <div class="menuBox" style="padding-top: 15px;">
-                        <a href="https://www.koit.co.kr/news/articleView.html?idxno=117769">
-                            <li style="font-size: 1.2vw;">제목제목제목제목제목제목</li>
-                            <p style="font-size: 0.9vw; padding-top: 16px;">
-                                내용내용내용내용내용내용내용내용내용<br>
-                                내용내용내용내용내용내용내용내용내용
-                            </p>
-                        </a>
-                    </div>
-                    <div class="menuBox" style="padding-top: 19px;">
-                        <a href="https://m.hankookilbo.com/News/Read/A2023101016350000418">
-                            <li style="font-size: 1.2vw;">제목제목제목제목제목제목</li>
-                            <p style="font-size: 0.9vw; padding-top: 16px;">
-                                내용내용내용내용내용내용내용내용내용<br>
-                                내용내용내용내용내용내용내용내용내용
-                            </p>
-                        </a>
-                    </div>
-                </div>
-                <div class="separator">
-                </div>
-                <a style="text-align: left;">
-                    <li style="font-size: 1.1vw;">ROBOT N COM <br>
-                        로봇앤컴 주식회사 <br>
-                        <br>
-                        Tel. 1661-7067<br>
-                        Fax. 02-439-2229<br>
-                        E. 0177248662@hanmail.net<br>
-                        Addr.26,Neungdong-ro 3na gil,Gwangin-gu. <br>
-                        Seoul,Korea<br>
-                        Biz License 897-86-00790
-                    </li>
+                <a href="https://www.instagram.com/robot_n_com/">
+                  <img src="image/twitter.png" class="icon3">
                 </a>
-            </ul>
+                <a href="https://www.instagram.com/robot_n_com/">
+                  <img src="image/blog.png" class="icon4">
+                </a>
+              </div>
+            <a>
+              <li style="padding-bottom: 10px; font-weight: lighter;">공지사항 및 뉴스</li>
+            </a>
+            <div id="menuBoxes">
+    
+              <div class="menuBox" style="padding-top: 15px; font-weight: lighter; ">
+                <a href="https://www.koit.co.kr/news/articleView.html?idxno=117769">
+                  <li style="font-size: 1.2vw; font-weight: lighter;">제목제목제목제목제목제목</li>
+                  <p style="font-size: 0.9vw; padding-top: 16px; font-weight: lighter;">내용내용내용내용내용내용내용내용내용<br>
+                    내용내용내용내용내용내용내용내용내용</p> 
+                </a>
+              </div>
+              </a>
+    
+              <div class="menuBox" style="padding-top: 19px; font-weight: lighter;">
+                <a href="https://m.hankookilbo.com/News/Read/A2023101016350000418">
+                  <li style="font-size: 1.2vw; font-weight: lighter;">제목제목제목제목제목제목</li>
+                  <p style="font-size: 0.9vw; padding-top: 16px; font-weight: lighter;">내용내용내용내용내용내용내용내용내용<br>
+                    내용내용내용내용내용내용내용내용내용</p> 
+                </a>
+              </div>
+            </div>
+            
+            <div class="separator"></div>
+            <a style="text-align: left;">
+              <li style="font-size: 1vw; color: #646464; font-weight: lighter;">ROBOT N COM <br> 로봇앤컴 주식회사 <br> <br>
+                Tel. 1661-7067<br>
+                Fax. 02-439-2229<br>
+                E. 0177248662@hanmail.net<br>
+                Addr.26,Neungdong-ro 3na gil,Gwangin-gu. <br>
+                Seoul,Korea<br>
+                Biz License 897-86-00790
+              </li>
+            </a>
+    
+          </ul>
+    
         </div>
-    </nav>
+         <!--                                여기까지 햄버거 메뉴                         -->
+    
+      </nav>
+    
+      
+
+
     <div id="NaafaModalBackground"
         style=" height: 100vh; width: 100vw; position: fixed; display: none; justify-content: center; align-items: center; z-index: 100; ">
         <div id="naafaModal" class="modal">
