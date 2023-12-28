@@ -51,10 +51,6 @@ nav a {
   
 }
 
-.submenu li {
-  margin-bottom: 0;
-}
-
 .headerMenu a:hover {
   border-bottom: 2px solid skyblue;
   /* padding-top: 25vw; */
@@ -79,14 +75,11 @@ nav > ul:hover::after {    /*헤더 클릭 시 구분선*/
   height: 1px; 
   background-color: #ccc; 
 }
+
 .submenu a {         /*소메뉴 사이 간격*/
   padding: 10px 0; 
-  display: block; 
-}
-.submenu li {
-  border-right: 1px solid #ccc;
-  padding-right: 10px;
-  margin-right: 0; 
+  display: block;
+  font-size: 15px;
 }
 
 /* .submenu li:last-child {
@@ -102,16 +95,34 @@ nav ul:hover li a {
   color: black;
 }
 
-nav ul:hover {
+nav > ul:hover {
   background: white;
-  
 }
 
 
 nav ul li ul.submenu {
   display: none;
-  margin-top: 39px;
+  padding-top: 39px;
   flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.submenu::after {
+  content: "";
+  height: 100%;
+  width: 1px;
+  display: block;
+  background: #dcdcdc;
+  position: absolute;
+  right: -40px;
+  top: 0;
+}
+
+nav ul .headerMenu:last-child .submenu::after {
+  display: none;
 }
 
 nav ul:hover .submenu {
