@@ -12,31 +12,53 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+// 랜딩 js
+    // document.addEventListener("DOMContentLoaded", function () {
+    //   const homeContent = document.getElementById("home-content");
+    //   const h1AnimationDuration = 5000;              /*랜딩 원이 유지되는 속도 */
 
+    //   setTimeout(() => {
+    //     // 이 부분에서 index.html의 circle과 h1을 숨깁니다.
+    //     document.querySelector(".circle").style.display = "none";
+    //     document.querySelector("h1").style.display = "none";
 
+    //     // home.html을 미리 로드하여 body에 직접 추가합니다.
+    //     const iframe = document.createElement("iframe");
+    //     iframe.src = "home.html";
+    //     iframe.frameBorder = "0";
+    //     iframe.width = "100%";
+    //     iframe.height = "100%";
+    //     document.body.innerHTML = ""; // 기존 body 내용을 지워줍니다.
+    //     document.body.appendChild(iframe);
 
-//랜딩페이지
-// document.addEventListener("DOMContentLoaded", function () {
-//   const fillingCircle = document.querySelector(".filling");
-//   const innerText = document.querySelector(".inner-text");
+    //     // home-content를 나타나게 하는 애니메이션을 추가합니다.
+    //     // homeContent.style.animation = "showHomeContent 10s ease-in-out forwards";
+    //   }, h1AnimationDuration);
+    // });
+// 랜딩 js
 
-//   // Show the landing page
-//   setTimeout(() => {
-//     fillingCircle.style.strokeDashoffset = "0";
-//     innerText.style.opacity = "1";
-//   }, 2000); // Adjust the delay time as needed
+document.addEventListener("DOMContentLoaded", function () {
+  const homeContent = document.getElementById("home-content");
+  const h1AnimationDuration = 5000;
 
-//   // Hide the landing page after 5 seconds
-//   setTimeout(() => {
-//     const landingContainer = document.querySelector(".landing-container");
-//     landingContainer.style.display = "none";
-//   }, 5000); // Adjust the delay time as needed
-// });
+  setTimeout(() => {
+      // circle과 h1에 애니메이션을 적용하여 천천히 사라지게 합니다.
+      document.querySelector(".circle").classList.add("hide-circle");
+      document.querySelector("h1").classList.add("hide-h1");
 
+      // home.html을 미리 로드하여 body에 직접 추가합니다.
+      const iframe = document.createElement("iframe");
+      iframe.src = "home.html";
+      iframe.frameBorder = "0";
+      iframe.width = "100%";
+      iframe.height = "100%";
+      document.body.innerHTML = ""; // 기존 body 내용을 지워줍니다.
+      document.body.appendChild(iframe);
 
-
-
-
+      // home-content를 나타나게 하는 애니메이션을 추가합니다.
+      // homeContent.style.animation = "showHomeContent 10s ease-in-out forwards";
+  }, h1AnimationDuration);
+});
 
 
 document.getElementById("closeModal").addEventListener("click", hideModal);
@@ -117,6 +139,8 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
 
       const textureLoader = new THREE.TextureLoader();
       backgroundTexture.encoding = THREE.sRGBEncoding;
+      rendingTexture.encoding = THREE.sRGBEncoding;
+      
 
       const svgTexture = textureLoader.load(imageSrc);
       svgTexture.encoding = THREE.sRGBEncoding;
@@ -320,6 +344,10 @@ window.addEventListener("mouseup", getMouseDirection);
 
 const textureLoader = new THREE.TextureLoader();
 
+const rendingTexture = textureLoader.load("image/back2.jpg");
+rendingTexture.encoding = THREE.sRGBEncoding;
+
+
 const backgroundTexture = textureLoader.load("image/back2.jpg");
 backgroundTexture.encoding = THREE.sRGBEncoding;
 Graph.renderer().setClearColor(new THREE.Color("black"));
@@ -363,3 +391,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   requestAnimationFrame(animate);
 });
+
+
+// const textureLoader = new THREE.TextureLoader();
+
+// const rendingTexture = textureLoader.load("image/back2.jpg", () => {
+//     rendingTexture.encoding = THREE.sRGBEncoding;
+
+//     // 필터링 및 래핑 설정
+//     rendingTexture.magFilter = THREE.LinearFilter;
+//     rendingTexture.minFilter = THREE.LinearMipmapLinearFilter; // 필요한 경우만 설정
+//     rendingTexture.wrapS = THREE.RepeatWrapping;
+//     rendingTexture.wrapT = THREE.RepeatWrapping;
+
+//     // 텍스처를 사용하여 재질 생성
+//     const material = new THREE.MeshBasicMaterial({ map: rendingTexture });
+
+//     // 나머지 코드 (예: 큐브 생성 및 씬에 추가 등)
+// });

@@ -1,0 +1,20 @@
+<svg width="174" height="174" viewBox="0 0 174 174" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_1_88)">
+<path d="M162 87C162 128.421 128.421 162 87 162C45.5786 162 12 128.421 12 87C12 45.5786 45.5786 12 87 12C128.421 12 162 45.5786 162 87Z" fill="#2446AB"/>
+</g>
+<path d="M121.719 102.564L111.048 98.5814L90.6072 106.172C89.4799 106.547 88.2024 106.848 87 106.848C85.7224 106.848 84.52 106.623 83.3928 106.172L62.9519 98.5814L52.2805 102.564C51.003 103.015 51.003 104.819 52.2805 105.345L85.2715 117.519C86.3988 117.895 87.6012 117.895 88.7284 117.519L121.719 105.345C122.997 104.819 122.997 103.015 121.719 102.564Z" fill="white"/>
+<path d="M121.719 86.1064L111.048 82.1234L90.6072 89.6384C89.4799 90.0893 88.2024 90.3148 87 90.3148C85.7224 90.3148 84.52 90.0893 83.3928 89.6384L62.9519 82.1234L52.2805 86.1064C51.003 86.5573 51.003 88.3609 52.2805 88.8869L85.2715 100.986C86.3988 101.437 87.6012 101.437 88.7284 100.986L121.719 88.8118C122.997 88.3609 122.997 86.5573 121.719 86.1064Z" fill="white"/>
+<path d="M52.2805 72.354L85.2715 84.5283C86.3987 84.9041 87.6011 84.9041 88.7284 84.5283L121.719 72.354C122.997 71.9031 122.997 70.0243 121.719 69.5734L88.7284 57.399C87.6011 57.0233 86.3987 57.0233 85.2715 57.399L52.2805 69.5734C51.0029 70.0243 51.0029 71.9031 52.2805 72.354Z" fill="white"/>
+<defs>
+<filter id="filter0_d_1_88" x="0.837209" y="0.837209" width="172.326" height="172.326" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset/>
+<feGaussianBlur stdDeviation="5.5814"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_88"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_88" result="shape"/>
+</filter>
+</defs>
+</svg>
