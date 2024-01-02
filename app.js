@@ -1,3 +1,13 @@
+function calculateDistanceWithUnits(node1, node2) {
+  const dx = node1.x - node2.x;
+  const dy = node1.y - node2.y;
+  const dz = node1.z - node2.z;
+
+  // Return the coordinates
+  return { x: dx, y: dy, z: dz };
+}
+
+
 //헤더
 document.addEventListener("DOMContentLoaded", function() {
   var firstMenu = document.querySelectorAll('nav > ul > li')[0]; // Assuming you want to select the first top-level menu item
@@ -12,30 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-// 랜딩 js
-    // document.addEventListener("DOMContentLoaded", function () {
-    //   const homeContent = document.getElementById("home-content");
-    //   const h1AnimationDuration = 5000;              /*랜딩 원이 유지되는 속도 */
-
-    //   setTimeout(() => {
-    //     // 이 부분에서 index.html의 circle과 h1을 숨깁니다.
-    //     document.querySelector(".circle").style.display = "none";
-    //     document.querySelector("h1").style.display = "none";
-
-    //     // home.html을 미리 로드하여 body에 직접 추가합니다.
-    //     const iframe = document.createElement("iframe");
-    //     iframe.src = "home.html";
-    //     iframe.frameBorder = "0";
-    //     iframe.width = "100%";
-    //     iframe.height = "100%";
-    //     document.body.innerHTML = ""; // 기존 body 내용을 지워줍니다.
-    //     document.body.appendChild(iframe);
-
-    //     // home-content를 나타나게 하는 애니메이션을 추가합니다.
-    //     // homeContent.style.animation = "showHomeContent 10s ease-in-out forwards";
-    //   }, h1AnimationDuration);
-    // });
-// 랜딩 js
 
 document.addEventListener("DOMContentLoaded", function () {
   const homeContent = document.getElementById("home-content");
@@ -102,18 +88,40 @@ const Graph = ForceGraph3D()(document.getElementById("3d-graph"))
   .jsonUrl("../datasets/miserables.json")
   .nodeLabel("id")
   .nodeAutoColorBy("group")
-
+  .linkDirectionalParticleSpeed(0.02)
+  .linkOpacity(1.0)
   .enableNavigationControls(false)
   .enableNodeDrag(false)
-  .onNodeClick((node) => {
-    const nodeId = node.id;
-    if (nodeImages[node.group]) {
-      const imageSrc = nodeImages[node.group];
-      if (typeof imageSrc === "object" && imageSrc[nodeId]) {
-        console.log(`Node "${nodeId}" clicked!`);
-      }
-    }
-  })
+  .onNodeClick((node, event) => {
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+
+    // Calculate normalized device coordinates
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    // Update the picking ray with the camera and mouse position
+    raycaster.setFromCamera(mouse, Graph.camera());
+
+    // Check for intersections with the node
+    const intersects = raycaster.intersectObject(node.__threeObj, true);
+
+  
+
+      // Log X, Y coordinates
+      targetNodePositions.forEach((target) => {
+        const coordinates = calculateDistanceWithUnits(node, target.position);
+        console.log(
+          `${node.id} 노드의 좌표에서 ${
+            target.id
+          }노드 까지의 좌표 값: X=${coordinates.x.toFixed(
+            2
+          )}, Y=${coordinates.y.toFixed(2)}`
+        );
+      });
+    })
+
+  
 
   .linkThreeObject((link) => {
     const whiteColor = new THREE.Color("white");
@@ -254,7 +262,7 @@ Graph.onNodeClick((node) => {
       "서버 솔루션",
       "보안 솔루션",
       "Computer HW",
-      "보이스인프라",
+      "보이스인onNodeClick프라",
       "네트워크 솔루션",
       "Computer SW",
       "중소벤처기업부 경영혁신 부문 장관상",
@@ -283,64 +291,63 @@ setInterval(() => {
   angle += Math.PI / 6000;
 }, 10);
 
-let prevX = 0,
-  prevY = 0;
-const $target = document.querySelector("#direction");
 
-let mouseDownTimeout;
-let mouseDown = false;
+// let prevX = 0,
+//   prevY = 0;
+// const $target = document.querySelector("#direction");
 
-window.addEventListener("mousedown", (e) => {
-  if (e.button === 0 || e.button === 2) {
-    // 왼쪽 또는 오른쪽 마우스 버튼이 눌렸을 때
-    mouseDown = true;
+// let mouseDownTimeout;
+// let mouseDown = false;
 
-    // 1000 밀리초(1초) 후에 함수 실행을 위한 타임아웃 설정
-    mouseDownTimeout = setTimeout(() => {
-      // 1초 후에 실행할 코드
-      console.log(
-        `${e.button === 0 ? "왼쪽" : "오른쪽"} 마우스 버튼이 눌렸습니다.`
-      );
-      // 여기서 함수를 호출하거나 다른 작업을 수행할 수 있습니다.
-      // 예를 들어, getMouseDirection(e)와 같은 함수를 호출할 수 있습니다.
-      getMouseDirection(e);
-    }, 1000);
-  }
-});
+// window.addEventListener("mousedown", (e) => {
+//   if (e.button === 0 || e.button === 2) {
+//     // Left or right mouse button pressed
+//     mouseDown = true;
 
-window.addEventListener("mouseup", () => {
-  // 마우스 버튼이 떼어지면 타임아웃을 지웁니다.
-  clearTimeout(mouseDownTimeout);
-  mouseDown = false;
-});
+//     // Set a timeout for 1000 milliseconds (1 second)
+//     mouseDownTimeout = setTimeout(() => {
+//       console.log(
+//         `${e.button === 0 ? "Left" : "Right"} mouse button pressed.`
+//       );
+//       getMouseDirection(e);
+//     }, 1000);
+//   }
+// });
 
-window.addEventListener("mousemove", (e) => {
-  // 왼쪽 또는 오른쪽 마우스 버튼이 눌린 상태인지 확인합니다.
-  if (mouseDown) {
-    getMouseDirection(e);
-  }
-});
+// window.addEventListener("mouseup", () => {
+//   // Clear the timeout when the mouse button is released
+//   clearTimeout(mouseDownTimeout);
+//   mouseDown = false;
+// });
 
-function getMouseDirection(e) {
-  const xDir = prevX <= e.pageX ? "right" : "left";
-  prevX = e.pageX;
-  console.log(`${xDir} 마우스 방향`);
-  if (xDir === "left") {
-    Graph.cameraPosition({
-      x: distance * Math.sin(angle),
-      z: distance * Math.cos(angle),
-    });
-    angle += Math.PI / 100;
-  } else if (xDir === "right") {
-    Graph.cameraPosition({
-      x: distance * Math.sin(angle),
-      z: distance * Math.cos(angle),
-    });
-    angle -= Math.PI / 100;
-  }
-}
+// window.addEventListener("mousemove", (e) => {
+//   // Check if the left or right mouse button is pressed
+//   if (mouseDown) {
+//     getMouseDirection(e);
+//   }
+// });
 
-window.addEventListener("mouseup", getMouseDirection);
+// function getMouseDirection(e) {
+//   const xDir = prevX <= e.pageX ? "right" : "left";
+//   prevX = e.pageX;
+
+//   console.log(`${xDir} mouse direction`);
+
+//   if (xDir === "left") {
+//     Graph.cameraPosition({
+//       x: distance * Math.sin(angle),
+//       z: distance * Math.cos(angle),
+//     });
+//     angle += Math.PI / 100;
+//   } else if (xDir === "right") {
+//     Graph.cameraPosition({
+//       x: distance * Math.sin(angle),
+//       z: distance * Math.cos(angle),
+//     });
+//     angle -= Math.PI / 100;
+//   }
+// }
+// window.addEventListener("mouseup", getMouseDirection);
 
 const textureLoader = new THREE.TextureLoader();
 
@@ -391,21 +398,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
   requestAnimationFrame(animate);
 });
-
-
-// const textureLoader = new THREE.TextureLoader();
-
-// const rendingTexture = textureLoader.load("image/back2.jpg", () => {
-//     rendingTexture.encoding = THREE.sRGBEncoding;
-
-//     // 필터링 및 래핑 설정
-//     rendingTexture.magFilter = THREE.LinearFilter;
-//     rendingTexture.minFilter = THREE.LinearMipmapLinearFilter; // 필요한 경우만 설정
-//     rendingTexture.wrapS = THREE.RepeatWrapping;
-//     rendingTexture.wrapT = THREE.RepeatWrapping;
-
-//     // 텍스처를 사용하여 재질 생성
-//     const material = new THREE.MeshBasicMaterial({ map: rendingTexture });
-
-//     // 나머지 코드 (예: 큐브 생성 및 씬에 추가 등)
-// });
